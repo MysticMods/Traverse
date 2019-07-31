@@ -7,4 +7,6 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(Traverse.MODID)
 public class ModItems {
 
+	public static final Item FIR_LOG = null;
+
 }
