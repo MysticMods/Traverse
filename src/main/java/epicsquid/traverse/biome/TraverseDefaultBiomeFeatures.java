@@ -28,7 +28,7 @@ public class TraverseDefaultBiomeFeatures {
 	public static void addAutumnalWoodsTrees(Biome biome) {
 		biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.RANDOM_SELECTOR, new MultipleRandomFeatureConfig(
 				new Feature[]{ModFeatures.RED_AUTUMNAL_TREE, ModFeatures.BROWN_AUTUMNAL_TREE, ModFeatures.ORANGE_AUTUMNAL_TREE, ModFeatures.YELLOW_AUTUMNAL_TREE},
-				new IFeatureConfig[]{DecoratedFeatureConfig.NO_FEATURE_CONFIG, DecoratedFeatureConfig.NO_FEATURE_CONFIG, DecoratedFeatureConfig.NO_FEATURE_CONFIG, DecoratedFeatureConfig.NO_FEATURE_CONFIG },
+				new IFeatureConfig[]{IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG.NO_FEATURE_CONFIG },
 				new float[]{0.25F, 0.25F, 0.25F, 0.25F},
 				Feature.NORMAL_TREE, DecoratedFeatureConfig.NO_FEATURE_CONFIG), Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(10, 0.1F, 1)));
 	}

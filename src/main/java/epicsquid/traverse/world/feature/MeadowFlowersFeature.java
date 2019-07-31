@@ -8,6 +8,9 @@ import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
@@ -40,5 +43,10 @@ public class MeadowFlowersFeature extends FlowersFeature {
 				return Blocks.WHITE_TULIP.getDefaultState();
 			}
 		}
+	}
+
+	@Override
+	public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+		return super.place(worldIn, generator, rand, pos, config);
 	}
 }
