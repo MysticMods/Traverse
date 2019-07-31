@@ -13,7 +13,7 @@ public class FirTree extends Tree {
 
 	@Nullable
 	@Override
-	protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
+	public AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
 		return new FirTreeFeature(NoFeatureConfig::deserialize, true);
 	}
 }
