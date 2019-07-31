@@ -11,6 +11,7 @@ import epicsquid.mysticallib.block.BaseStairsBlock;
 import epicsquid.mysticallib.block.BaseTrapDoorBlock;
 import epicsquid.mysticallib.block.BaseWoodButtonBlock;
 import epicsquid.mysticallib.world.BaseTree;
+import epicsquid.traverse.biome.*;
 import epicsquid.traverse.blocks.ModBlocks;
 import epicsquid.traverse.world.FirTree;
 import epicsquid.traverse.world.feature.FallenLogFeature;
@@ -32,6 +33,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.JungleGrassFeature;
 import net.minecraft.world.gen.feature.JungleTreeFeature;
@@ -127,6 +129,32 @@ public class RegistryManager {
 		registry.register(FIR_TREE.getTreeFeature(rand).setRegistryName(Traverse.MODID, "fir_tree"));
 		registry.register(new TreeFeature(NoFeatureConfig::deserialize, false, 7, Blocks.OAK_LOG.getDefaultState(), Blocks.OAK_LEAVES.getDefaultState(), true).setRegistryName(Traverse.MODID, "tall_swamp_tree"));
 		registry.register(new FallenLogFeature(NoFeatureConfig::deserialize, false, Blocks.OAK_LOG.getDefaultState(), 3, 2).setRegistryName(Traverse.MODID, "fallen_oak_tree"));
+	}
+
+	@SubscribeEvent
+	public static void registerBiomes(RegistryEvent.Register<Biome> event) {
+		IForgeRegistry<Biome> registry = event.getRegistry();
+
+		registry.register(new AridHighlandsBiome().setRegistryName(Traverse.MODID, "arid_highlands"));
+		registry.register(new AutumnalWoodedHillsBiome().setRegistryName(Traverse.MODID, "autumnal_wooded_hills"));
+		registry.register(new AutumnalWoodsBiome().setRegistryName(Traverse.MODID, "autumnal_woods"));
+		registry.register(new CliffsBiome().setRegistryName(Traverse.MODID, "cliffs"));
+		registry.register(new ConiferousForestBiome().setRegistryName(Traverse.MODID, "coniferous_forest"));
+		registry.register(new ConiferousWoodedHillsBiome().setRegistryName(Traverse.MODID, "coniferous_wooded_hills"));
+		registry.register(new DesertShrublandBiome().setRegistryName(Traverse.MODID, "desert_shrublands"));
+		registry.register(new HighConiferousForestBiome().setRegistryName(Traverse.MODID, "high_coniferous_forest"));
+		registry.register(new LushSwampBiome().setRegistryName(Traverse.MODID, "lush_swamp"));
+		registry.register(new MeadowBiome().setRegistryName(Traverse.MODID, "meadow"));
+		registry.register(new MiniJungleBiome().setRegistryName(Traverse.MODID, "mini_jungle"));
+		registry.register(new PlainsPlateauBiome().setRegistryName(Traverse.MODID, "plains_plateau"));
+		registry.register(new RockyEdgeBiome().setRegistryName(Traverse.MODID, "rocky_edge"));
+		registry.register(new RollingHillsBiome().setRegistryName(Traverse.MODID, "rolling_hills"));
+		registry.register(new SnowyConiferousForestBiome().setRegistryName(Traverse.MODID, "snowy_coniferous_forest"));
+		registry.register(new SnowyConiferousWoodedHillsBiome().setRegistryName(Traverse.MODID, "snowy_coniferous_wooded_hills"));
+		registry.register(new SnowyHighConiferousForestBiome().setRegistryName(Traverse.MODID, "snowy_high_coniferous_forest"));
+		registry.register(new WoodedIslandBiome().setRegistryName(Traverse.MODID, "wooded_island"));
+		registry.register(new WoodedPlateauBiome().setRegistryName(Traverse.MODID, "wooded_plateau"));
+		registry.register(new WoodlandsBiome().setRegistryName(Traverse.MODID, "woodlands"));
 	}
 
 	private static Block createLeaves(String name) {
