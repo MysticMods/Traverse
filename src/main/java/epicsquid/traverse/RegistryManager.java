@@ -113,7 +113,7 @@ public class RegistryManager {
 		registerBiome(registry, new AridHighlandsBiome(), "arid_highlands", 4, false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS);
 		registerBiome(registry, new AutumnalWoodedHillsBiome(), "autumnal_wooded_hills", 1, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS);
 		registerBiome(registry, new AutumnalWoodsBiome(), "autumnal_woods", 8, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST);
-		registerBiome(registry, new CliffsBiome(), "cliffs_biome", 2, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS);
+		registerBiome(registry, new CliffsBiome(), "cliffs", 2, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS);
 		registerBiome(registry, new ConiferousForestBiome(), "coniferous_forest", 4, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS);
 		registerBiome(registry, new ConiferousWoodedHillsBiome(), "coniferous_woodland_hills_biome", 1, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.CONIFEROUS);
 		registerBiome(registry, new DesertShrublandBiome(), "desert_shurbland", 5, false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.DEAD);
