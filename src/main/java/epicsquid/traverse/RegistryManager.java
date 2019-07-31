@@ -12,6 +12,8 @@ import epicsquid.mysticallib.block.BaseWoodButtonBlock;
 import epicsquid.mysticallib.world.BaseTree;
 import epicsquid.traverse.blocks.ModBlocks;
 import epicsquid.traverse.world.FirTree;
+import epicsquid.traverse.world.surfacebuilder.BeachSurfaceBuilder;
+import epicsquid.traverse.world.surfacebuilder.SandWithPatchesSurfaceBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FenceBlock;
@@ -26,6 +28,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -84,6 +88,15 @@ public class RegistryManager {
 		BLOCKS.add(new BaseDoorBlock(firProps).setRegistryName(Traverse.MODID, "fir_door"));
 
 		BLOCKS.forEach(registry::register);
+	}
+
+	@SubscribeEvent
+	public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
+		IForgeRegistry<SurfaceBuilder<?>> registry = event.getRegistry();
+
+		registry.register(new SandWithPatchesSurfaceBuilder(SurfaceBuilderConfig::deserialize, 0.9).setRegistryName(Traverse.MODID, "arid_highlands"));
+		registry.register(new SandWithPatchesSurfaceBuilder(SurfaceBuilderConfig::deserialize, 1.5).setRegistryName(Traverse.MODID, "desert_shrubland"));
+		registry.register(new BeachSurfaceBuilder(SurfaceBuilderConfig::deserialize, 62, v -> Blocks.SAND.getDefaultState()).setRegistryName(Traverse.MODID, "forest_island"));
 	}
 
 	private static Block createLeaves(String name) {

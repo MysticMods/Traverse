@@ -1,4 +1,4 @@
-package epicsquid.traverse.world;
+package epicsquid.traverse.world.feature;
 
 import java.util.Random;
 import java.util.Set;
