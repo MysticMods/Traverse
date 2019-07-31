@@ -5,11 +5,15 @@ import java.util.List;
 
 import epicsquid.mysticallib.block.BaseDoorBlock;
 import epicsquid.mysticallib.block.BasePressurePlateBlock;
+import epicsquid.mysticallib.block.BaseSaplingBlock;
 import epicsquid.mysticallib.block.BaseStairsBlock;
 import epicsquid.mysticallib.block.BaseTrapDoorBlock;
 import epicsquid.mysticallib.block.BaseWoodButtonBlock;
+import epicsquid.mysticallib.world.BaseTree;
 import epicsquid.traverse.blocks.ModBlocks;
+import epicsquid.traverse.world.FirTree;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.LeavesBlock;
@@ -22,8 +26,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.SignItem;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -48,10 +50,16 @@ public class RegistryManager {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 
+		Block.Properties saplingProps = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT);
+
 		BLOCKS.add(createLeaves("red_autumnal_leaves"));
+		BLOCKS.add(new BaseSaplingBlock(new BaseTree(4, () -> Blocks.DARK_OAK_LOG, () -> ModBlocks.RED_AUTUMNAL_LEAVES), saplingProps).setRegistryName(Traverse.MODID, "red_autumnal_sapling"));
 		BLOCKS.add(createLeaves("brown_autumnal_leaves"));
+		BLOCKS.add(new BaseSaplingBlock(new BaseTree(5, () -> Blocks.OAK_LOG, () -> ModBlocks.BROWN_AUTUMNAL_LEAVES), saplingProps).setRegistryName(Traverse.MODID, "brown_autumnal_sapling"));
 		BLOCKS.add(createLeaves("orange_autumnal_leaves"));
+		BLOCKS.add(new BaseSaplingBlock(new BaseTree(4, () -> Blocks.OAK_LOG, () -> ModBlocks.ORANGE_AUTUMNAL_LEAVES), saplingProps).setRegistryName(Traverse.MODID, "orange_autumnal_sapling"));
 		BLOCKS.add(createLeaves("yellow_autumnal_leaves"));
+		BLOCKS.add(new BaseSaplingBlock(new BaseTree(6, () -> Blocks.BIRCH_LOG, () -> ModBlocks.YELLOW_AUTUMNAL_LEAVES), saplingProps).setRegistryName(Traverse.MODID, "yellow_autumnal_sapling"));
 
 		// Fir Trees
 		Block.Properties firWoodProps = Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD);
@@ -61,6 +69,7 @@ public class RegistryManager {
 
 		BLOCKS.add(firPlanks);
 		BLOCKS.add(createLeaves("fir_leaves"));
+		BLOCKS.add(new BaseSaplingBlock(new FirTree(), saplingProps).setRegistryName(Traverse.MODID, "fir_sapling"));
 		BLOCKS.add(new LogBlock(MaterialColor.WOOD, firWoodProps).setRegistryName(Traverse.MODID, "fir_log"));
 		BLOCKS.add(new LogBlock(MaterialColor.WOOD, firWoodProps).setRegistryName(Traverse.MODID, "stripped_fir_log"));
 		BLOCKS.add(new RotatedPillarBlock(firWoodProps).setRegistryName(Traverse.MODID, "stripped_fir_wood"));
