@@ -53,12 +53,11 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class RegistryManager {
 
 	private static final List<Block> BLOCKS = new ArrayList<>();
-	private static final Block.Properties LEAVES_PROPS = Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT);
-	private static final BaseTree RED_AUTUMNAL_TREE = new BaseTree(4, () -> Blocks.DARK_OAK_LOG, () -> ModBlocks.RED_AUTUMNAL_LEAVES);
-	private static final BaseTree BROWN_AUTUMNAL_TREE = new BaseTree(5, () -> Blocks.OAK_LOG, () -> ModBlocks.BROWN_AUTUMNAL_LEAVES);
-	private static final BaseTree ORANGE_AUTUMNAL_TREE = new BaseTree(4, () -> Blocks.OAK_LOG, () -> ModBlocks.ORANGE_AUTUMNAL_LEAVES);
-	private static final BaseTree YELLOW_AUTUMNAL_TREE = new BaseTree(6, () -> Blocks.BIRCH_LOG, () -> ModBlocks.YELLOW_AUTUMNAL_LEAVES);
-	private static final FirTree FIR_TREE = new FirTree();
+	public static final BaseTree RED_AUTUMNAL_TREE = new BaseTree(4, () -> Blocks.DARK_OAK_LOG, () -> ModBlocks.RED_AUTUMNAL_LEAVES);
+	public static final BaseTree BROWN_AUTUMNAL_TREE = new BaseTree(5, () -> Blocks.OAK_LOG, () -> ModBlocks.BROWN_AUTUMNAL_LEAVES);
+	public static final BaseTree ORANGE_AUTUMNAL_TREE = new BaseTree(4, () -> Blocks.OAK_LOG, () -> ModBlocks.ORANGE_AUTUMNAL_LEAVES);
+	public static final BaseTree YELLOW_AUTUMNAL_TREE = new BaseTree(6, () -> Blocks.BIRCH_LOG, () -> ModBlocks.YELLOW_AUTUMNAL_LEAVES);
+	public static final FirTree FIR_TREE = new FirTree();
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -73,13 +72,13 @@ public class RegistryManager {
 
 		Block.Properties saplingProps = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT);
 
-		BLOCKS.add(createLeaves("red_autumnal_leaves"));
+		BLOCKS.add(ModBlocks.RED_AUTUMNAL_LEAVES);
 		BLOCKS.add(new BaseSaplingBlock(RED_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "red_autumnal_sapling"));
-		BLOCKS.add(createLeaves("brown_autumnal_leaves"));
+		BLOCKS.add(ModBlocks.BROWN_AUTUMNAL_LEAVES);
 		BLOCKS.add(new BaseSaplingBlock(BROWN_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "brown_autumnal_sapling"));
-		BLOCKS.add(createLeaves("orange_autumnal_leaves"));
+		BLOCKS.add(ModBlocks.ORANGE_AUTUMNAL_LEAVES);
 		BLOCKS.add(new BaseSaplingBlock(ORANGE_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "orange_autumnal_sapling"));
-		BLOCKS.add(createLeaves("yellow_autumnal_leaves"));
+		BLOCKS.add(ModBlocks.YELLOW_AUTUMNAL_LEAVES);
 		BLOCKS.add(new BaseSaplingBlock(YELLOW_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "yellow_autumnal_sapling"));
 
 		// Fir Trees
@@ -89,9 +88,9 @@ public class RegistryManager {
 		Block firPlanks = new Block(firProps).setRegistryName(Traverse.MODID, "fir_planks");
 
 		BLOCKS.add(firPlanks);
-		BLOCKS.add(createLeaves("fir_leaves"));
+		BLOCKS.add(ModBlocks.FIR_LEAVES);
 		BLOCKS.add(new BaseSaplingBlock(FIR_TREE, saplingProps).setRegistryName(Traverse.MODID, "fir_sapling"));
-		BLOCKS.add(new LogBlock(MaterialColor.WOOD, firWoodProps).setRegistryName(Traverse.MODID, "fir_log"));
+		BLOCKS.add(ModBlocks.FIR_LOG);
 		BLOCKS.add(new LogBlock(MaterialColor.WOOD, firWoodProps).setRegistryName(Traverse.MODID, "stripped_fir_log"));
 		BLOCKS.add(new RotatedPillarBlock(firWoodProps).setRegistryName(Traverse.MODID, "stripped_fir_wood"));
 		BLOCKS.add(new RotatedPillarBlock(firWoodProps).setRegistryName(Traverse.MODID, "fir_wood"));
@@ -105,32 +104,6 @@ public class RegistryManager {
 		BLOCKS.add(new BaseDoorBlock(firProps).setRegistryName(Traverse.MODID, "fir_door"));
 
 		BLOCKS.forEach(registry::register);
-	}
-
-	@SubscribeEvent
-	public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
-		IForgeRegistry<SurfaceBuilder<?>> registry = event.getRegistry();
-
-		registry.register(new SandWithPatchesSurfaceBuilder(SurfaceBuilderConfig::deserialize, 0.9).setRegistryName(Traverse.MODID, "arid_highlands"));
-		registry.register(new SandWithPatchesSurfaceBuilder(SurfaceBuilderConfig::deserialize, 1.5).setRegistryName(Traverse.MODID, "desert_shrubland"));
-		registry.register(new BeachSurfaceBuilder(SurfaceBuilderConfig::deserialize, 62, v -> Blocks.SAND.getDefaultState()).setRegistryName(Traverse.MODID, "forest_island"));
-	}
-
-	@SubscribeEvent
-	public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
-		IForgeRegistry<Feature<?>> registry = event.getRegistry();
-		Random rand = new Random();
-
-		registry.register(RED_AUTUMNAL_TREE.getTreeFeature(rand).setRegistryName(Traverse.MODID, "red_autumnal_tree"));
-		registry.register(BROWN_AUTUMNAL_TREE.getTreeFeature(rand).setRegistryName(Traverse.MODID, "brown_autumnal_tree"));
-		registry.register(ORANGE_AUTUMNAL_TREE.getTreeFeature(rand).setRegistryName(Traverse.MODID, "orange_autumnal_tree"));
-		registry.register(YELLOW_AUTUMNAL_TREE.getTreeFeature(rand).setRegistryName(Traverse.MODID, "yellow_autumnal_tree"));
-		registry.register(new MeadowFlowersFeature(NoFeatureConfig::deserialize).setRegistryName(Traverse.MODID, "lush_flower"));
-		registry.register(new JungleTreeFeature(NoFeatureConfig::deserialize, false, 4, Blocks.JUNGLE_LOG.getDefaultState(), Blocks.JUNGLE_LEAVES.getDefaultState(), true).setRegistryName(Traverse.MODID, "mini_jungle_tree"));
-		registry.register(new ShrubFeature(NoFeatureConfig::deserialize, Blocks.OAK_LOG.getDefaultState(), Blocks.OAK_LEAVES.getDefaultState()).setRegistryName(Traverse.MODID, "oak_shrub"));
-		registry.register(FIR_TREE.getTreeFeature(rand).setRegistryName(Traverse.MODID, "fir_tree"));
-		registry.register(new TreeFeature(NoFeatureConfig::deserialize, false, 7, Blocks.OAK_LOG.getDefaultState(), Blocks.OAK_LEAVES.getDefaultState(), true).setRegistryName(Traverse.MODID, "tall_swamp_tree"));
-		registry.register(new FallenLogFeature(NoFeatureConfig::deserialize, false, Blocks.OAK_LOG.getDefaultState(), 3, 2).setRegistryName(Traverse.MODID, "fallen_oak_tree"));
 	}
 
 	@SubscribeEvent
@@ -166,9 +139,5 @@ public class RegistryManager {
 			BiomeManager.addSpawnBiome(biome);
 		}
 		BiomeDictionary.addTypes(biome, types);
-	}
-
-	private static Block createLeaves(String name) {
-		return new LeavesBlock(LEAVES_PROPS).setRegistryName(Traverse.MODID, name);
 	}
 }
