@@ -18,8 +18,6 @@ import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.StandingSignBlock;
-import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
@@ -42,8 +40,6 @@ public class RegistryManager {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
-
-		registry.register(new SignItem(new Item.Properties().group(Traverse.ITEM_GROUP).maxStackSize(16), ModBlocks.FIR_SIGN, ModBlocks.FIR_WALL_SIGN).setRegistryName("fir_sign"));
 
 		BLOCKS.forEach(block -> registry.register(new BlockItem(block, new Item.Properties().group(Traverse.ITEM_GROUP)).setRegistryName(block.getRegistryName())));
 	}
@@ -77,9 +73,6 @@ public class RegistryManager {
 		BLOCKS.add(new BaseStairsBlock(firPlanks.getDefaultState(), firProps).setRegistryName(Traverse.MODID, "fir_stairs"));
 		BLOCKS.add(new BaseWoodButtonBlock(firProps).setRegistryName(Traverse.MODID, "fir_button"));
 		BLOCKS.add(new BaseDoorBlock(firProps).setRegistryName(Traverse.MODID, "fir_door"));
-
-		registry.register(new StandingSignBlock(firProps.doesNotBlockMovement()).setRegistryName(Traverse.MODID, "fir_sign"));
-		registry.register(new WallSignBlock(firProps).setRegistryName(Traverse.MODID, "fir_wall_sign"));
 
 		BLOCKS.forEach(registry::register);
 	}
