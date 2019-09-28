@@ -15,10 +15,10 @@ import java.util.Random;
 public class ModFeatures {
 
 	public static Random rand = new Random();
-	public static Feature<NoFeatureConfig> RED_AUTUMNAL_TREE = RegistryManager.RED_AUTUMNAL_TREE.getTreeFeature(rand);
-	public static Feature<NoFeatureConfig> BROWN_AUTUMNAL_TREE = RegistryManager.BROWN_AUTUMNAL_TREE.getTreeFeature(rand);
-	public static Feature<NoFeatureConfig> ORANGE_AUTUMNAL_TREE = RegistryManager.ORANGE_AUTUMNAL_TREE.getTreeFeature(rand);
-	public static Feature<NoFeatureConfig> YELLOW_AUTUMNAL_TREE = RegistryManager.YELLOW_AUTUMNAL_TREE.getTreeFeature(rand);
+	public static Feature<NoFeatureConfig> RED_AUTUMNAL_TREE = RegistryManager.RED_AUTUMNAL_TREE.getTreeFeaturePublic(rand);
+	public static Feature<NoFeatureConfig> BROWN_AUTUMNAL_TREE = RegistryManager.BROWN_AUTUMNAL_TREE.getTreeFeaturePublic(rand);
+	public static Feature<NoFeatureConfig> ORANGE_AUTUMNAL_TREE = RegistryManager.ORANGE_AUTUMNAL_TREE.getTreeFeaturePublic(rand);
+	public static Feature<NoFeatureConfig> YELLOW_AUTUMNAL_TREE = RegistryManager.YELLOW_AUTUMNAL_TREE.getTreeFeaturePublic(rand);
 	public static Feature<NoFeatureConfig> LUSH_FLOWER = new MeadowFlowersFeature(NoFeatureConfig::deserialize);
 	public static Feature<NoFeatureConfig> MINI_JUNGLE_TREE = new JungleTreeFeature(NoFeatureConfig::deserialize, false, 4, Blocks.JUNGLE_LOG.getDefaultState(), Blocks.JUNGLE_LEAVES.getDefaultState(), true);
 	public static Feature<NoFeatureConfig> OAK_SHRUB = new ShrubFeature(NoFeatureConfig::deserialize, Blocks.OAK_LOG.getDefaultState(), Blocks.OAK_LEAVES.getDefaultState());
