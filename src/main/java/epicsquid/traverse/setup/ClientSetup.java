@@ -9,7 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = Traverse.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 
-	@SubscribeEvent
-	public static void init(FMLClientSetupEvent event) {
-	}
+  @SubscribeEvent
+  public static void init(FMLClientSetupEvent event) {
+  }
 }

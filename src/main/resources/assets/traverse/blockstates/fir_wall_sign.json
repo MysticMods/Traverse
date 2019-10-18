@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "block/oak_sign" }
+    "": {
+      "model": "block/oak_sign"
+    }
   }
 }
