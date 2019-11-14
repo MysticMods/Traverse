@@ -40,7 +40,7 @@ public class PlainsPlateauBiome extends Biome {
     DefaultBiomeFeatures.addStoneVariants(this);
     DefaultBiomeFeatures.addOres(this);
     DefaultBiomeFeatures.addSedimentDisks(this);
-    DefaultBiomeFeatures.func_222299_R(this);
+    DefaultBiomeFeatures.addOakTreesFlowersGrass(this);
     DefaultBiomeFeatures.addMushrooms(this);
     DefaultBiomeFeatures.addReedsAndPumpkins(this);
     DefaultBiomeFeatures.addSprings(this);

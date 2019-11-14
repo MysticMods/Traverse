@@ -44,7 +44,7 @@ public class AridHighlandsBiome extends Biome {
     DefaultBiomeFeatures.addDeadBushes(this);
     DefaultBiomeFeatures.addExtraReedsPumpkinsCactus(this);
     // Add Savanna Grass
-    DefaultBiomeFeatures.func_222339_L(this);
+    DefaultBiomeFeatures.addVeryDenseGrass(this);
     DefaultBiomeFeatures.addSavannaTrees(this);
     DefaultBiomeFeatures.addMushrooms(this);
     DefaultBiomeFeatures.addReedsAndPumpkins(this);
