@@ -4,6 +4,7 @@ import epicsquid.mysticallib.block.*;
 import epicsquid.mysticallib.world.BaseTree;
 import epicsquid.traverse.biome.*;
 import epicsquid.traverse.blocks.ModBlocks;
+import epicsquid.traverse.config.ConfigManager;
 import epicsquid.traverse.world.FirTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -83,34 +84,36 @@ public class RegistryManager {
   public static void registerBiomes(RegistryEvent.Register<Biome> event) {
     IForgeRegistry<Biome> registry = event.getRegistry();
 
-    registerBiome(registry, new AridHighlandsBiome(), "arid_highlands", 4, false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS);
-    registerBiome(registry, new AutumnalWoodedHillsBiome(), "autumnal_wooded_hills", 1, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS);
-    registerBiome(registry, new AutumnalWoodsBiome(), "autumnal_woods", 6, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST);
+    registerBiome(registry, new AridHighlandsBiome(), "arid_highlands", ConfigManager.ARID_HIGHLANDS.getWeight(), false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS);
+    registerBiome(registry, new AutumnalWoodedHillsBiome(), "autumnal_wooded_hills", ConfigManager.AUTUMNAL_WOODED_HILLS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS);
+    registerBiome(registry, new AutumnalWoodsBiome(), "autumnal_woods", ConfigManager.AUTUMNAL_WOODS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST);
 //		registerBiome(registry, new CliffsBiome(), "cliffs", 2, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS);
-    registerBiome(registry, new ConiferousForestBiome(), "coniferous_forest", 4, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS);
-    registerBiome(registry, new ConiferousWoodedHillsBiome(), "coniferous_woodland_hills_biome", 1, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.CONIFEROUS);
-    registerBiome(registry, new DesertShrublandBiome(), "desert_shrubland", 4, false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.DEAD);
-    registerBiome(registry, new HighConiferousForestBiome(), "high_coniferous_forest", 3, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.COLD);
-    registerBiome(registry, new LushSwampBiome(), "lush_swamp", 5, false, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.SWAMP);
-    registerBiome(registry, new MeadowBiome(), "meadow", 6, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET);
-    registerBiome(registry, new MiniJungleBiome(), "mini_jungle", 3, true, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.DENSE, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WET);
-    registerBiome(registry, new PlainsPlateauBiome(), "plains_plateau", 1, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS);
-    registerBiome(registry, new RockyEdgeBiome(), "rock_edge", 4, false, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.HOT, BiomeDictionary.Type.MOUNTAIN);
-    registerBiome(registry, new RollingHillsBiome(), "rolling_hills", 6, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS);
-    registerBiome(registry, new SnowyConiferousForestBiome(), "snowy_coniferous_forest", 5, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS);
-    registerBiome(registry, new SnowyConiferousWoodedHillsBiome(), "snowy_coniferous_wooded_hills", 2, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.HILLS);
-    registerBiome(registry, new SnowyHighConiferousForestBiome(), "snowy_high_coniferous_forest", 1, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS);
+    registerBiome(registry, new ConiferousForestBiome(), "coniferous_forest", ConfigManager.CONIFEROUS_FOREST.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS);
+    registerBiome(registry, new ConiferousWoodedHillsBiome(), "coniferous_woodland_hills_biome", ConfigManager.CONIFEROUS_WOODLAND_HILLS.getWeight(), false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.CONIFEROUS);
+    registerBiome(registry, new DesertShrublandBiome(), "desert_shrubland", ConfigManager.DESERT_SHRUBLAND.getWeight(), false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.DEAD);
+    registerBiome(registry, new HighConiferousForestBiome(), "high_coniferous_forest", ConfigManager.HIGH_CONIFEROUS_FOREST.getWeight(), false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.COLD);
+    registerBiome(registry, new LushSwampBiome(), "lush_swamp", ConfigManager.LUSH_SWAMP.getWeight(), false, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.SWAMP);
+    registerBiome(registry, new MeadowBiome(), "meadow", ConfigManager.MEADOW.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET);
+    registerBiome(registry, new MiniJungleBiome(), "mini_jungle", ConfigManager.MINI_JUNGLE.getWeight(), true, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.DENSE, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WET);
+    registerBiome(registry, new PlainsPlateauBiome(), "plains_plateau", ConfigManager.PLAINS_PLATEAU.getWeight(), false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS);
+    registerBiome(registry, new RockyEdgeBiome(), "rock_edge", ConfigManager.ROCK_EDGE.getWeight(), false, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.HOT, BiomeDictionary.Type.MOUNTAIN);
+    registerBiome(registry, new RollingHillsBiome(), "rolling_hills", ConfigManager.ROLLING_HILLS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS);
+    registerBiome(registry, new SnowyConiferousForestBiome(), "snowy_coniferous_forest", ConfigManager.SNOWY_CONIFEROUS_FOREST.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS);
+    registerBiome(registry, new SnowyConiferousWoodedHillsBiome(), "snowy_coniferous_wooded_hills", ConfigManager.SNOWY_CONIFEROUS_WOODED_HILLS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.HILLS);
+    registerBiome(registry, new SnowyHighConiferousForestBiome(), "snowy_high_coniferous_forest", ConfigManager.SNOWY_HIGH_CONIFEROUS_FOREST.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS);
 //		registerBiome(registry, new WoodedIslandBiome(), "wooded_island", 1, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST);
-    registerBiome(registry, new WoodedPlateauBiome(), "wooded_plateau", 2, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS);
-    registerBiome(registry, new AutumnalWoodsBiome(), "woodlands", 9, true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST);
+    registerBiome(registry, new WoodedPlateauBiome(), "wooded_plateau", ConfigManager.WOODED_PLATEAU.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS);
+    registerBiome(registry, new AutumnalWoodsBiome(), "woodlands", ConfigManager.WOODLANDS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST);
   }
 
   private static void registerBiome(IForgeRegistry<Biome> registry, Biome biome, String name, int weight, boolean spawn, BiomeManager.BiomeType type, BiomeDictionary.Type... types) {
     registry.register(biome.setRegistryName(Traverse.MODID, name));
-    BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(biome, weight));
-    if (spawn) {
-      BiomeManager.addSpawnBiome(biome);
+    if (weight > 0) {
+      BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(biome, weight));
+      if (spawn) {
+        BiomeManager.addSpawnBiome(biome);
+      }
+      BiomeDictionary.addTypes(biome, types);
     }
-    BiomeDictionary.addTypes(biome, types);
   }
 }
