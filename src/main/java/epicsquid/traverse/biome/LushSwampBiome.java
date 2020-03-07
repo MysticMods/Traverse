@@ -34,7 +34,7 @@ public class LushSwampBiome extends Biome {
   public LushSwampBiome() {
     super(new Biome.Builder().surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPITATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).waterColor(WATER_COLOR).waterFogColor(WATER_FOG_COLOR).parent(PARENT));
     this.addStructure(Feature.SWAMP_HUT, IFeatureConfig.NO_FEATURE_CONFIG);
-    this.addStructure(Feature.MINESHAFT, new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL));
+    this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
     DefaultBiomeFeatures.addCarvers(this);
     DefaultBiomeFeatures.addStructures(this);
     DefaultBiomeFeatures.addLakes(this);
@@ -66,12 +66,12 @@ public class LushSwampBiome extends Biome {
   }
 
   @Override
-  public int getGrassColor(final BlockPos pos) {
+  public int getGrassColor(double posX, double posZ) {
     return GRASS_COLOR;
   }
 
   @Override
-  public int getFoliageColor(final BlockPos pos) {
+  public int getFoliageColor() {
     return FOLIAGE_COLOR;
   }
 
