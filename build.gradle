@@ -1,12 +1,23 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        mavenLocal()
+        maven { url = 'http://files.minecraftforge.net/maven' }
         jcenter()
         mavenCentral()
+        maven {
+            url 'https://dogforce-games.com/maven'
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.165-run-configs-rework', changing: true
     }
+}
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -14,9 +25,9 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = "${minecraft_version}-${mod_version}"
-//if (System.getenv('BUILD_NUMBER') != null) {
-//    version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
-//}
+if (System.getenv('BUILD_NUMBER') != null) {
+    version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
+}
 group = 'epicsquid.traverse' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'traverse'
 
@@ -173,36 +184,24 @@ publishing {
     }
 }
 
-// publishing {
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            from components.java
 
-//     publications {
-
-//         mavenJava(MavenPublication) {
-
-//             groupId project.group
-//             artifactId project.archivesBaseName
-//             version project.version
-//             from components.java
-
-//             artifact deobfJar {
-
-//                 classifier 'deobf'
-//             }
-//         }
-//     }
-
-//     repositories {
-
-//         maven {
-
-//             url "file://" + System.getenv("local_maven")
-//         }
-//     }
-// }
-
-// task deobfJar(type: Jar) {
-//     from sourceSets.main.output
-//     classifier = 'deobf'
-// }
-
-// tasks.build.dependsOn deobfJar
+            pom.withXml {
+                asNode().dependencies.dependency.each {
+                    dep -> dep.parent().remove(dep)
+                }
+            }            
+        }
+    }
+    repositories {
+        maven {
+            url "file:///" + System.getenv("local_maven")
+        }
+    }
+}
