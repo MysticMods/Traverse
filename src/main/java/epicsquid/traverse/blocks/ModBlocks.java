@@ -1,5 +1,7 @@
 package epicsquid.traverse.blocks;
 
+import epicsquid.mysticallib.block.BaseSaplingBlock;
+import epicsquid.traverse.RegistryManager;
 import epicsquid.traverse.Traverse;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
@@ -19,6 +21,7 @@ public class ModBlocks {
 
   public static final Block FIR_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName(Traverse.MODID, "fir_log");
   public static final Block FIR_LEAVES = createLeaves("fir_leaves");
+  public static final Block FIR_SAPLING = new BaseSaplingBlock(RegistryManager.FIR_TREE, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT)).setRegistryName(Traverse.MODID, "fir_sapling");
 
   private static Block createLeaves(String name) {
     return new LeavesBlock(LEAVES_PROPS).setRegistryName(Traverse.MODID, name);

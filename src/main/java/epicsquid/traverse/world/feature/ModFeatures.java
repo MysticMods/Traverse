@@ -22,7 +22,7 @@ public class ModFeatures {
   public static Feature<NoFeatureConfig> LUSH_FLOWER = new MeadowFlowersFeature(NoFeatureConfig::deserialize);
   public static Feature<NoFeatureConfig> MINI_JUNGLE_TREE = new JungleTreeFeature(NoFeatureConfig::deserialize, false, 4, Blocks.JUNGLE_LOG.getDefaultState(), Blocks.JUNGLE_LEAVES.getDefaultState(), true);
   public static Feature<NoFeatureConfig> OAK_SHRUB = new ShrubFeature(NoFeatureConfig::deserialize, Blocks.OAK_LOG.getDefaultState(), Blocks.OAK_LEAVES.getDefaultState());
-  public static Feature<NoFeatureConfig> FIR_TREE = RegistryManager.FIR_TREE.getTreeFeature(rand);
+  public static Feature<TreeFeatureConfig> FIR_TREE = RegistryManager.FIR_TREE.getTreeFeature(rand);
   public static Feature<NoFeatureConfig> TALL_SWAMP_TREE = new TreeFeature(NoFeatureConfig::deserialize, false, 7, Blocks.OAK_LOG.getDefaultState(), Blocks.OAK_LEAVES.getDefaultState(), true);
   public static Feature<NoFeatureConfig> FALLEN_OAK_TREE = new FallenLogFeature(NoFeatureConfig::deserialize, false, Blocks.OAK_LOG.getDefaultState(), 3, 2);
 

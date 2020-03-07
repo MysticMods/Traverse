@@ -8,34 +8,35 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class FirTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
+public class FirTreeFeature extends AbstractTreeFeature<TreeFeatureConfig> {
 
   private final int minHeight;
   private final BlockState log;
   private final BlockState leaves;
 
-  public FirTreeFeature(final Function<Dynamic<?>, ? extends NoFeatureConfig> function, final boolean worldGen) {
+  public FirTreeFeature(final Function<Dynamic<?>, ? extends TreeFeatureConfig> function, final boolean worldGen) {
     this(function, worldGen, 15);
   }
 
-  public FirTreeFeature(final Function<Dynamic<?>, ? extends NoFeatureConfig> function, final boolean worldGen, int minHeight) {
+  public FirTreeFeature(final Function<Dynamic<?>, ? extends TreeFeatureConfig> function, final boolean worldGen, int minHeight) {
     this(function, worldGen, minHeight, ModBlocks.FIR_LOG.getDefaultState(), ModBlocks.FIR_LEAVES.getDefaultState());
   }
 
-  public FirTreeFeature(final Function<Dynamic<?>, ? extends NoFeatureConfig> function, final boolean worldGen, int minHeight, BlockState log, BlockState leaves) {
-    super(function, worldGen);
+  public FirTreeFeature(final Function<Dynamic<?>, ? extends TreeFeatureConfig> function, final boolean worldGen, int minHeight, BlockState log, BlockState leaves) {
+    super(function);
     this.minHeight = minHeight;
     this.log = log;
     this.leaves = leaves;
   }
 
-  @Override
-  protected boolean place(Set<BlockPos> blocks, IWorldGenerationReader world, Random random, BlockPos pos, MutableBoundingBox box) {
+	@Override
+	protected boolean func_225557_a_(IWorldGenerationReader world, Random random, BlockPos pos, Set<BlockPos> blocks, Set<BlockPos> p_225557_5_, MutableBoundingBox box, TreeFeatureConfig config) {
     int height = random.nextInt(15) + minHeight;
     int logHeight = 4 + random.nextInt(2);
     int leavesHeight = height - logHeight;
@@ -52,7 +53,7 @@ public class FirTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
           j1 = l;
         }
 
-        BlockPos.MutableBlockPos checkPos = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable checkPos = new BlockPos.Mutable();
 
         for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1 && canGenerate; ++k1) {
           for (int l1 = pos.getZ() - j1; l1 <= pos.getZ() + j1 && canGenerate; ++l1) {
@@ -110,7 +111,7 @@ public class FirTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 
         for (int k4 = 0; k4 < height - i4; ++k4) {
           if (isAirOrLeaves(world, pos.up(k4)) || func_214587_a(world, pos.up(k4))) {
-            this.setLogState(blocks, world, pos.up(k4), this.log, box);
+            this.func_227217_a_(world, pos.up(k4), this.log, box);
           }
         }
         return true;

@@ -63,7 +63,7 @@ public class RegistryManager {
 
     BLOCKS.add(firPlanks);
     BLOCKS.add(ModBlocks.FIR_LEAVES);
-    BLOCKS.add(new BaseSaplingBlock(FIR_TREE, saplingProps).setRegistryName(Traverse.MODID, "fir_sapling"));
+    BLOCKS.add(ModBlocks.FIR_SAPLING);
     BLOCKS.add(ModBlocks.FIR_LOG);
     BLOCKS.add(new LogBlock(MaterialColor.WOOD, firWoodProps).setRegistryName(Traverse.MODID, "stripped_fir_log"));
     BLOCKS.add(new RotatedPillarBlock(firWoodProps).setRegistryName(Traverse.MODID, "stripped_fir_wood"));
