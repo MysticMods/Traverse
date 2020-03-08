@@ -8,7 +8,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftStructure;
-import net.minecraft.world.gen.feature.structure.PillagerOutpostConfig;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
@@ -34,7 +33,7 @@ public class RockyEdgeBiome extends Biome {
     DefaultBiomeFeatures.addStructures(this);
     DefaultBiomeFeatures.addLakes(this);
     DefaultBiomeFeatures.addMonsterRooms(this);
-    DefaultBiomeFeatures.func_222283_Y(this);
+    DefaultBiomeFeatures.addTallGrass(this);
     DefaultBiomeFeatures.addStoneVariants(this);
     DefaultBiomeFeatures.addOres(this);
     DefaultBiomeFeatures.addSedimentDisks(this);

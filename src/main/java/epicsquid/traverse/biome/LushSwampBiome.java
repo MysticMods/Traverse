@@ -2,7 +2,6 @@ package epicsquid.traverse.biome;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
@@ -33,7 +32,7 @@ public class LushSwampBiome extends Biome {
 
   public LushSwampBiome() {
     super(new Biome.Builder().surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPITATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).waterColor(WATER_COLOR).waterFogColor(WATER_FOG_COLOR).parent(PARENT));
-    this.addStructure(Feature.SWAMP_HUT, IFeatureConfig.NO_FEATURE_CONFIG);
+    this.addStructure(Feature.SWAMP_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
     this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
     DefaultBiomeFeatures.addCarvers(this);
     DefaultBiomeFeatures.addStructures(this);
@@ -45,7 +44,7 @@ public class LushSwampBiome extends Biome {
     DefaultBiomeFeatures.addMushrooms(this);
     DefaultBiomeFeatures.addSwampVegetation(this);
     DefaultBiomeFeatures.addSprings(this);
-    this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(64, 0.6D), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
+    this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEAGRASS.withConfiguration(new SeaGrassConfig(64, 0.6D)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
     DefaultBiomeFeatures.addFossils(this);
     DefaultBiomeFeatures.addFreezeTopLayer(this);
     TraverseDefaultBiomeFeatures.addLushSwampVegetation(this);

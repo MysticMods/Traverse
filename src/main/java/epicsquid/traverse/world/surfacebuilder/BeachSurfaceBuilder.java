@@ -38,7 +38,7 @@ public class BeachSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
     boolean beach = false;
     boolean underwater = false;
 
-    BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(localX, 0, localZ);
+    BlockPos.Mutable pos = new BlockPos.Mutable(localX, 0, localZ);
 
     for (int y = startHeight; y >= 0; --y) {
       pos.setPos(localX, y, localZ);

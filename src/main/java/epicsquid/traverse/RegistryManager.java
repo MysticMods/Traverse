@@ -5,13 +5,16 @@ import epicsquid.mysticallib.world.BaseTree;
 import epicsquid.traverse.biome.*;
 import epicsquid.traverse.blocks.ModBlocks;
 import epicsquid.traverse.config.ConfigManager;
-import epicsquid.traverse.world.FirTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.TreeFeature;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,11 +29,11 @@ import java.util.List;
 public class RegistryManager {
 
   private static final List<Block> BLOCKS = new ArrayList<>();
-  public static final BaseTree RED_AUTUMNAL_TREE = new BaseTree(4, () -> Blocks.DARK_OAK_LOG, () -> ModBlocks.RED_AUTUMNAL_LEAVES);
-  public static final BaseTree BROWN_AUTUMNAL_TREE = new BaseTree(5, () -> Blocks.OAK_LOG, () -> ModBlocks.BROWN_AUTUMNAL_LEAVES);
-  public static final BaseTree ORANGE_AUTUMNAL_TREE = new BaseTree(4, () -> Blocks.OAK_LOG, () -> ModBlocks.ORANGE_AUTUMNAL_LEAVES);
-  public static final BaseTree YELLOW_AUTUMNAL_TREE = new BaseTree(6, () -> Blocks.BIRCH_LOG, () -> ModBlocks.YELLOW_AUTUMNAL_LEAVES);
-  public static final FirTree FIR_TREE = new FirTree();
+  public static final TreeFeature RED_AUTUMNAL_TREE = new TreeFeature(TreeFeatureConfig::func_227338_a_);
+  public static final TreeFeature BROWN_AUTUMNAL_TREE = new TreeFeature(TreeFeatureConfig::func_227338_a_);
+  public static final TreeFeature ORANGE_AUTUMNAL_TREE = new TreeFeature(TreeFeatureConfig::func_227338_a_);
+  public static final TreeFeature YELLOW_AUTUMNAL_TREE = new TreeFeature(TreeFeatureConfig::func_227338_a_);
+  public static final TreeFeature FIR_TREE = new TreeFeature(TreeFeatureConfig::func_227338_a_);
 
   @SubscribeEvent
   public static void registerItems(RegistryEvent.Register<Item> event) {
