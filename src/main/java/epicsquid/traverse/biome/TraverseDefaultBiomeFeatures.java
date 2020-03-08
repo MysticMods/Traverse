@@ -27,7 +27,7 @@ public class TraverseDefaultBiomeFeatures {
 					new SimpleBlockStateProvider(ModBlocks.FIR_LOG.getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.FIR_LEAVES.getDefaultState()),
 					new SpruceFoliagePlacer(2, 1)
-	).baseHeight(15).heightRandA(2).foliageHeight(3).ignoreVines().build();
+	).baseHeight(15).heightRandA(15).trunkHeight(1).trunkHeightRandom(4).trunkTopOffsetRandom(2).ignoreVines().build();
 
 	public static final TreeFeatureConfig TALL_SWAMP_TREE_CONFIG = new TreeFeatureConfig.Builder (
 					new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
