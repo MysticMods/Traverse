@@ -11,8 +11,6 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.TreeFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraftforge.common.BiomeDictionary;
@@ -49,13 +47,13 @@ public class RegistryManager {
     Block.Properties saplingProps = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT);
 
     BLOCKS.add(ModBlocks.RED_AUTUMNAL_LEAVES);
-    BLOCKS.add(new BaseSaplingBlock(RED_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "red_autumnal_sapling"));
+    BLOCKS.add(new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.RED_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "red_autumnal_sapling"));
     BLOCKS.add(ModBlocks.BROWN_AUTUMNAL_LEAVES);
-    BLOCKS.add(new BaseSaplingBlock(BROWN_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "brown_autumnal_sapling"));
+    BLOCKS.add(new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.BROWN_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "brown_autumnal_sapling"));
     BLOCKS.add(ModBlocks.ORANGE_AUTUMNAL_LEAVES);
-    BLOCKS.add(new BaseSaplingBlock(ORANGE_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "orange_autumnal_sapling"));
+    BLOCKS.add(new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.ORANGE_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "orange_autumnal_sapling"));
     BLOCKS.add(ModBlocks.YELLOW_AUTUMNAL_LEAVES);
-    BLOCKS.add(new BaseSaplingBlock(YELLOW_AUTUMNAL_TREE, saplingProps).setRegistryName(Traverse.MODID, "yellow_autumnal_sapling"));
+    BLOCKS.add(new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.YELLOW_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "yellow_autumnal_sapling"));
 
     // Fir Trees
     Block.Properties firWoodProps = Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD);
