@@ -18,7 +18,7 @@ import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 
 public class TraverseDefaultBiomeFeatures {
 
-	public static BlockClusterFeatureConfig LUSH_FLOWER_CONFIG;
+	public static final BlockClusterFeatureConfig LUSH_FLOWER_CONFIG;
 	public static final TreeFeatureConfig RED_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.DARK_OAK_LOG, ModBlocks.RED_AUTUMNAL_LEAVES);
 	public static final TreeFeatureConfig ORANGE_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.OAK_LOG, ModBlocks.ORANGE_AUTUMNAL_LEAVES);
 	public static final TreeFeatureConfig YELLOW_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.BIRCH_LOG, ModBlocks.YELLOW_AUTUMNAL_LEAVES);
@@ -43,7 +43,7 @@ public class TraverseDefaultBiomeFeatures {
 		).baseHeight(4).heightRandA(2).foliageHeight(3).ignoreVines().build();
 	}
 
-	public static void init() {
+	static {
 		WeightedBlockStateProvider provider = new WeightedBlockStateProvider();
 
 		provider.func_227407_a_(Blocks.POPPY.getDefaultState(), 12);
