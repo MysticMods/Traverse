@@ -14,7 +14,7 @@ import net.minecraft.block.material.MaterialColor;
 
 public class ModBlocks {
 
-  private static final Block.Properties LEAVES_PROPS = Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT);
+  private static final Block.Properties LEAVES_PROPS = Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid();
 
   public static final Block RED_AUTUMNAL_LEAVES = createLeaves("red_autumnal_leaves");
   public static final Block BROWN_AUTUMNAL_LEAVES = createLeaves("brown_autumnal_leaves");
