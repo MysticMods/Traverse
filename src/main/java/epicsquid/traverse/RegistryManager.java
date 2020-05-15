@@ -104,7 +104,7 @@ public class RegistryManager {
     registerBiome(registry, new SnowyHighConiferousForestBiome(), "snowy_high_coniferous_forest", ConfigManager.SNOWY_HIGH_CONIFEROUS_FOREST.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
 //		registerBiome(registry, new WoodedIslandBiome(), "wooded_island", 1, false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     registerBiome(registry, new WoodedPlateauBiome(), "wooded_plateau", ConfigManager.WOODED_PLATEAU.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(registry, new AutumnalWoodsBiome(), "woodlands", ConfigManager.WOODLANDS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(registry, new WoodlandsBiome(), "woodlands", ConfigManager.WOODLANDS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
   }
 
   private static void registerBiome(IForgeRegistry<Biome> registry, Biome biome, String name, int weight, boolean spawn, BiomeManager.BiomeType type, BiomeDictionary.Type... types) {
