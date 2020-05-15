@@ -117,15 +117,13 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    if (project(':MysticalLib') != null) {
+    if (findProject(':MysticalLib') != null) {
         compile project(':MysticalLib')
     } else {
-        compile fg.deobf(project.dependencies.create("com.github.epicsquid:mysticallib:${mysticallib_version}") {
+        compile fg.deobf(project.dependencies.create("epicsquid.mysticallib:mysticallib:${mysticallib_version}-${mysticallib_build}") {
             transitive = false
         })
     }
-
-//    deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
