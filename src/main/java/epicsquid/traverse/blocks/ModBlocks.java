@@ -18,6 +18,11 @@ public class ModBlocks {
   public static final Block YELLOW_AUTUMNAL_LEAVES = createLeaves("yellow_autumnal_leaves");
 
   public static final Block FIR_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName(Traverse.MODID, "fir_log");
+  public static final Block FIR_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName(Traverse.MODID, "fir_wood");
+
+  public static final Block STRIPPED_FIR_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName(Traverse.MODID, "stripped_fir_log");
+  public static final Block STRIPPED_FIR_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName(Traverse.MODID, "stripped_fir_wood");
+
   public static final Block FIR_LEAVES = createLeaves("fir_leaves");
 
   private static Block createLeaves(String name) {
