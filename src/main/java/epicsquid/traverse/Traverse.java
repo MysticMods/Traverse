@@ -1,11 +1,17 @@
 package epicsquid.traverse;
 
+import epicsquid.mysticallib.setup.ClientSetup;
 import epicsquid.traverse.config.ConfigManager;
 import epicsquid.traverse.items.ModItems;
 import epicsquid.traverse.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -20,10 +26,14 @@ public class Traverse {
     }
   };
 
-  public static ModSetup setup = new ModSetup();
-
   public Traverse() {
-    FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::init);
+    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
+    IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+    bus.addListener(ModSetup::init);
+
+    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+      bus.addListener(ClientSetup::init);
+    });
 
     ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
   }
