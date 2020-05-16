@@ -1,16 +1,28 @@
 package epicsquid.traverse.setup;
 
+import epicsquid.traverse.RegistryManager;
 import epicsquid.traverse.blocks.ModBlocks;
-import epicsquid.traverse.items.ModItems;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.AxeItem;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
+import java.util.HashMap;
+
 public class ModSetup {
 
-  public void init(FMLCommonSetupEvent event) {
+  public static void init(FMLCommonSetupEvent event) {
+    AxeItem.BLOCK_STRIPPING_MAP = new HashMap<>(AxeItem.BLOCK_STRIPPING_MAP);
     AxeItem.BLOCK_STRIPPING_MAP.put(ModBlocks.FIR_LOG, ModBlocks.STRIPPED_FIR_LOG);
     AxeItem.BLOCK_STRIPPING_MAP.put(ModBlocks.FIR_WOOD, ModBlocks.STRIPPED_FIR_WOOD);
-    ComposterBlock.CHANCES.put(ModItems.
+    ComposterBlock.CHANCES.put(RegistryManager.BROWN_LEAVES, 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.BROWN_SAPLING, 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.ORANGE_LEAVES, 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.ORANGE_SAPLING, 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.RED_LEAVES, 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.RED_SAPLING, 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.YELLOW_LEAVES, 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.YELLOW_SAPLING, 0.3f);
+    ComposterBlock.CHANCES.put(ModBlocks.FIR_LEAVES, 0.3f);
+    ComposterBlock.CHANCES.put(ModBlocks.FIR_SAPLING, 0.3f);
   }
 }

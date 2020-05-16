@@ -2,10 +2,12 @@ package epicsquid.traverse.blocks;
 
 import epicsquid.mysticallib.block.BaseSaplingBlock;
 import epicsquid.mysticallib.world.BaseTree;
-import epicsquid.traverse.RegistryManager;
 import epicsquid.traverse.Traverse;
 import epicsquid.traverse.biome.TraverseDefaultBiomeFeatures;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.LogBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 
