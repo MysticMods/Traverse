@@ -14,15 +14,15 @@ public class ModSetup {
     AxeItem.BLOCK_STRIPPING_MAP = new HashMap<>(AxeItem.BLOCK_STRIPPING_MAP);
     AxeItem.BLOCK_STRIPPING_MAP.put(ModBlocks.FIR_LOG, ModBlocks.STRIPPED_FIR_LOG);
     AxeItem.BLOCK_STRIPPING_MAP.put(ModBlocks.FIR_WOOD, ModBlocks.STRIPPED_FIR_WOOD);
-    ComposterBlock.CHANCES.put(RegistryManager.BROWN_LEAVES.asItem(), 0.3f);
+    ComposterBlock.CHANCES.put(ModBlocks.BROWN_AUTUMNAL_LEAVES.asItem(), 0.3f);
     ComposterBlock.CHANCES.put(RegistryManager.BROWN_SAPLING.asItem(), 0.3f);
-    ComposterBlock.CHANCES.put(RegistryManager.ORANGE_LEAVES.asItem(), 0.3f);
+    ComposterBlock.CHANCES.put(ModBlocks.ORANGE_AUTUMNAL_LEAVES.asItem(), 0.3f);
     ComposterBlock.CHANCES.put(RegistryManager.ORANGE_SAPLING.asItem(), 0.3f);
-    ComposterBlock.CHANCES.put(RegistryManager.RED_LEAVES.asItem(), 0.3f);
+    ComposterBlock.CHANCES.put(ModBlocks.RED_AUTUMNAL_LEAVES.asItem(), 0.3f);
     ComposterBlock.CHANCES.put(RegistryManager.RED_SAPLING.asItem(), 0.3f);
-    ComposterBlock.CHANCES.put(RegistryManager.YELLOW_LEAVES.asItem(), 0.3f);
+    ComposterBlock.CHANCES.put(ModBlocks.YELLOW_AUTUMNAL_LEAVES.asItem(), 0.3f);
     ComposterBlock.CHANCES.put(RegistryManager.YELLOW_SAPLING.asItem(), 0.3f);
     ComposterBlock.CHANCES.put(ModBlocks.FIR_LEAVES.asItem(), 0.3f);
-    ComposterBlock.CHANCES.put(ModBlocks.FIR_SAPLING.asItem(), 0.3f);
+    ComposterBlock.CHANCES.put(RegistryManager.FIR_SAPLING.asItem(), 0.3f);
   }
 }

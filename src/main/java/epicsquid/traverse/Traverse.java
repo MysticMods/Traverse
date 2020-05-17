@@ -1,8 +1,8 @@
 package epicsquid.traverse;
 
-import epicsquid.mysticallib.setup.ClientSetup;
 import epicsquid.traverse.config.ConfigManager;
 import epicsquid.traverse.items.ModItems;
+import epicsquid.traverse.setup.ClientSetup;
 import epicsquid.traverse.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

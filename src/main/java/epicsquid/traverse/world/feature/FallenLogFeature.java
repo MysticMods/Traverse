@@ -1,4 +1,4 @@
-/*package epicsquid.traverse.world.feature;
+package epicsquid.traverse.world.feature;
 
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
@@ -82,4 +82,4 @@ public class FallenLogFeature extends AbstractTreeFeature<NoFeatureConfig> {
 
     return true;
   }
-}*/
+}
