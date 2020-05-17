@@ -2,7 +2,6 @@ package epicsquid.traverse.biome;
 
 import com.google.common.collect.ImmutableList;
 import epicsquid.traverse.blocks.ModBlocks;
-import epicsquid.traverse.world.feature.FallenLogFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
@@ -36,7 +35,7 @@ public class TraverseDefaultBiomeFeatures {
       new BlobFoliagePlacer(3, 0)
   ).baseHeight(7).heightRandA(3).foliageHeight(3).maxWaterDepth(1).decorators(ImmutableList.of(new LeaveVineTreeDecorator())).build();
 
-  public static final FallenLogFeatureConfig FALLEN_OAK_TREE = new FallenLogFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState())).baseLength(4).lengthRandom(3).build();
+  /*  public static final FallenLogFeatureConfig FALLEN_OAK_TREE = new FallenLogFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState())).baseLength(4).lengthRandom(3).build();*/
 
   private static TreeFeatureConfig oakLike(Block trunk, Block leaves) {
     return new TreeFeatureConfig.Builder(

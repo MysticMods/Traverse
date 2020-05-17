@@ -1,4 +1,4 @@
-package epicsquid.traverse.world.feature;
+/*package epicsquid.traverse.world.feature;
 
 import com.mojang.datafixers.Dynamic;
 import epicsquid.traverse.blocks.ModBlocks;
@@ -77,4 +77,4 @@ public class FallenLogFeature extends AbstractTreeFeature<FallenLogFeatureConfig
 
     return true;
   }
-}
+}*/

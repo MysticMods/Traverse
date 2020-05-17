@@ -1,4 +1,4 @@
-package epicsquid.traverse.world.feature;
+/*package epicsquid.traverse.world.feature;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -80,4 +80,4 @@ public class FallenLogFeatureConfig extends BaseTreeFeatureConfig {
       return new FallenLogFeatureConfig(this.trunkProvider, this.leavesProvider, this.decorators, this.baseLength, this.lengthRandom);
     }
   }
-}
+}*/
