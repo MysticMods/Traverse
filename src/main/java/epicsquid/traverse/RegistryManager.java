@@ -47,6 +47,8 @@ public class RegistryManager {
   public static Block FIR_BUTTON;
   public static Block FIR_DOOR;
 
+  public static Biome PLAINS_PLATEAU;
+
 /*  public static Feature<FallenLogFeatureConfig> FALLEN_OAK_TREE = new FallenLogFeature(FallenLogFeatureConfig::deserialize);
 
   @SubscribeEvent
@@ -118,7 +120,7 @@ public class RegistryManager {
     registerBiome(registry, new LushSwampBiome(), "lush_swamp", ConfigManager.LUSH_SWAMP.getWeight(), false, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.OVERWORLD);
     registerBiome(registry, new MeadowBiome(), "meadow", ConfigManager.MEADOW.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.OVERWORLD);
     registerBiome(registry, new MiniJungleBiome(), "mini_jungle", ConfigManager.MINI_JUNGLE.getWeight(), true, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.DENSE, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WET, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(registry, new PlainsPlateauBiome(), "plains_plateau", ConfigManager.PLAINS_PLATEAU.getWeight(), false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(registry, PLAINS_PLATEAU = new PlainsPlateauBiome(), "plains_plateau", ConfigManager.PLAINS_PLATEAU.getWeight(), false, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(registry, new RockyEdgeBiome(), "rock_edge", ConfigManager.ROCK_EDGE.getWeight(), false, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.HOT, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.OVERWORLD);
     registerBiome(registry, new RollingHillsBiome(), "rolling_hills", ConfigManager.ROLLING_HILLS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(registry, new SnowyConiferousForestBiome(), "snowy_coniferous_forest", ConfigManager.SNOWY_CONIFEROUS_FOREST.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);

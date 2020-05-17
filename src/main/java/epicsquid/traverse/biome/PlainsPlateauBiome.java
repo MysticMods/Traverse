@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.RegistryManager;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -62,4 +63,8 @@ public class PlainsPlateauBiome extends Biome {
     this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.WITCH, 5, 1, 1));
   }
 
+  @Override
+  public Biome getRiver() {
+    return RegistryManager.PLAINS_PLATEAU;
+  }
 }
