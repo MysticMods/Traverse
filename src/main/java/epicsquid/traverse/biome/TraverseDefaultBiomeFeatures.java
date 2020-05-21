@@ -1,7 +1,9 @@
 package epicsquid.traverse.biome;
 
 import com.google.common.collect.ImmutableList;
+import epicsquid.traverse.RegistryManager;
 import epicsquid.traverse.blocks.ModBlocks;
+import epicsquid.traverse.world.feature.FallenLogFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
@@ -138,6 +140,10 @@ public class TraverseDefaultBiomeFeatures {
   }
 
   public static void addWoodlandsTrees(Biome biome, int count) {
-//		biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(ModFeatures.OAK_SHRUB.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).func_227227_a_(0.2f), ModFeatures.FALLEN_OAK_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).func_227227_a_(0.3f), Feature.NORMAL_TREE.withConfiguration(TreeFeatureConfig.).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(count, 0.1f, 1)))))));
+    biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(
+        ImmutableList.of(
+            Feature.JUNGLE_GROUND_BUSH.withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState())).build()).func_227227_a_(0.2F),
+            RegistryManager.FALLEN_OAK_TREE.withConfiguration(new FallenLogFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState())).baseLength(3).lengthRandom(2).build()).func_227227_a_(0.3f)),
+            Feature.NORMAL_TREE.withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG))).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(count))));
   }
 }

@@ -5,12 +5,15 @@ import epicsquid.mysticallib.world.BaseTree;
 import epicsquid.traverse.biome.*;
 import epicsquid.traverse.blocks.ModBlocks;
 import epicsquid.traverse.config.ConfigManager;
+import epicsquid.traverse.world.feature.FallenLogFeature;
+import epicsquid.traverse.world.feature.FallenLogFeatureConfig;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.TreeFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraftforge.common.BiomeDictionary;
@@ -54,13 +57,13 @@ public class RegistryManager {
 
   public static Biome PLAINS_PLATEAU;
 
-/*  public static Feature<FallenLogFeatureConfig> FALLEN_OAK_TREE = new FallenLogFeature(FallenLogFeatureConfig::deserialize);
+  public static Feature<FallenLogFeatureConfig> FALLEN_OAK_TREE = new FallenLogFeature(FallenLogFeatureConfig::deserialize);
 
   @SubscribeEvent
   public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
     IForgeRegistry<Feature<?>> registry = event.getRegistry();
     registry.register(FALLEN_OAK_TREE.setRegistryName(Traverse.MODID, "fallen_tree"));
-  }*/
+  }
 
   @SubscribeEvent
   public static void registerItems(RegistryEvent.Register<Item> event) {

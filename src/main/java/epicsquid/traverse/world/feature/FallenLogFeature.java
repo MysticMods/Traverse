@@ -1,4 +1,4 @@
-/*package epicsquid.traverse.world.feature;
+package epicsquid.traverse.world.feature;
 
 import com.mojang.datafixers.Dynamic;
 import epicsquid.traverse.blocks.ModBlocks;
@@ -31,7 +31,7 @@ public class FallenLogFeature extends AbstractTreeFeature<FallenLogFeatureConfig
     Direction direction = Direction.getFacingFromAxisDirection(axis, rand.nextBoolean() ? Direction.AxisDirection.POSITIVE : Direction.AxisDirection.NEGATIVE);
 
     BlockPos below = origin.down();
-    if (!isSoilOrFarm(world, below, (SaplingBlock) ModBlocks.FIR_SAPLING)) {
+    if (!isSoilOrFarm(world, below, null)) {
       return false;
     }
 
@@ -39,13 +39,13 @@ public class FallenLogFeature extends AbstractTreeFeature<FallenLogFeatureConfig
 
     int air = 0;
     for (int i = 0; i < length; i++) {
-      pos.offset(direction);
+      pos.move(direction);
 
-      if (!world.hasBlockState(pos.offset(Direction.DOWN), BlockState::isTransparent)) {
+      if (!world.hasBlockState(pos.move(Direction.DOWN), BlockState::isSolid)) {
         air++;
       }
 
-      if (!isAirOrLeaves(world, pos.offset(Direction.UP))) {
+      if (!isAirOrLeaves(world, pos.move(Direction.UP))) {
         return false;
       }
     }
@@ -57,7 +57,7 @@ public class FallenLogFeature extends AbstractTreeFeature<FallenLogFeatureConfig
 
     pos.setPos(origin);
     for (int i = 0; i < length; i++) {
-      pos.offset(direction);
+      pos.move(direction);
 
       BlockState log = config.trunkProvider.getBlockState(rand, pos);
 
@@ -66,15 +66,15 @@ public class FallenLogFeature extends AbstractTreeFeature<FallenLogFeatureConfig
         logs.add(pos.toImmutable());
       }
 
-      pos.offset(Direction.DOWN);
+      pos.move(Direction.DOWN);
 
-      if (isSoilOrFarm(world, pos, (SaplingBlock) ModBlocks.FIR_SAPLING)) {
+      if (isSoilOrFarm(world, pos, null)) {
         func_227217_a_(world, pos, Blocks.DIRT.getDefaultState(), box);
       }
 
-      pos.offset(Direction.UP);
+      pos.move(Direction.UP);
     }
 
     return true;
   }
-}*/
+}
