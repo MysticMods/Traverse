@@ -1,7 +1,5 @@
 package epicsquid.traverse;
 
-import epicsquid.mysticallib.block.*;
-import epicsquid.mysticallib.world.BaseTree;
 import epicsquid.traverse.biome.*;
 import epicsquid.traverse.blocks.ModBlocks;
 import epicsquid.traverse.config.ConfigManager;
@@ -22,6 +20,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import noobanidus.libs.noobutil.block.BaseBlocks;
+import noobanidus.libs.noobutil.world.GenericTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,13 +79,13 @@ public class RegistryManager {
     Block.Properties saplingProps = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT);
 
     BLOCKS.add(RED_LEAVES = ModBlocks.RED_AUTUMNAL_LEAVES);
-    BLOCKS.add(RED_SAPLING = new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.RED_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "red_autumnal_sapling"));
+    BLOCKS.add(RED_SAPLING = new BaseBlocks.SaplingBlock(new GenericTree(TraverseDefaultBiomeFeatures.RED_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "red_autumnal_sapling"));
     BLOCKS.add(BROWN_LEAVES = ModBlocks.BROWN_AUTUMNAL_LEAVES);
-    BLOCKS.add(BROWN_SAPLING = new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.BROWN_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "brown_autumnal_sapling"));
+    BLOCKS.add(BROWN_SAPLING = new BaseBlocks.SaplingBlock(new GenericTree(TraverseDefaultBiomeFeatures.BROWN_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "brown_autumnal_sapling"));
     BLOCKS.add(ORANGE_LEAVES = ModBlocks.ORANGE_AUTUMNAL_LEAVES);
-    BLOCKS.add(ORANGE_SAPLING = new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.ORANGE_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "orange_autumnal_sapling"));
+    BLOCKS.add(ORANGE_SAPLING = new BaseBlocks.SaplingBlock(new GenericTree(TraverseDefaultBiomeFeatures.ORANGE_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "orange_autumnal_sapling"));
     BLOCKS.add(YELLOW_LEAVES = ModBlocks.YELLOW_AUTUMNAL_LEAVES);
-    BLOCKS.add(YELLOW_SAPLING = new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.YELLOW_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "yellow_autumnal_sapling"));
+    BLOCKS.add(YELLOW_SAPLING = new BaseBlocks.SaplingBlock(new GenericTree(TraverseDefaultBiomeFeatures.YELLOW_AUTUMNAL_TREE_CONFIG), saplingProps).setRegistryName(Traverse.MODID, "yellow_autumnal_sapling"));
 
     // Fir Trees
     Block.Properties firWoodProps = Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD);
@@ -102,13 +102,13 @@ public class RegistryManager {
     BLOCKS.add(ModBlocks.STRIPPED_FIR_LOG);
     BLOCKS.add(ModBlocks.STRIPPED_FIR_WOOD);
     BLOCKS.add(FIR_SLAB = new SlabBlock(firProps).setRegistryName(Traverse.MODID, "fir_slab"));
-    BLOCKS.add(FIR_PRESSURE_PLATE = new BasePressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, firPropsPassable).setRegistryName(Traverse.MODID, "fir_pressure_plate"));
+    BLOCKS.add(FIR_PRESSURE_PLATE = new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, firPropsPassable).setRegistryName(Traverse.MODID, "fir_pressure_plate"));
     BLOCKS.add(FIR_FENCE = new FenceBlock(firProps).setRegistryName(Traverse.MODID, "fir_fence"));
     BLOCKS.add(FIR_FENCE_GATE = new FenceGateBlock(firProps).setRegistryName(Traverse.MODID, "fir_fence_gate"));
-    BLOCKS.add(FIR_TRAPDOOR = new BaseTrapDoorBlock(firProps).setRegistryName(Traverse.MODID, "fir_trapdoor"));
+    BLOCKS.add(FIR_TRAPDOOR = new BaseBlocks.TrapDoorBlock(firProps).setRegistryName(Traverse.MODID, "fir_trapdoor"));
     BLOCKS.add(FIR_STAIRS = new StairsBlock(firPlanks::getDefaultState, firProps).setRegistryName(Traverse.MODID, "fir_stairs"));
-    BLOCKS.add(FIR_BUTTON = new BaseWoodButtonBlock(firProps).setRegistryName(Traverse.MODID, "fir_button"));
-    BLOCKS.add(FIR_DOOR = new BaseDoorBlock(firProps).setRegistryName(Traverse.MODID, "fir_door"));
+    BLOCKS.add(FIR_BUTTON = new BaseBlocks.WoodButtonBlock(firProps).setRegistryName(Traverse.MODID, "fir_button"));
+    BLOCKS.add(FIR_DOOR = new BaseBlocks.DoorBlock(firProps).setRegistryName(Traverse.MODID, "fir_door"));
 
     BLOCKS.forEach(registry::register);
   }

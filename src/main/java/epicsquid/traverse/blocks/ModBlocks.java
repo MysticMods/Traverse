@@ -1,7 +1,5 @@
 package epicsquid.traverse.blocks;
 
-import epicsquid.mysticallib.block.BaseSaplingBlock;
-import epicsquid.mysticallib.world.BaseTree;
 import epicsquid.traverse.Traverse;
 import epicsquid.traverse.biome.TraverseDefaultBiomeFeatures;
 import net.minecraft.block.Block;
@@ -10,6 +8,8 @@ import net.minecraft.block.LogBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import noobanidus.libs.noobutil.block.BaseBlocks;
+import noobanidus.libs.noobutil.world.GenericTree;
 
 public class ModBlocks {
 
@@ -27,7 +27,7 @@ public class ModBlocks {
   public static final Block STRIPPED_FIR_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName(Traverse.MODID, "stripped_fir_wood");
 
   public static final Block FIR_LEAVES = createLeaves("fir_leaves");
-  public static final Block FIR_SAPLING = new BaseSaplingBlock(new BaseTree(TraverseDefaultBiomeFeatures.FIR_TREE_CONFIG), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT)).setRegistryName(Traverse.MODID, "fir_sapling");
+  public static final Block FIR_SAPLING = new BaseBlocks.SaplingBlock(new GenericTree(TraverseDefaultBiomeFeatures.FIR_TREE_CONFIG), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT)).setRegistryName(Traverse.MODID, "fir_sapling");
 
   private static Block createLeaves(String name) {
     return new LeavesBlock(LEAVES_PROPS).setRegistryName(Traverse.MODID, name);
