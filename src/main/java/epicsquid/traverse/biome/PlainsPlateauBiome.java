@@ -1,6 +1,6 @@
 package epicsquid.traverse.biome;
 
-import epicsquid.traverse.RegistryManager;
+import epicsquid.traverse.init.ModBiomes;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -12,6 +12,7 @@ import net.minecraft.world.gen.feature.structure.MineshaftStructure;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraftforge.registries.RegistryManager;
 
 public class PlainsPlateauBiome extends Biome {
 
@@ -64,6 +65,6 @@ public class PlainsPlateauBiome extends Biome {
 
   @Override
   public Biome getRiver() {
-    return RegistryManager.PLAINS_PLATEAU;
+    return ModBiomes.PLAINS_PLATEAU.get();
   }
 }

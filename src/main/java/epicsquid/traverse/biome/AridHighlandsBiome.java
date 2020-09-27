@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.init.ModFeatureConfig;
 import epicsquid.traverse.world.surfacebuilder.ModSurfaceBuilders;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -49,7 +50,7 @@ public class AridHighlandsBiome extends Biome {
     DefaultBiomeFeatures.addReedsAndPumpkins(this);
     DefaultBiomeFeatures.addSprings(this);
     DefaultBiomeFeatures.addFreezeTopLayer(this);
-    TraverseDefaultBiomeFeatures.addShrubs(this, 1);
+    ModFeatureConfig.addShrubs(this, 1);
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 3, 2, 3));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 6, 3, 3));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.PIG, 5, 3, 3));

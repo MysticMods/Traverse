@@ -1,11 +1,11 @@
-package epicsquid.traverse.biome;
+package epicsquid.traverse.init;
 
 import com.google.common.collect.ImmutableList;
-import epicsquid.traverse.RegistryManager;
-import epicsquid.traverse.blocks.ModBlocks;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.traverse.world.feature.FallenLogFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
@@ -21,16 +21,15 @@ import noobanidus.libs.noobutil.types.LazySupplier;
 
 import java.util.function.Supplier;
 
-public class TraverseDefaultBiomeFeatures {
-
+public class ModFeatureConfig {
   public static final BlockClusterFeatureConfig LUSH_FLOWER_CONFIG;
   public static final Supplier<TreeFeatureConfig> RED_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.DARK_OAK_LOG, ModBlocks.RED_AUTUMNAL_LEAVES);
   public static final Supplier<TreeFeatureConfig> ORANGE_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.OAK_LOG, ModBlocks.ORANGE_AUTUMNAL_LEAVES);
   public static final Supplier<TreeFeatureConfig> YELLOW_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.BIRCH_LOG, ModBlocks.YELLOW_AUTUMNAL_LEAVES);
   public static final Supplier<TreeFeatureConfig> BROWN_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.DARK_OAK_LOG, ModBlocks.BROWN_AUTUMNAL_LEAVES);
   public static final Supplier<TreeFeatureConfig> FIR_TREE_CONFIG = new LazySupplier<>(() -> new TreeFeatureConfig.Builder(
-      new SimpleBlockStateProvider(ModBlocks.FIR_LOG.getDefaultState()),
-      new SimpleBlockStateProvider(ModBlocks.FIR_LEAVES.getDefaultState()),
+      new SimpleBlockStateProvider(ModBlocks.FIR_LOG.get().getDefaultState()),
+      new SimpleBlockStateProvider(ModBlocks.FIR_LEAVES.get().getDefaultState()),
       new SpruceFoliagePlacer(2, 1)
   ).baseHeight(15).heightRandA(15).trunkHeight(1).trunkHeightRandom(4).trunkTopOffsetRandom(2).ignoreVines().build());
 
@@ -40,12 +39,10 @@ public class TraverseDefaultBiomeFeatures {
       new BlobFoliagePlacer(3, 0)
   ).baseHeight(7).heightRandA(3).foliageHeight(3).maxWaterDepth(1).decorators(ImmutableList.of(new LeaveVineTreeDecorator())).build());
 
-  /*  public static final FallenLogFeatureConfig FALLEN_OAK_TREE = new FallenLogFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState())).baseLength(4).lengthRandom(3).build();*/
-
-  private static Supplier<TreeFeatureConfig> oakLike(Block trunk, Block leaves) {
+  private static Supplier<TreeFeatureConfig> oakLike(Block trunk, RegistryEntry<LeavesBlock> leaves) {
     return new LazySupplier<>(() -> new TreeFeatureConfig.Builder(
         new SimpleBlockStateProvider(trunk.getDefaultState()),
-        new SimpleBlockStateProvider(leaves.getDefaultState()),
+        new SimpleBlockStateProvider(leaves.get().getDefaultState()),
         new BlobFoliagePlacer(2, 0)
     ).baseHeight(4).heightRandA(2).foliageHeight(3).ignoreVines().build());
   }
@@ -67,9 +64,7 @@ public class TraverseDefaultBiomeFeatures {
   }
 
   public static void addShrubs(Biome biome, int count) {
-    biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.JUNGLE_GROUND_BUSH.withConfiguration(new TreeFeatureConfig.Builder(
-        new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()), new BlobFoliagePlacer(2, 0)).build())
-        .withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.5F, count))));
+    biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.JUNGLE_GROUND_BUSH.withConfiguration(new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()), new BlobFoliagePlacer(2, 0)).build()).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.5F, count))));
   }
 
   public static void addAutumnalWoodsTrees(Biome biome) {
@@ -130,10 +125,7 @@ public class TraverseDefaultBiomeFeatures {
   }
 
   public static void addMiniJungleVegetation(Biome biome) {
-    biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(
-        ImmutableList.of(Feature.FANCY_TREE.withConfiguration(
-            DefaultBiomeFeatures.FANCY_TREE_CONFIG).func_227227_a_(0.1F)),
-        Feature.NORMAL_TREE.withConfiguration(DefaultBiomeFeatures.JUNGLE_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
+    biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.FANCY_TREE.withConfiguration(DefaultBiomeFeatures.FANCY_TREE_CONFIG).func_227227_a_(0.1F)), Feature.NORMAL_TREE.withConfiguration(DefaultBiomeFeatures.JUNGLE_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
 
     biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.BLUE_ORCHID_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(4))));
   }
@@ -146,7 +138,7 @@ public class TraverseDefaultBiomeFeatures {
     biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(
         ImmutableList.of(
             Feature.JUNGLE_GROUND_BUSH.withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState())).build()).func_227227_a_(0.2F),
-            RegistryManager.FALLEN_OAK_TREE.withConfiguration(new FallenLogFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState())).baseLength(3).lengthRandom(2).build()).func_227227_a_(0.3f)),
-            Feature.NORMAL_TREE.withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG))).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(count))));
+            ModFeatures.FALLEN_OAK_TREE.get().withConfiguration(new FallenLogFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState())).baseLength(3).lengthRandom(2).build()).func_227227_a_(0.3f)),
+        Feature.NORMAL_TREE.withConfiguration(DefaultBiomeFeatures.OAK_TREE_CONFIG))).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(count))));
   }
 }

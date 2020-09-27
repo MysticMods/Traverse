@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.init.ModFeatureConfig;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -32,7 +33,7 @@ public class CliffsBiome extends Biome {
     DefaultBiomeFeatures.addStructures(this);
     DefaultBiomeFeatures.addLakes(this);
     DefaultBiomeFeatures.addMonsterRooms(this);
-    TraverseDefaultBiomeFeatures.addCliffsMineables(this);
+    ModFeatureConfig.addCliffsMineables(this);
     DefaultBiomeFeatures.addOres(this);
     DefaultBiomeFeatures.addSedimentDisks(this);
     DefaultBiomeFeatures.addGrass(this);

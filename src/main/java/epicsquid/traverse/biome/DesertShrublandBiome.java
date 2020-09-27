@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.init.ModFeatureConfig;
 import epicsquid.traverse.world.surfacebuilder.ModSurfaceBuilders;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -48,7 +49,7 @@ public class DesertShrublandBiome extends Biome {
     DefaultBiomeFeatures.addSprings(this);
     DefaultBiomeFeatures.addDesertFeatures(this);
     DefaultBiomeFeatures.addFreezeTopLayer(this);
-    TraverseDefaultBiomeFeatures.addDesertShrublandFeatures(this);
+    ModFeatureConfig.addDesertShrublandFeatures(this);
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 4, 2, 3));
     this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 10, 8, 8));
     this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SPIDER, 100, 4, 4));

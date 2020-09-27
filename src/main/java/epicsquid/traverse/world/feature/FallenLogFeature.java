@@ -1,11 +1,9 @@
 package epicsquid.traverse.world.feature;
 
 import com.mojang.datafixers.Dynamic;
-import epicsquid.traverse.blocks.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LogBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;

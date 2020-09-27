@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.init.ModFeatureConfig;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -47,7 +48,7 @@ public class LushSwampBiome extends Biome {
     this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEAGRASS.withConfiguration(new SeaGrassConfig(64, 0.6D)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
     DefaultBiomeFeatures.addFossils(this);
     DefaultBiomeFeatures.addFreezeTopLayer(this);
-    TraverseDefaultBiomeFeatures.addLushSwampVegetation(this);
+    ModFeatureConfig.addLushSwampVegetation(this);
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 12, 4, 4));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.PIG, 10, 4, 4));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CHICKEN, 10, 4, 4));

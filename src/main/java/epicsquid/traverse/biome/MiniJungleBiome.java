@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.init.ModFeatureConfig;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -47,7 +48,7 @@ public class MiniJungleBiome extends Biome {
     DefaultBiomeFeatures.addSprings(this);
     DefaultBiomeFeatures.addJunglePlants(this);
     DefaultBiomeFeatures.addFreezeTopLayer(this);
-    TraverseDefaultBiomeFeatures.addMiniJungleVegetation(this);
+    ModFeatureConfig.addMiniJungleVegetation(this);
     this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEAGRASS.withConfiguration(new SeaGrassConfig(64, 0.6D)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 12, 4, 4));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.PIG, 10, 4, 4));

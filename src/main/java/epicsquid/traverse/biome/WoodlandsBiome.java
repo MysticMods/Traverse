@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.init.ModFeatureConfig;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -48,7 +49,7 @@ public class WoodlandsBiome extends Biome {
     DefaultBiomeFeatures.addReedsAndPumpkins(this);
     DefaultBiomeFeatures.addSprings(this);
     DefaultBiomeFeatures.addFreezeTopLayer(this);
-    TraverseDefaultBiomeFeatures.addWoodlandsTrees(this, 7);
+    ModFeatureConfig.addWoodlandsTrees(this, 7);
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.SHEEP, 12, 4, 4));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.PIG, 10, 4, 4));
     this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.CHICKEN, 10, 4, 4));
