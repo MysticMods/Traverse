@@ -10,6 +10,7 @@ import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+@SuppressWarnings("deprecation")
 @Mod.EventBusSubscriber(modid = Traverse.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 
@@ -24,10 +25,10 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.RED_AUTUMNAL_LEAVES.get(), rendertype);
       rendertype = RenderType.getCutout();
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_SAPLING.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.BROWN_SAPLING.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.YELLOW_SAPLING.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_SAPLING.get(), rendertype);
-      RenderTypeLookup.setRenderLayer(ModBlocks.RED_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.BROWN_AUTUMNAL_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.YELLOW_AUTUMNAL_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_AUTUMNAL_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.RED_AUTUMNAL_SAPLING.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_TRAPDOOR.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_DOOR.get(), rendertype);
     });
