@@ -1,9 +1,9 @@
 package epicsquid.traverse.world.surfacebuilder;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.Mutable;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -11,55 +11,47 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.Random;
 import java.util.function.DoubleFunction;
-import java.util.function.Function;
 
 public class BeachSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
-
-  protected int seaLevel;
+  private static final BlockState STONE = Blocks.STONE.getDefaultState();
+  private final BlockState WATER;
+  private int seaLevel;
   private DoubleFunction<BlockState> sand;
 
-  protected final BlockState WATER = Blocks.WATER.getDefaultState();
-
-  public BeachSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> function, int seaLevel, DoubleFunction<BlockState> sand) {
-    super(function);
+  public BeachSurfaceBuilder(Codec<SurfaceBuilderConfig> codec, int seaLevel, DoubleFunction<BlockState> sand) {
+    super(codec);
+    this.WATER = Blocks.WATER.getDefaultState();
     this.seaLevel = seaLevel;
     this.sand = sand;
   }
 
-  @Override
-  public void buildSurface(Random rand, IChunk chunk, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
+  public void buildSurface(Random rand, IChunk chunk, Biome biome, int x, int z, int height, double noiseVal, BlockState var9, BlockState var10, int var11, long seed, SurfaceBuilderConfig config) {
     int localX = x & 15;
     int localZ = z & 15;
-
-    BlockState chosenSand = sand.apply(noise);
-    int thickness = (int) (noise / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
-
+    BlockState chosenSand = this.sand.apply(noiseVal);
+    int thickness = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
     int run = 0;
     boolean beach = false;
     boolean underwater = false;
+    Mutable pos = new Mutable(localX, 0, localZ);
 
-    BlockPos.Mutable pos = new BlockPos.Mutable(localX, 0, localZ);
-
-    for (int y = startHeight; y >= 0; --y) {
-      pos.setPos(localX, y, localZ);
+    for (int y = height; y >= 0; --y) {
+      pos.move(localX, y, localZ);
       BlockState chunkBlock = chunk.getBlockState(pos);
-
       if (chunkBlock == STONE && y < 255) {
         BlockState toSet = STONE;
-
         if (chunk.getBlockState(pos.up()).isAir()) {
-          beach = y < seaLevel + 3;
+          beach = y < this.seaLevel + 3;
           toSet = beach ? chosenSand : config.getTop();
-        } else if (chunk.getBlockState(pos.up()) == WATER || run < thickness && underwater) {
+        } else if (chunk.getBlockState(pos.up()) == this.WATER || run < thickness && underwater) {
           underwater = true;
-
-          if (y > seaLevel - 3) {
+          if (y > this.seaLevel - 3) {
             beach = true;
             toSet = chosenSand;
           } else {
             toSet = config.getUnderWaterMaterial();
           }
-        } else if (y > seaLevel - 3) {
+        } else if (y > this.seaLevel - 3) {
           if (beach) {
             toSet = chosenSand;
           } else if (run < thickness) {
@@ -68,8 +60,7 @@ public class BeachSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
         }
 
         chunk.setBlockState(pos, toSet, false);
-        run++;
-
+        ++run;
       } else {
         run = 0;
         beach = false;
@@ -78,3 +69,4 @@ public class BeachSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
     }
   }
 }
+

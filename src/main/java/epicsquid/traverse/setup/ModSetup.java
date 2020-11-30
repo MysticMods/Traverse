@@ -1,6 +1,6 @@
 package epicsquid.traverse.setup;
 
-import epicsquid.traverse.biome.AbstractBiome;
+import epicsquid.traverse.biome.Biome;
 import epicsquid.traverse.init.ModBlocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.AxeItem;
@@ -14,7 +14,7 @@ public class ModSetup {
 
   public static void init(FMLCommonSetupEvent event) {
     DeferredWorkQueue.runLater(() -> {
-      AbstractBiome.finalise();
+      Biome.finalise();
       AxeItem.BLOCK_STRIPPING_MAP = new HashMap<>(AxeItem.BLOCK_STRIPPING_MAP);
       AxeItem.BLOCK_STRIPPING_MAP.put(ModBlocks.FIR_LOG.get(), ModBlocks.STRIPPED_FIR_LOG.get());
       AxeItem.BLOCK_STRIPPING_MAP.put(ModBlocks.FIR_WOOD.get(), ModBlocks.STRIPPED_FIR_WOOD.get());

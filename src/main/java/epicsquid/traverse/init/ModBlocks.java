@@ -6,7 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import noobanidus.libs.noobutil.block.BaseBlocks;
-import noobanidus.libs.noobutil.world.GenericTree;
+import noobanidus.libs.noobutil.world.tree.TreeWrapper;
 
 import static epicsquid.traverse.Traverse.REGISTRATE;
 
@@ -51,31 +51,31 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<BaseBlocks.SaplingBlock> FIR_SAPLING = REGISTRATE.block("fir_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new GenericTree(ModFeatureConfig.FIR_TREE_CONFIG), o))
+  public static final RegistryEntry<BaseBlocks.SaplingBlock> FIR_SAPLING = REGISTRATE.block("fir_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.FIR_TREE), o))
       .properties(SAPLING_PROPS)
       .item()
       .model((ctx, p) -> p.blockSprite(ModBlocks.FIR_SAPLING))
       .build()
       .register();
-  public static final RegistryEntry<BaseBlocks.SaplingBlock> RED_AUTUMNAL_SAPLING = REGISTRATE.block("red_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new GenericTree(ModFeatureConfig.RED_AUTUMNAL_TREE_CONFIG), o))
+  public static final RegistryEntry<BaseBlocks.SaplingBlock> RED_AUTUMNAL_SAPLING = REGISTRATE.block("red_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.RED_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .item()
       .model((ctx, p) -> p.blockSprite(ModBlocks.RED_AUTUMNAL_SAPLING))
       .build()
       .register();
-  public static final RegistryEntry<BaseBlocks.SaplingBlock> BROWN_AUTUMNAL_SAPLING = REGISTRATE.block("brown_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new GenericTree(ModFeatureConfig.BROWN_AUTUMNAL_TREE_CONFIG), o))
+  public static final RegistryEntry<BaseBlocks.SaplingBlock> BROWN_AUTUMNAL_SAPLING = REGISTRATE.block("brown_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.BROWN_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .item()
       .model((ctx, p) -> p.blockSprite(ModBlocks.BROWN_AUTUMNAL_SAPLING))
       .build()
       .register();
-  public static final RegistryEntry<BaseBlocks.SaplingBlock> ORANGE_AUTUMNAL_SAPLING = REGISTRATE.block("orange_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new GenericTree(ModFeatureConfig.ORANGE_AUTUMNAL_TREE_CONFIG), o))
+  public static final RegistryEntry<BaseBlocks.SaplingBlock> ORANGE_AUTUMNAL_SAPLING = REGISTRATE.block("orange_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.ORANGE_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .item()
       .model((ctx, p) -> p.blockSprite(ModBlocks.ORANGE_AUTUMNAL_SAPLING))
       .build()
       .register();
-  public static final RegistryEntry<BaseBlocks.SaplingBlock> YELLOW_AUTUMNAL_SAPLING = REGISTRATE.block("yellow_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new GenericTree(ModFeatureConfig.YELLOW_AUTUMNAL_TREE_CONFIG), o))
+  public static final RegistryEntry<BaseBlocks.SaplingBlock> YELLOW_AUTUMNAL_SAPLING = REGISTRATE.block("yellow_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.YELLOW_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .item()
       .model((ctx, p) -> p.blockSprite(ModBlocks.YELLOW_AUTUMNAL_SAPLING))
@@ -145,29 +145,29 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<LogBlock> FIR_LOG = REGISTRATE.block("fir_log", Material.WOOD, (o) -> new LogBlock(MaterialColor.WOOD, o))
-      .properties(o -> o.hardnessAndResistance(2.0f).sound(SoundType.WOOD))
+  public static final RegistryEntry<RotatedPillarBlock> FIR_LOG = REGISTRATE.block("fir_log", Material.WOOD, RotatedPillarBlock::new)
+      .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.OBSIDIAN).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_LOG))
       .build()
       .register();
 
-  public static final RegistryEntry<LogBlock> FIR_WOOD = REGISTRATE.block("fir_wood", Material.WOOD, (o) -> new LogBlock(MaterialColor.WOOD, o))
-      .properties(o -> o.hardnessAndResistance(2.0f).sound(SoundType.WOOD))
+  public static final RegistryEntry<RotatedPillarBlock> FIR_WOOD = REGISTRATE.block("fir_wood", Material.WOOD, RotatedPillarBlock::new)
+      .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.OBSIDIAN).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_WOOD))
       .build()
       .register();
 
-  public static final RegistryEntry<LogBlock> STRIPPED_FIR_LOG = REGISTRATE.block("stripped_fir_log", Material.WOOD, (o) -> new LogBlock(MaterialColor.WOOD, o))
-      .properties(o -> o.hardnessAndResistance(2.0f).sound(SoundType.WOOD))
+  public static final RegistryEntry<RotatedPillarBlock> STRIPPED_FIR_LOG = REGISTRATE.block("stripped_fir_log", Material.WOOD, RotatedPillarBlock::new)
+      .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.WOOD).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.STRIPPED_FIR_LOG))
       .build()
       .register();
 
-  public static final RegistryEntry<LogBlock> STRIPPED_FIR_WOOD = REGISTRATE.block("stripped_fir_wood", Material.WOOD, (o) -> new LogBlock(MaterialColor.WOOD, o))
-      .properties(o -> o.hardnessAndResistance(2.0f).sound(SoundType.WOOD))
+  public static final RegistryEntry<RotatedPillarBlock> STRIPPED_FIR_WOOD = REGISTRATE.block("stripped_fir_wood", Material.WOOD, RotatedPillarBlock::new)
+      .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.WOOD).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.STRIPPED_FIR_WOOD))
       .build()
