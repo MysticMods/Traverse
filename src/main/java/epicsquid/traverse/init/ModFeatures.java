@@ -3,6 +3,7 @@ package epicsquid.traverse.init;
 import com.google.common.collect.ImmutableList;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.traverse.Traverse;
+import epicsquid.traverse.world.SupplierBlockStateProvider;
 import epicsquid.traverse.world.placer.FallenTrunkPlacer;
 import epicsquid.traverse.world.placer.NoneFoliagePlacer;
 import net.minecraft.block.Blocks;
@@ -16,7 +17,6 @@ import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.TrunkPlacerType;
-import noobanidus.libs.noobutil.types.SupplierBlockStateProvider;
 
 import static epicsquid.traverse.Traverse.REGISTRATE;
 

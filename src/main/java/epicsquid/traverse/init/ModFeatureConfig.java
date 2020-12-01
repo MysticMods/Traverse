@@ -2,6 +2,7 @@ package epicsquid.traverse.init;
 
 import com.google.common.collect.ImmutableList;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import epicsquid.traverse.world.SupplierBlockStateProvider;
 import epicsquid.traverse.world.placer.FallenTrunkPlacer;
 import epicsquid.traverse.world.placer.NoneFoliagePlacer;
 import net.minecraft.block.Block;
@@ -19,7 +20,6 @@ import net.minecraft.world.gen.foliageplacer.BushFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
-import noobanidus.libs.noobutil.types.SupplierBlockStateProvider;
 
 public class ModFeatureConfig {
   public static final BaseTreeFeatureConfig RED_AUTUMNAL_TREE_CONFIG = oakLike(Blocks.DARK_OAK_LOG, ModBlocks.RED_AUTUMNAL_LEAVES, 4);

@@ -1,49 +1,19 @@
 package epicsquid.traverse.init;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.traverse.Traverse;
-import epicsquid.traverse.biome.*;
-import epicsquid.traverse.config.ConfigManager;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.IForgeRegistry;
-
-import static epicsquid.traverse.Traverse.REGISTRATE;
-import static epicsquid.traverse.Traverse.RECIPES;
 
 @Mod.EventBusSubscriber(modid = Traverse.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBiomes {
-    public static final RegistryEntry<AridHighlandsBiome> ARID_HIGHLANDS = REGISTRATE.biome("arid_highlands", AridHighlandsBiome::new).register();
-    public static final RegistryEntry<AutumnalWoodedHillsBiome> AUTUMNAL_WOODED_HILLS = REGISTRATE.biome("autumnal_wooded_hills", AutumnalWoodedHillsBiome::new).register();
-    public static final RegistryEntry<AutumnalWoodsBiome> AUTUMNAL_WOODS = REGISTRATE.biome("autumnal_woods", AutumnalWoodsBiome::new).register();
-    public static final RegistryEntry<ConiferousForestBiome> CONIFEROUS_FOREST = REGISTRATE.biome("coniferous_forest", ConiferousForestBiome::new).register();
-    // TODO -> _biome
-    public static final RegistryEntry<ConiferousWoodedHillsBiome> CONIFEROUS_WOODLAND_HILLS = REGISTRATE.biome("coniferous_woodland_hills", ConiferousWoodedHillsBiome::new).register();
-    public static final RegistryEntry<DesertShrublandBiome> DESERT_SHRUBLAND = REGISTRATE.biome("desert_shrubland", DesertShrublandBiome::new).register();
-    public static final RegistryEntry<HighConiferousForestBiome> HIGH_CONIFEROUS_FOREST = REGISTRATE.biome("high_coniferous_forest", HighConiferousForestBiome::new).register();
-    public static final RegistryEntry<LushSwampBiome> LUSH_SWAMP = REGISTRATE.biome("lush_swamp", LushSwampBiome::new).register();
-    public static final RegistryEntry<MeadowBiome> MEADOW = REGISTRATE.biome("meadow", MeadowBiome::new).register();
-    public static final RegistryEntry<MiniJungleBiome> MINI_JUNGLE = REGISTRATE.biome("mini_jungle", MiniJungleBiome::new).register();
-    public static final RegistryEntry<PlainsPlateauBiome> PLAINS_PLATEAU = REGISTRATE.biome("plains_plateau", PlainsPlateauBiome::new).register();
-    public static final RegistryEntry<RockyEdgeBiome> ROCKY_EDGE = REGISTRATE.biome("rocky_edge", RockyEdgeBiome::new).register();
-    public static final RegistryEntry<RollingHillsBiome> ROLLING_HILLS = REGISTRATE.biome("rolling_hills", RollingHillsBiome::new).register();
-    public static final RegistryEntry<SnowyConiferousForestBiome> SNOWY_CONIFEROUS_FOREST = REGISTRATE.biome("snowy_coniferous_forest", SnowyConiferousForestBiome::new).register();
-    public static final RegistryEntry<SnowyConiferousWoodedHillsBiome> SNOWY_CONIFEROUS_WOODED_HILLS = REGISTRATE.biome("snowy_coniferous_wooded_hills", SnowyConiferousWoodedHillsBiome::new).register();
-    public static final RegistryEntry<SnowyHighConiferousForestBiome> SNOWY_HIGH_CONIFEROUS_FOREST = REGISTRATE.biome("snowy_high_coniferous_forest", SnowyHighConiferousForestBiome::new).register();
-    public static final RegistryEntry<WoodedPlateauBiome> WOODED_PLATEAU = REGISTRATE.biome("wooded_plateau", WoodedPlateauBiome::new).register();
-    public static final RegistryEntry<WoodlandsBiome> WOODLANDS = REGISTRATE.biome("woodlands", WoodlandsBiome::new).register();
-
-  public static void load () {
-
+  public static void load() {
   }
 
   @SubscribeEvent
   public static void registerBiomes(RegistryEvent.Register<Biome> event) {
-    registerBiome(ARID_HIGHLANDS.get(), ConfigManager.ARID_HIGHLANDS.getWeight(), false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+/*    registerBiome(ARID_HIGHLANDS.get(), ConfigManager.ARID_HIGHLANDS.getWeight(), false, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(AUTUMNAL_WOODED_HILLS.get(), ConfigManager.AUTUMNAL_WOODED_HILLS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(AUTUMNAL_WOODS.get(), ConfigManager.AUTUMNAL_WOODS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     registerBiome(CONIFEROUS_FOREST.get(), ConfigManager.CONIFEROUS_FOREST.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
@@ -60,10 +30,10 @@ public class ModBiomes {
     registerBiome(SNOWY_CONIFEROUS_WOODED_HILLS.get(), ConfigManager.SNOWY_CONIFEROUS_WOODED_HILLS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(SNOWY_HIGH_CONIFEROUS_FOREST.get(), ConfigManager.SNOWY_HIGH_CONIFEROUS_FOREST.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(WOODED_PLATEAU.get(), ConfigManager.WOODED_PLATEAU.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(WOODLANDS.get(), ConfigManager.WOODLANDS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(WOODLANDS.get(), ConfigManager.WOODLANDS.getWeight(), true, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);*/
   }
 
-  private static void registerBiome(Biome biome, int weight, boolean spawn, BiomeManager.BiomeType type, BiomeDictionary.Type... types) {
+/*  private static void registerBiome(Biome biome, int weight, boolean spawn, BiomeManager.BiomeType type, BiomeDictionary.Type... types) {
     if (weight > 0) {
       BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(biome, weight));
       if (spawn) {
@@ -71,5 +41,5 @@ public class ModBiomes {
       }
       BiomeDictionary.addTypes(biome, types);
     }
-  }
+  }*/
 }

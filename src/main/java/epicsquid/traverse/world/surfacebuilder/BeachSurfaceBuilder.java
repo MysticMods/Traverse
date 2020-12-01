@@ -40,7 +40,8 @@ public class BeachSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
       BlockState chunkBlock = chunk.getBlockState(pos);
       if (chunkBlock == STONE && y < 255) {
         BlockState toSet = STONE;
-        if (chunk.getBlockState(pos.up()).isAir()) {
+        BlockState up = chunk.getBlockState(pos.up());
+        if (up.isAir(chunk, pos.up())) {
           beach = y < this.seaLevel + 3;
           toSet = beach ? chosenSand : config.getTop();
         } else if (chunk.getBlockState(pos.up()) == this.WATER || run < thickness && underwater) {

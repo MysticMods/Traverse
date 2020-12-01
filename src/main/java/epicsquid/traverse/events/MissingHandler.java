@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 public class MissingHandler {
   @SubscribeEvent
   public static void onMissingBiomes (RegistryEvent.MissingMappings<Biome> event) {
-    for (RegistryEvent.MissingMappings.Mapping<Biome> mapping : event.getAllMappings()) {
+/*    for (RegistryEvent.MissingMappings.Mapping<Biome> mapping : event.getAllMappings()) {
       ResourceLocation rl = mapping.key;
       if (rl.getNamespace().equals(Traverse.MODID)) {
         if (rl.getPath().equals("rock_edge")) {
@@ -21,6 +21,6 @@ public class MissingHandler {
           mapping.remap(ModBiomes.CONIFEROUS_WOODLAND_HILLS.get());
         }
       }
-    }
+    }*/
   }
 }

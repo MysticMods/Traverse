@@ -1,11 +1,12 @@
 modLoader="javafml" 
 loaderVersion="[35,)" 
-issueTrackerURL="https://github.com/MysticMods/Traverse/issues" 
+issueTrackerURL="https://github.com/MysticMods/Traverse/issues"
+license="https://github.com/MysticMods/Traverse/blob/master/LICENSE"
 [[mods]] 
 modId="traverse" 
 version="${file.jarVersion}" 
 displayName="Traverse" 
-credits="Prospector, for the original mod and code. Long may Traverse for Fabric continue!" 
+credits="Prospector, for the original mod and code. Long may Traverse for Fabric continue!"
 authors="Prospector, EpicSquid, Androsa, Nooby" 
 description='''
 A collection of vanilla style biomes to spruce up your world.
