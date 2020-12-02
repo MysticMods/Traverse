@@ -4,7 +4,6 @@ import epicsquid.traverse.init.ModBlocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.AxeItem;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.HashMap;
@@ -30,7 +29,7 @@ public class ModSetup {
     });
   }
 
-  public static void biomeLoadEvent (BiomeLoadingEvent event) {
+  public static void biomeLoadEvent(BiomeLoadingEvent event) {
     event.getName();
   }
 }
