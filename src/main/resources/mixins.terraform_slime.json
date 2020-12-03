@@ -3,7 +3,8 @@
   "package": "epicsquid.traverse.biomebuilder.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinSlimeEntity"
+    "MixinSlimeEntity",
+    "MixinBiomeLayer"
   ],
   "injectors": {
     "defaultRequire": 1

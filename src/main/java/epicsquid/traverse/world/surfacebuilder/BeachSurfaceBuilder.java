@@ -30,13 +30,15 @@ public class BeachSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
     int localZ = z & 15;
     BlockState chosenSand = this.sand.apply(noiseVal);
     int thickness = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+
     int run = 0;
     boolean beach = false;
     boolean underwater = false;
+
     Mutable pos = new Mutable(localX, 0, localZ);
 
     for (int y = height; y >= 0; --y) {
-      pos.move(localX, y, localZ);
+      pos.setPos(localX, y, localZ);
       BlockState chunkBlock = chunk.getBlockState(pos);
       if (chunkBlock == STONE && y < 255) {
         BlockState toSet = STONE;
