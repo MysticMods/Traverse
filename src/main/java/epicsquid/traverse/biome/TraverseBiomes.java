@@ -11,12 +11,18 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static epicsquid.traverse.biomebuilder.DefaultFeature.*;
 
+@Mod.EventBusSubscriber(modid = Traverse.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TraverseBiomes {
 
   private static int getSkyColor(float temperature) {
@@ -64,10 +70,17 @@ public class TraverseBiomes {
   protected static final RegistryKey<Biome> WOODED_PLATEAU = add("wooded_plateau", PlainsPlateauBiomes.WOODED_PLATEAU);
   protected static final RegistryKey<Biome> WOODLANDS = add("woodlands", WoodlandsBiomes.WOODLANDS);
 
-  static RegistryKey<Biome> add(String name, Biome biome) {
+  private static RegistryKey<Biome> add(String name, Biome biome) {
     ResourceLocation id = new ResourceLocation(Traverse.MODID, name);
+    biome.setRegistryName(id);
     BIOMES.put(id, biome);
     return RegistryKey.getOrCreateKey(Registry.BIOME_KEY, id);
+  }
+
+  @SubscribeEvent(priority = EventPriority.LOW)
+  public static void onBiomeRegister (RegistryEvent.Register<Biome> event) {
+    IForgeRegistry<Biome> biomeRegistry = event.getRegistry();
+    BIOMES.values().forEach(biomeRegistry::register);
   }
 
   public static void register() {

@@ -10,6 +10,7 @@ import epicsquid.traverse.setup.ClientInit;
 import epicsquid.traverse.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -50,6 +51,7 @@ public class Traverse {
     ModSurfaceBuilders.load();
 
     bus.addGenericListener(SurfaceBuilder.class, ModSurfaceBuilders::forgeRegister);
+    bus.addGenericListener(Biome.class, ModBiomes::registerBiomes);
 
     MinecraftForge.EVENT_BUS.addListener(ModSetup::biomeLoadEvent);
 
