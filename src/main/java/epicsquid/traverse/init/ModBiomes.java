@@ -1,6 +1,7 @@
 package epicsquid.traverse.init;
 
 import epicsquid.traverse.Traverse;
+import epicsquid.traverse.biomebuilder.TerraformSlimeSpawnBiomes;
 import epicsquid.traverse.config.ConfigManager;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -37,6 +38,7 @@ public class ModBiomes {
     registerBiome("snowy_high_coniferous_forest", ConfigManager.SNOWY_HIGH_CONIFEROUS_FOREST.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome("wooded_plateau", ConfigManager.WOODED_PLATEAU.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome("woodlands", ConfigManager.WOODLANDS.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+    TerraformSlimeSpawnBiomes.addSlimeSpawnBiome(RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Traverse.MODID, "lush_swamp")));
   }
 
   private static void registerBiome(String name, int weight, BiomeManager.BiomeType type, BiomeDictionary.Type... types) {
@@ -45,5 +47,9 @@ public class ModBiomes {
       BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(key, weight));
       BiomeDictionary.addTypes(key, types);
     }
+  }
+
+  static {
+
   }
 }

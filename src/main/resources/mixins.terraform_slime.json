@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "epicsquid.traverse.biomebuilder.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinSlimeEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
