@@ -14,11 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BiomeLayer.class)
 public class MixinBiomeLayer {
-  @Inject(at = @At("RETURN"), method = "apply", cancellable = true)
+  @Inject(at = @At("RETURN"), method = "apply(Lnet/minecraft/world/gen/INoiseRandom;I)I", cancellable = true)
   private void transformVariants(INoiseRandom context, int value, CallbackInfoReturnable<Integer> info) {
     int biomeId = info.getReturnValueI();
     RegistryKey<Biome> biomeKey = BiomeRegistry.getKeyFromID(biomeId);
-    RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(biomeKey);
+    RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(biomeKey, BiomeVariants.VariantType.BIOME);
     if (replacement != null) {
       //noinspection deprecation
       info.setReturnValue(WorldGenRegistries.BIOME.getId(WorldGenRegistries.BIOME.getValueForKey(replacement)));

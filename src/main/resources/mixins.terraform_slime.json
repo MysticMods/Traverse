@@ -4,7 +4,11 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinSlimeEntity",
-    "MixinBiomeLayer"
+    "MixinBiomeLayer",
+    "MixinEdgeBiomeLayer",
+    "MixinHillsLayer",
+    "MixinMixRiverLayer",
+    "MixinShoreLayer"
   ],
   "injectors": {
     "defaultRequire": 1
