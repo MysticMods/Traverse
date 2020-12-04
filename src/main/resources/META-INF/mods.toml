@@ -1,7 +1,7 @@
 modLoader="javafml" 
 loaderVersion="[35,)" 
 issueTrackerURL="https://github.com/MysticMods/Traverse/issues"
-license="https://github.com/MysticMods/Traverse/blob/master/LICENSE"
+license="https://github.com/MysticMods/Traverse/blob/1.16.4/LICENSE"
 [[mods]] 
 modId="traverse" 
 version="${file.jarVersion}" 
