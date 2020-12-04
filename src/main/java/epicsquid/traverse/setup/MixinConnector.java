@@ -8,6 +8,6 @@ public class MixinConnector implements IMixinConnector {
   @Override
   public void connect() {
     Traverse.LOG.debug("Traverse: Loading mixins!");
-    Mixins.addConfiguration("mixins.terraform_slime.json");
+    Mixins.addConfiguration("traverse.mixins.json");
   }
 }

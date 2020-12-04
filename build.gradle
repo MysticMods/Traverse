@@ -11,7 +11,9 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
-        maven {url='https://dist.creeper.host/Sponge/maven'}
+        maven {
+            url='https://dist.creeper.host/Sponge/maven'
+        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
@@ -25,8 +27,6 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: 'org.spongepowered.mixin'
-mixin { add sourceSets.main, "traverse.refmap.json" }
 
 version = "${minecraft_version}-${mod_version}"
 if (System.getenv('BUILD_NUMBER') != null) {
@@ -51,7 +51,7 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=mixins.terraform_slime.json"
+            arg "-mixin.config=traverse.mixins.json"
 
             mods {
                 mysticalworld {
@@ -67,7 +67,7 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=mixins.terraform_slime.json"
+            arg "-mixin.config=traverse.mixins.json"
             mods {
                 mysticalworld {
                     source sourceSets.main
@@ -82,7 +82,7 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=mixins.terraform_slime.json"
+            arg "-mixin.config=traverse.mixins.json"
             args '--mod', 'mysticalworld', '--all', '--output', file('src/generated/resources/')
 
             mods {
@@ -133,7 +133,7 @@ jar {
                 "Implementation-Version"  : "${version}",
                 "Implementation-Vendor"   : "mysticmodding",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "mixins.terraform_slime.json",
+                "MixinConfigs": "traverse.mixins.json",
                 "MixinConnector": "epicsquid.traverse.setup.MixinConnector"
         ])
     }
@@ -154,4 +154,5 @@ reobf {
 
 build.dependsOn reobfShadowJar
 
-
+apply plugin: 'org.spongepowered.mixin'
+mixin { add sourceSets.main, "traverse.refmap.json" }

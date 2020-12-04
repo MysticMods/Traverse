@@ -20,11 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Random;
 
 @Mixin(SlimeEntity.class)
-public abstract class MixinSlimeEntity extends MobEntity implements IMob {
-  public MixinSlimeEntity(EntityType<? extends MobEntity> type, World world) {
-    super(type, world);
-  }
-
+public class MixinSlimeEntity {
   @Inject(method = "func_223366_c(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/IWorld;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)Z", at = @At(value = "HEAD"), cancellable = true)
   private static void canSpawnInjection(EntityType<SlimeEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random random, CallbackInfoReturnable<Boolean> info) {
     if (world.getDifficulty() == Difficulty.PEACEFUL) {
@@ -35,7 +31,7 @@ public abstract class MixinSlimeEntity extends MobEntity implements IMob {
 
     // Handle spawning for biomes registered as slime-spawnable
     if (TerraformSlimeSpawnBiomes.getSlimeSpawnBiomes().contains(biomeKey) && pos.getY() > 50 && pos.getY() < 70 && random.nextFloat() < 0.5F && random.nextFloat() < world.getMoonFactor() && world.getLight(pos) <= random.nextInt(8)) {
-      info.setReturnValue(canSpawnOn(type, world, reason, pos, random));
+      info.setReturnValue(SlimeEntity.canSpawnOn(type, world, reason, pos, random));
     }
   }
 }

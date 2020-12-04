@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EdgeBiomeLayer.class)
 public class MixinEdgeBiomeLayer {
-  @Inject(at = @At("HEAD"), method = "apply", cancellable = true)
+  @Inject(at = @At("HEAD"), method = "func_202748_a(Lnet/minecraft/world/gen/INoiseRandom;IIIII)I", cancellable = true)
   private void apply(INoiseRandom context, int north, int west, int south, int east, int center, CallbackInfoReturnable<Integer> info) {
     RegistryKey<Biome> key = BiomeRegistry.getKeyFromID(center);
 
