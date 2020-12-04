@@ -8,9 +8,9 @@ import java.util.function.Consumer;
 public enum DefaultFeature {
   LAND_CARVERS("land_carvers", DefaultBiomeFeatures::withCavesAndCanyons),
   OCEAN_CARVERS("ocean_carvers", DefaultBiomeFeatures::withOceanCavesAndCanyons),
-  DEFAULT_UNDERGROUND_STRUCTURES("default_underground_structures", DefaultBiomeFeatures::withBadlandsStructures),
-  OCEAN_STRUCTURES("ocean_structures", DefaultBiomeFeatures::withStrongholdAndMineshaft),
-  BADLANDS_UNDERGROUND_STRUCTURES("badlands_underground_structures", DefaultBiomeFeatures::withOceanStructures),
+  DEFAULT_UNDERGROUND_STRUCTURES("default_underground_structures", DefaultBiomeFeatures::withStrongholdAndMineshaft),
+  OCEAN_STRUCTURES("ocean_structures", DefaultBiomeFeatures::withOceanStructures),
+  BADLANDS_UNDERGROUND_STRUCTURES("badlands_underground_structures", DefaultBiomeFeatures::withBadlandsStructures),
   LAKES("lakes", DefaultBiomeFeatures::withLavaAndWaterLakes),
   DESERT_LAKES("desert_lakes", DefaultBiomeFeatures::withLavaLakes),
   DUNGEONS("dungeons", DefaultBiomeFeatures::withMonsterRoom),
