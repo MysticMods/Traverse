@@ -20,13 +20,14 @@ buildscript {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
-plugins {
+/*plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
-}
+}*/
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
 
 version = "${minecraft_version}-${mod_version}"
 if (System.getenv('BUILD_NUMBER') != null) {
@@ -107,20 +108,20 @@ repositories {
     }
 }
 
-configurations {
+/*configurations {
     shade
-}
+}*/
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     def registrate = "com.tterrag.registrate:Registrate:${registrate_version}"
     implementation fg.deobf(registrate)
-    shade registrate
+/*    shade registrate*/
 
     def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
     implementation fg.deobf(noobutil)
-    shade noobutil
+/*    shade noobutil*/
 }
 
 jar {
@@ -139,7 +140,14 @@ jar {
     }
 }
 
-shadowJar {
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+
+/*shadowJar {
     configurations = [project.configurations.shade]
     relocate 'com.tterrag.registrate', 'epicsquid.traverse.repack.registrate'
     relocate 'noobanidus.libs.noobutil', 'noobanidus.libs.repack_traverse.noobutil'
@@ -149,10 +157,13 @@ shadowJar {
 jar.classifier = 'nodep'
 
 reobf {
-    shadowJar {}
+    shadowJar {
+        mappingType = 'NOTCH'
+    }
 }
 
-build.dependsOn reobfShadowJar
+build.dependsOn reobfShadowJar*/
 
-apply plugin: 'org.spongepowered.mixin'
-mixin { add sourceSets.main, "traverse.refmap.json" }
+mixin {
+    add sourceSets.main, "traverse.refmap.json"
+}
