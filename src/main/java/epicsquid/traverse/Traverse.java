@@ -22,12 +22,15 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import noobanidus.libs.noobutil.registrate.CustomRegistrate;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod("traverse")
 public class Traverse {
   public static final String MODID = "traverse";
   public static CustomRegistrate REGISTRATE;
   public static RecipeGenerator RECIPES = new RecipeGenerator(MODID);
+  public static Logger LOG = LogManager.getLogger();
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("traverse") {
     @Override

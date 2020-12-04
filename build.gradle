@@ -25,6 +25,8 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+mixin { add sourceSets.main, "traverse.refmap.json" }
 
 version = "${minecraft_version}-${mod_version}"
 if (System.getenv('BUILD_NUMBER') != null) {
@@ -131,13 +133,11 @@ jar {
                 "Implementation-Version"  : "${version}",
                 "Implementation-Vendor"   : "mysticmodding",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "mixins.terraform_slime.json"
+                "MixinConfigs": "mixins.terraform_slime.json",
+                "MixinConnector": "epicsquid.traverse.setup.MixinConnector"
         ])
     }
 }
-
-apply plugin: 'org.spongepowered.mixin'
-mixin { add sourceSets.main, "traverse.refmap.json" }
 
 shadowJar {
     configurations = [project.configurations.shade]
