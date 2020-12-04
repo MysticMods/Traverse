@@ -5,9 +5,9 @@ license="https://github.com/MysticMods/Traverse/blob/master/LICENSE"
 [[mods]] 
 modId="traverse" 
 version="${file.jarVersion}" 
-displayName="Traverse" 
+displayName="Traverse: Reforged"
 credits="Prospector & Traverse Team"
-authors="Prospector, EpicSquid, Androsa, Noobanidus"
+authors="Prospector, Noobanidus, EpicSquid, Androsa"
 description='''
 A collection of vanilla style biomes to spruce up your world.
 '''
