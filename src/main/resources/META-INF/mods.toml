@@ -6,15 +6,16 @@ license="https://github.com/MysticMods/Traverse/blob/1.16.4/LICENSE"
 modId="traverse" 
 version="${file.jarVersion}" 
 displayName="Traverse: Reforged"
+displayURL="https://minecraft.curseforge.com/projects/traverse-reforged"
 credits="Prospector & Traverse Team"
 authors="Prospector, Noobanidus, EpicSquid, Androsa"
 description='''
 A collection of vanilla style biomes to spruce up your world.
 '''
-[[dependencies.traverse]] 
-    modId="forge" 
-    mandatory=true 
-    versionRange="[35,)" 
+[[dependencies.traverse]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.traverse]]
