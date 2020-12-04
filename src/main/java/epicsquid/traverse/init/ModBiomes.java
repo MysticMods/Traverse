@@ -66,10 +66,10 @@ public class ModBiomes {
     TerraformSlimeSpawnBiomes.addSlimeSpawnBiome(LUSH_SWAMP);
     BiomeVariants.addReplacement(Biomes.DEEP_COLD_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
     BiomeVariants.addReplacement(Biomes.DEEP_LUKEWARM_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.DEEP_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.SWAMP, LUSH_SWAMP, 0.2, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.PLAINS, MEADOW, 0.15, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.JUNGLE, MINI_JUNGLE, 0.15, BiomeVariants.VariantType.BIOME);
+    BiomeVariants.addReplacement(Biomes.DEEP_OCEAN, WOODED_ISLAND, 0.05, BiomeVariants.VariantType.BIOME);
+    BiomeVariants.addReplacement(Biomes.SWAMP, LUSH_SWAMP, 0.1, BiomeVariants.VariantType.BIOME);
+    BiomeVariants.addReplacement(Biomes.PLAINS, MEADOW, 0.05, BiomeVariants.VariantType.BIOME);
+    BiomeVariants.addReplacement(Biomes.JUNGLE, MINI_JUNGLE, 0.05, BiomeVariants.VariantType.BIOME);
 
     BiomeVariants.addReplacement(AUTUMNAL_WOODS, AUTUMNAL_WOODED_HILLS, 0.1, BiomeVariants.VariantType.HILLS);
     BiomeVariants.addReplacement(CONIFEROUS_FOREST, CONIFEROUS_WOODED_HILLS, 0.1, BiomeVariants.VariantType.HILLS);
@@ -77,7 +77,6 @@ public class ModBiomes {
     BiomeVariants.addReplacement(PLAINS_PLATEAU, WOODED_PLATEAU, 0.1, BiomeVariants.VariantType.HILLS);
 
     BiomeVariants.addReplacement(PLAINS_PLATEAU, PLAINS_PLATEAU, 1, BiomeVariants.VariantType.RIVER);
-
     BiomeVariants.addReplacement(PLAINS_PLATEAU, ROCKY_EDGE, 1, BiomeVariants.VariantType.EDGE);
     BiomeVariants.addReplacement(CLIFFS, ROLLING_HILLS, 1, BiomeVariants.VariantType.CENTER);
     BiomeVariants.addReplacement(WOODED_ISLAND,WOODED_ISLAND, 1, BiomeVariants.VariantType.SHORE);
