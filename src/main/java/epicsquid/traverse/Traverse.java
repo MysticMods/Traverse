@@ -1,6 +1,5 @@
 package epicsquid.traverse;
 
-import epicsquid.mysticalworld.init.RecipeGenerator;
 import epicsquid.traverse.config.ConfigManager;
 import epicsquid.traverse.init.ModBiomes;
 import epicsquid.traverse.init.ModBlocks;
@@ -29,7 +28,6 @@ import org.apache.logging.log4j.Logger;
 public class Traverse {
   public static final String MODID = "traverse";
   public static CustomRegistrate REGISTRATE;
-  public static RecipeGenerator RECIPES = new RecipeGenerator(MODID);
   public static Logger LOG = LogManager.getLogger();
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("traverse") {
