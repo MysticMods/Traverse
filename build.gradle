@@ -20,9 +20,9 @@ buildscript {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
-/*plugins {
+plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
-}*/
+}
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
@@ -106,22 +106,30 @@ repositories {
     maven {
         url "http://maven.tterrag.com"
     }
+    maven {url = 'https://repo.spongepowered.org/maven/'}
+
+    maven {url = 'https://dist.creeper.host/Sponge/maven'}
+    jcenter()
+    mavenCentral()
 }
 
-/*configurations {
+configurations {
     shade
-}*/
+}
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     def registrate = "com.tterrag.registrate:Registrate:${registrate_version}"
     implementation fg.deobf(registrate)
-/*    shade registrate*/
+    shade registrate
 
     def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
     implementation fg.deobf(noobutil)
-/*    shade noobutil*/
+    shade noobutil
+
+    compile 'org.spongepowered:mixin:0.8'
+    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
 }
 
 jar {
@@ -134,20 +142,22 @@ jar {
                 "Implementation-Version"  : "${version}",
                 "Implementation-Vendor"   : "mysticmodding",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "traverse.mixins.json",
-                "MixinConnector": "epicsquid.traverse.setup.MixinConnector"
+                "MixinConfigs": "traverse.mixins.json"/*,
+                "MixinConnector": "epicsquid.traverse.setup.MixinConnector"*/
         ])
     }
 }
 
+/*
 def reobfFile = file("$buildDir/reobfJar/output.jar")
 
 def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
     builtBy 'reobfJar'
 }
+*/
 
-/*shadowJar {
+shadowJar {
     configurations = [project.configurations.shade]
     relocate 'com.tterrag.registrate', 'epicsquid.traverse.repack.registrate'
     relocate 'noobanidus.libs.noobutil', 'noobanidus.libs.repack_traverse.noobutil'
@@ -157,12 +167,10 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
 jar.classifier = 'nodep'
 
 reobf {
-    shadowJar {
-        mappingType = 'NOTCH'
-    }
+    shadowJar {}
 }
 
-build.dependsOn reobfShadowJar*/
+build.dependsOn reobfShadowJar
 
 mixin {
     add sourceSets.main, "traverse.refmap.json"

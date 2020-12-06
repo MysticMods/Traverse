@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BiomeLayer.class)
 public class MixinBiomeLayer {
-  @Inject(at = @At("RETURN"), method = "func_202713_a(Lnet/minecraft/world/gen/INoiseRandom;I)I", cancellable = true)
+  @Inject(at = @At("RETURN"), method = "apply(Lnet/minecraft/world/gen/INoiseRandom;I)I", cancellable = true)
   private void transformVariants(INoiseRandom context, int value, CallbackInfoReturnable<Integer> info) {
     int biomeId = info.getReturnValueI();
     RegistryKey<Biome> biomeKey = BiomeRegistry.getKeyFromID(biomeId);

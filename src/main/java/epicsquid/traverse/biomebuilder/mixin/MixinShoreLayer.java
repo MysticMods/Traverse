@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ShoreLayer.class)
 public class MixinShoreLayer {
-  @Inject(at = @At("HEAD"), method = "func_202748_a(Lnet/minecraft/world/gen/INoiseRandom;IIIII)I", cancellable = true)
+  @Inject(at = @At("HEAD"), method = "apply(Lnet/minecraft/world/gen/INoiseRandom;IIIII)I", cancellable = true)
   private void apply(INoiseRandom context, int north, int west, int south, int east, int center, CallbackInfoReturnable<Integer> info) {
     RegistryKey<Biome> key = BiomeRegistry.getKeyFromID(center);
     RegistryKey<Biome> shoreKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.SHORE);
