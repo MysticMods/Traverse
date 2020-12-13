@@ -1,8 +1,8 @@
 package epicsquid.traverse.biomebuilder.mixin;
 
 import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biomebuilder.Reference;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.biome.Biomes;
@@ -26,7 +26,7 @@ public class MixinMixRiverLayer {
     if (river == Biomes.RIVER) {
       RegistryKey<Biome> riverReplacement = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.RIVER);
       if (riverReplacement != null) {
-        info.setReturnValue(WorldGenRegistries.BIOME.getId(WorldGenRegistries.BIOME.getValueForKey(riverReplacement)));
+        info.setReturnValue(Reference.getBiomeID(riverReplacement));
       }
     }
   }

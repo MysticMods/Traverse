@@ -1,16 +1,12 @@
 package epicsquid.traverse.biomebuilder.mixin;
 
 import epicsquid.traverse.biome.variants.BiomeVariants;
-import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import epicsquid.traverse.biomebuilder.Reference;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.EdgeBiomeLayer;
-import net.minecraft.world.gen.layer.HillsLayer;
-import net.minecraft.world.gen.layer.ShoreLayer;
-import net.minecraftforge.common.BiomeDictionary;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,7 +20,7 @@ public class MixinEdgeBiomeLayer {
 
     RegistryKey<Biome> centerKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.CENTER);
     if (centerKey != null && surrounded(north, west, south, east, center)) {
-      info.setReturnValue(WorldGenRegistries.BIOME.getId(WorldGenRegistries.BIOME.getValueForKey(centerKey)));
+      info.setReturnValue(Reference.getBiomeID(centerKey));
     }
   }
 
