@@ -1,8 +1,6 @@
 package epicsquid.traverse.init;
 
 import epicsquid.traverse.Traverse;
-import epicsquid.traverse.world.surfacebuilder.BeachSurfaceBuilder;
-import epicsquid.traverse.world.surfacebuilder.SandWithPatchesSurfaceBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -12,6 +10,8 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import noobanidus.libs.noobutil.world.gen.surfacebuilder.BeachSurfaceBuilder;
+import noobanidus.libs.noobutil.world.gen.surfacebuilder.SandWithPatchesSurfaceBuilder;
 
 import java.util.HashSet;
 import java.util.Set;

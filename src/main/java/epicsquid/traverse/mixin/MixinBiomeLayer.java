@@ -1,8 +1,8 @@
-package epicsquid.traverse.biomebuilder.mixin;
+package epicsquid.traverse.mixin;
 
 import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.world.Reference;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.gen.INoiseRandom;
@@ -20,8 +20,7 @@ public class MixinBiomeLayer {
     RegistryKey<Biome> biomeKey = BiomeRegistry.getKeyFromID(biomeId);
     RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(biomeKey, BiomeVariants.VariantType.BIOME);
     if (replacement != null) {
-      //noinspection deprecation
-      info.setReturnValue(WorldGenRegistries.BIOME.getId(WorldGenRegistries.BIOME.getValueForKey(replacement)));
+      info.setReturnValue(Reference.getBiomeID(replacement));
     }
   }
 }

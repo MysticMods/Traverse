@@ -1,8 +1,8 @@
-package epicsquid.traverse.biomebuilder.mixin;
+package epicsquid.traverse.mixin;
 
 import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.world.Reference;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.gen.INoiseRandom;
@@ -22,13 +22,13 @@ public class MixinHillsLayer {
       locals = LocalCapture.CAPTURE_FAILHARD,
       cancellable = true)
   private void transformVariants(INoiseRandom rand, IArea area1, IArea area2, int x, int z, CallbackInfoReturnable<Integer> cir, int i, int j, int k) {
-    if (rand.random(9) == 0 || k == 0) {
+    if (rand.random(3) == 0 || k == 0) {
       cir.setReturnValue(i);
     }
     RegistryKey<Biome> biomeKey = BiomeRegistry.getKeyFromID(i);
     RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(biomeKey, BiomeVariants.VariantType.HILLS);
     if (replacement != null) {
-      cir.setReturnValue(WorldGenRegistries.BIOME.getId(WorldGenRegistries.BIOME.getValueForKey(replacement)));
+      cir.setReturnValue(Reference.getBiomeID(replacement));
     }
   }
 }
