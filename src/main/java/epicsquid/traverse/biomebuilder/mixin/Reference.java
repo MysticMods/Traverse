@@ -1,21 +1,20 @@
-package epicsquid.traverse.biomebuilder;
+package epicsquid.traverse.biomebuilder.mixin;
 
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 
 public class Reference {
-  public static DynamicRegistries dynamicRegistry = null;
+  public static DynamicRegistries.Impl dynamicRegistry;
 
   @Nullable
   private static MutableRegistry<Biome> getBiomeRegistry() {
     if (dynamicRegistry == null) {
-      dynamicRegistry = ServerLifecycleHooks.getCurrentServer().func_244267_aX();
+      return null;
     }
     return dynamicRegistry.getRegistry(Registry.BIOME_KEY);
   }

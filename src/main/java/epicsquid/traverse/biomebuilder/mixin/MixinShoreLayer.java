@@ -1,9 +1,9 @@
 package epicsquid.traverse.biomebuilder.mixin;
 
 import epicsquid.traverse.biome.variants.BiomeVariants;
-import epicsquid.traverse.biomebuilder.Reference;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.gen.INoiseRandom;
@@ -22,12 +22,12 @@ public class MixinShoreLayer {
     RegistryKey<Biome> key = BiomeRegistry.getKeyFromID(center);
     RegistryKey<Biome> shoreKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.SHORE);
     if (shoreKey != null && neighboursOcean(north, east, south, west)) {
-      info.setReturnValue(Reference.getBiomeID(shoreKey));
+      info.setReturnValue(WorldGenRegistries.BIOME.getId(WorldGenRegistries.BIOME.getValueForKey(shoreKey)));
       return;
     }
     RegistryKey<Biome> edgeKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.EDGE);
     if (edgeKey != null && isEdge(north, east, south, west, center)) {
-      info.setReturnValue(Reference.getBiomeID(edgeKey));
+      info.setReturnValue(WorldGenRegistries.BIOME.getId(WorldGenRegistries.BIOME.getValueForKey(edgeKey)));
     }
   }
 
