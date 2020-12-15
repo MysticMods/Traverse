@@ -18,7 +18,7 @@ public class MixinBiomeLayer {
   private void transformVariants(INoiseRandom context, int value, CallbackInfoReturnable<Integer> info) {
     int biomeId = info.getReturnValueI();
     RegistryKey<Biome> biomeKey = BiomeRegistry.getKeyFromID(biomeId);
-    RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(biomeKey, BiomeVariants.VariantType.BIOME);
+    RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(context, biomeKey, BiomeVariants.VariantType.BIOME);
     if (replacement != null) {
       info.setReturnValue(Reference.getBiomeID(replacement));
     }

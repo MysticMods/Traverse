@@ -20,12 +20,12 @@ public class MixinShoreLayer {
   @Inject(at = @At("HEAD"), method = "apply(Lnet/minecraft/world/gen/INoiseRandom;IIIII)I", cancellable = true)
   private void apply(INoiseRandom context, int north, int west, int south, int east, int center, CallbackInfoReturnable<Integer> info) {
     RegistryKey<Biome> key = BiomeRegistry.getKeyFromID(center);
-    RegistryKey<Biome> shoreKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.SHORE);
+    RegistryKey<Biome> shoreKey = BiomeVariants.pickReplacement(context, key, BiomeVariants.VariantType.SHORE);
     if (shoreKey != null && neighboursOcean(north, east, south, west)) {
       info.setReturnValue(Reference.getBiomeID(shoreKey));
       return;
     }
-    RegistryKey<Biome> edgeKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.EDGE);
+    RegistryKey<Biome> edgeKey = BiomeVariants.pickReplacement(context, key, BiomeVariants.VariantType.EDGE);
     if (edgeKey != null && isEdge(north, east, south, west, center)) {
       info.setReturnValue(Reference.getBiomeID(edgeKey));
     }

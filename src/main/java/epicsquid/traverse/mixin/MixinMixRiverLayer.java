@@ -24,7 +24,7 @@ public class MixinMixRiverLayer {
     int riverId = area2.getValue(x, z);
     RegistryKey<Biome> river = BiomeRegistry.getKeyFromID(riverId);
     if (river == Biomes.RIVER) {
-      RegistryKey<Biome> riverReplacement = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.RIVER);
+      RegistryKey<Biome> riverReplacement = BiomeVariants.pickReplacement(random, key, BiomeVariants.VariantType.RIVER);
       if (riverReplacement != null) {
         info.setReturnValue(Reference.getBiomeID(riverReplacement));
       }

@@ -18,13 +18,13 @@ public class MixinEdgeBiomeLayer {
   private void apply(INoiseRandom context, int north, int west, int south, int east, int center, CallbackInfoReturnable<Integer> info) {
     RegistryKey<Biome> key = BiomeRegistry.getKeyFromID(center);
 
-    RegistryKey<Biome> centerKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.CENTER);
+    RegistryKey<Biome> centerKey = BiomeVariants.pickReplacement(context, key, BiomeVariants.VariantType.CENTER);
     if (centerKey != null && surrounded(north, west, south, east, center)) {
       info.setReturnValue(Reference.getBiomeID(centerKey));
     }
   }
 
-	private static boolean surrounded(int neighbor1, int neighbor2, int neighbor3, int neighbor4, int biome) {
-		return neighbor1 == biome && neighbor2 == biome && neighbor3 == biome && neighbor4 == biome;
-	}
+  private static boolean surrounded(int neighbor1, int neighbor2, int neighbor3, int neighbor4, int biome) {
+    return neighbor1 == biome && neighbor2 == biome && neighbor3 == biome && neighbor4 == biome;
+  }
 }

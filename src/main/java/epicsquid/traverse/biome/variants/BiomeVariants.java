@@ -2,6 +2,7 @@ package epicsquid.traverse.biome.variants;
 
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.INoiseRandom;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -9,70 +10,89 @@ import java.util.*;
 public class BiomeVariants {
   public static Random rand = new Random();
 
-  private static Map<RegistryKey<Biome>, Set<Variant>> hillReplacements = new HashMap<>();
-  private static Map<RegistryKey<Biome>, Set<Variant>> biomeReplacements = new HashMap<>();
-  private static Map<RegistryKey<Biome>, Set<Variant>> riverReplacements = new HashMap<>();
-  private static Map<RegistryKey<Biome>, Set<Variant>> edgeReplacements = new HashMap<>();
-  private static Map<RegistryKey<Biome>, Set<Variant>> centerReplacements = new HashMap<>();
-  private static Map<RegistryKey<Biome>, Set<Variant>> shoreReplacements = new HashMap<>();
+  private static Map<RegistryKey<Biome>, Entry> hillReplacements = new HashMap<>();
+  private static Map<RegistryKey<Biome>, Entry> riverReplacements = new HashMap<>();
+  private static Map<RegistryKey<Biome>, Entry> edgeReplacements = new HashMap<>();
+  private static Map<RegistryKey<Biome>, Entry> centerReplacements = new HashMap<>();
+  private static Map<RegistryKey<Biome>, Entry> shoreReplacements = new HashMap<>();
+
+  private static Map<RegistryKey<Biome>, WeightedEntryList> biomeReplacements = new HashMap<>();
 
   public enum VariantType {
     HILLS, BIOME, RIVER, EDGE, CENTER, SHORE
   }
 
+  private static EnumMap<VariantType, Map<RegistryKey<Biome>, Entry>> map = new EnumMap<>(VariantType.class);
+  static {
+    map.put(VariantType.HILLS, hillReplacements);
+    map.put(VariantType.RIVER, riverReplacements);
+    map.put(VariantType.EDGE, edgeReplacements);
+    map.put(VariantType.CENTER, edgeReplacements);
+    map.put(VariantType.SHORE, shoreReplacements);
+  }
+
   public static void addReplacement(RegistryKey<Biome> replacing, RegistryKey<Biome> replacement, double chance, VariantType type) {
-    if (type == VariantType.BIOME) {
-      biomeReplacements.computeIfAbsent(replacing, (k) -> new HashSet<>()).add(new Variant(replacement, chance));
-    } else if (type == VariantType.HILLS) {
-      hillReplacements.computeIfAbsent(replacing, (k) -> new HashSet<>()).add(new Variant(replacement, chance));
-    } else if (type == VariantType.RIVER) {
-      riverReplacements.computeIfAbsent(replacing, (k) -> new HashSet<>()).add(new Variant(replacement, chance));
-    } else if (type == VariantType.EDGE) {
-      edgeReplacements.computeIfAbsent(replacing, (k) -> new HashSet<>()).add(new Variant(replacement, chance));
-    } else if (type == VariantType.CENTER) {
-      centerReplacements.computeIfAbsent(replacing, (k) -> new HashSet<>()).add(new Variant(replacement, chance));
-    } else if (type == VariantType.SHORE) {
-      shoreReplacements.computeIfAbsent(replacing, (k) -> new HashSet<>()).add(new Variant(replacement, chance));
+    if (type != VariantType.BIOME) {
+      Map<RegistryKey<Biome>, Entry> current = map.get(type);
+      if (current.containsKey(replacing)) {
+        throw new IllegalStateException(replacing + " already exists for " + type);
+      }
+      current.put(replacing, Entry.of(replacement));
+    } else {
+      biomeReplacements.computeIfAbsent(replacing, (k) -> new WeightedEntryList()).add(replacement, chance);
     }
   }
 
   @Nullable
-  public static RegistryKey<Biome> pickReplacement(RegistryKey<Biome> replacing, VariantType type) {
-    Set<Variant> variants;
-    if (type == VariantType.BIOME) {
-      variants = biomeReplacements.get(replacing);
-    } else if (type == VariantType.HILLS) {
-      variants = hillReplacements.get(replacing);
-    } else if (type == VariantType.RIVER) {
-      variants = riverReplacements.get(replacing);
-    } else if (type == VariantType.EDGE) {
-      variants = edgeReplacements.get(replacing);
-    } else if (type == VariantType.CENTER) {
-      variants = centerReplacements.get(replacing);
-    } else if (type == VariantType.SHORE) {
-      variants = shoreReplacements.get(replacing);
+  public static RegistryKey<Biome> pickReplacement(INoiseRandom random, RegistryKey<Biome> replacing, VariantType type) {
+    if (type != VariantType.BIOME) {
+      return map.get(type).get(replacing).getReplacement();
     } else {
-      return null;
-    }
-    if (variants != null) {
-      for (Variant v : variants) {
-        if (type == VariantType.RIVER || rand.nextDouble() < v.getChance()) {
-          return v.getReplacement();
-        }
+      WeightedEntryList entries = biomeReplacements.get(replacing);
+      if (entries == null) {
+        return null;
       }
+      return entries.getReplacement(random);
     }
-    return null;
   }
 
-  private static class Variant implements Comparable<Variant> {
-    private final RegistryKey<Biome> replacement;
-    private final double chance;
+  private interface IEntry {
+    RegistryKey<Biome> getReplacement ();
 
-    public Variant(RegistryKey<Biome> replacement, double chance) {
+    default RegistryKey<Biome> getReplacement (INoiseRandom random) {
+      return getReplacement();
+    }
+  }
+
+  private static class Entry implements IEntry {
+    private final RegistryKey<Biome> replacement;
+
+    public Entry(RegistryKey<Biome> replacement) {
       this.replacement = replacement;
-      this.chance = chance;
     }
 
+    @Override
+    public RegistryKey<Biome> getReplacement() {
+      return replacement;
+    }
+
+    public static Entry of (RegistryKey<Biome> replacement) {
+      return new Entry(replacement);
+    }
+  }
+
+  private static class WeightedEntry implements IEntry {
+    private final RegistryKey<Biome> replacement;
+    private final double chance;
+    private final double currentTotal;
+
+    public WeightedEntry(RegistryKey<Biome> replacement, double chance, double currentTotal) {
+      this.replacement = replacement;
+      this.chance = chance;
+      this.currentTotal = currentTotal;
+    }
+
+    @Override
     public RegistryKey<Biome> getReplacement() {
       return replacement;
     }
@@ -81,9 +101,55 @@ public class BiomeVariants {
       return chance;
     }
 
+    public double getCurrentTotal() {
+      return currentTotal;
+    }
+  }
+
+  private static class WeightedEntryList implements IEntry {
+    private final List<WeightedEntry> entries;
+    private double total;
+
+    public WeightedEntryList() {
+      this.entries = new ArrayList<>();
+      this.total = 0;
+    }
+
+    public void add(RegistryKey<Biome> replacement, double weight) {
+      this.total += weight;
+      this.entries.add(new WeightedEntry(replacement, weight, this.total));
+    }
+
+    public double getTotal() {
+      return total;
+    }
+
     @Override
-    public int compareTo(Variant o) {
-      return Double.compare(getChance(), o.getChance());
+    public RegistryKey<Biome> getReplacement() {
+      return null;
+    }
+
+    @Override
+    public RegistryKey<Biome> getReplacement(INoiseRandom random) {
+      if (entries.size() == 1) {
+        return entries.get(0).getReplacement();
+      }
+
+      return search(random.random(Integer.MAX_VALUE) * getTotal() / Integer.MAX_VALUE).getReplacement();
+    }
+
+    private WeightedEntry search(double target) {
+      int min = 0;
+      int max = entries.size();
+      while (min < max) {
+        int mid = (max + min) >>> 1;
+        if (target < entries.get(mid).getCurrentTotal()) {
+          max = mid;
+        } else {
+          min = mid + 1;
+        }
+      }
+      return entries.get(min);
     }
   }
 }

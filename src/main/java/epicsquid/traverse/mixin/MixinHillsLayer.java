@@ -26,7 +26,7 @@ public class MixinHillsLayer {
       cir.setReturnValue(i);
     }
     RegistryKey<Biome> biomeKey = BiomeRegistry.getKeyFromID(i);
-    RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(biomeKey, BiomeVariants.VariantType.HILLS);
+    RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(rand, biomeKey, BiomeVariants.VariantType.HILLS);
     if (replacement != null) {
       cir.setReturnValue(Reference.getBiomeID(replacement));
     }
