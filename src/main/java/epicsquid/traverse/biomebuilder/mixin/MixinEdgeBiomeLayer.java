@@ -1,12 +1,12 @@
-package epicsquid.traverse.mixin;
+package epicsquid.traverse.biomebuilder.mixin;
 
+import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biomebuilder.Reference;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.EdgeBiomeLayer;
-import noobanidus.libs.noobutil.world.gen.BiomeReference;
-import noobanidus.libs.noobutil.world.gen.BiomeVariants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,11 +20,11 @@ public class MixinEdgeBiomeLayer {
 
     RegistryKey<Biome> centerKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.CENTER);
     if (centerKey != null && surrounded(north, west, south, east, center)) {
-      info.setReturnValue(BiomeReference.getBiomeID(centerKey));
+      info.setReturnValue(Reference.getBiomeID(centerKey));
     }
   }
 
-  private static boolean surrounded(int neighbor1, int neighbor2, int neighbor3, int neighbor4, int biome) {
-    return neighbor1 == biome && neighbor2 == biome && neighbor3 == biome && neighbor4 == biome;
-  }
+	private static boolean surrounded(int neighbor1, int neighbor2, int neighbor3, int neighbor4, int biome) {
+		return neighbor1 == biome && neighbor2 == biome && neighbor3 == biome && neighbor4 == biome;
+	}
 }

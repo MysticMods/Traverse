@@ -1,5 +1,7 @@
-package epicsquid.traverse.mixin;
+package epicsquid.traverse.biomebuilder.mixin;
 
+import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biomebuilder.Reference;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
@@ -8,8 +10,6 @@ import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.HillsLayer;
 import net.minecraft.world.gen.layer.ShoreLayer;
 import net.minecraftforge.common.BiomeDictionary;
-import noobanidus.libs.noobutil.world.gen.BiomeReference;
-import noobanidus.libs.noobutil.world.gen.BiomeVariants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -22,12 +22,12 @@ public class MixinShoreLayer {
     RegistryKey<Biome> key = BiomeRegistry.getKeyFromID(center);
     RegistryKey<Biome> shoreKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.SHORE);
     if (shoreKey != null && neighboursOcean(north, east, south, west)) {
-      info.setReturnValue(BiomeReference.getBiomeID(shoreKey));
+      info.setReturnValue(Reference.getBiomeID(shoreKey));
       return;
     }
     RegistryKey<Biome> edgeKey = BiomeVariants.pickReplacement(key, BiomeVariants.VariantType.EDGE);
     if (edgeKey != null && isEdge(north, east, south, west, center)) {
-      info.setReturnValue(BiomeReference.getBiomeID(edgeKey));
+      info.setReturnValue(Reference.getBiomeID(edgeKey));
     }
   }
 

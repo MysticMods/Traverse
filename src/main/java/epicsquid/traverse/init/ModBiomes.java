@@ -1,6 +1,8 @@
 package epicsquid.traverse.init;
 
 import epicsquid.traverse.Traverse;
+import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biomebuilder.TerraformSlimeSpawnBiomes;
 import epicsquid.traverse.config.ConfigManager;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -12,8 +14,6 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import noobanidus.libs.noobutil.world.gen.BiomeVariants;
-import noobanidus.libs.noobutil.world.gen.SlimeSpawnBiomes;
 
 @Mod.EventBusSubscriber(modid = Traverse.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBiomes {
@@ -43,26 +43,27 @@ public class ModBiomes {
 
   @SubscribeEvent
   public static void registerBiomes(RegistryEvent.Register<Biome> event) {
-    registerBiome(ARID_HIGHLANDS = k("arid_highlands"), ConfigManager.ARID_HIGHLANDS.weight(), BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(AUTUMNAL_WOODED_HILLS = k("autumnal_wooded_hills"), ConfigManager.AUTUMNAL_WOODED_HILLS.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(AUTUMNAL_WOODS = k("autumnal_woods"), ConfigManager.AUTUMNAL_WOODS.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(CLIFFS = k("cliffs"), ConfigManager.CLIFFS.weight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.MOUNTAIN);
-    registerBiome(CONIFEROUS_FOREST = k("coniferous_forest"), ConfigManager.CONIFEROUS_FOREST.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(CONIFEROUS_WOODED_HILLS = k("coniferous_wooded_hills"), ConfigManager.CONIFEROUS_WOODLAND_HILLS.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(DESERT_SHRUBLAND = k("desert_shrubland"), ConfigManager.DESERT_SHRUBLAND.weight(), BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(HIGH_CONIFEROUS_FOREST = k("high_coniferous_forest"), ConfigManager.HIGH_CONIFEROUS_FOREST.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.COLD, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(LUSH_SWAMP = k("lush_swamp"), ConfigManager.LUSH_SWAMP.weight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(MEADOW = k("meadow"), ConfigManager.MEADOW.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(MINI_JUNGLE = k("mini_jungle"), ConfigManager.MINI_JUNGLE.weight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.DENSE, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WET, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(PLAINS_PLATEAU = k("plains_plateau"), ConfigManager.PLAINS_PLATEAU.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(ROLLING_HILLS = k("rolling_hills"), ConfigManager.ROLLING_HILLS.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(SNOWY_CONIFEROUS_FOREST = k("snowy_coniferous_forest"), ConfigManager.SNOWY_CONIFEROUS_FOREST.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(SNOWY_CONIFEROUS_WOODED_HILLS = k("snowy_coniferous_wooded_hills"), ConfigManager.SNOWY_CONIFEROUS_WOODED_HILLS.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(SNOWY_HIGH_CONIFEROUS_FOREST = k("snowy_high_coniferous_forest"), ConfigManager.SNOWY_HIGH_CONIFEROUS_FOREST.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(WOODED_PLATEAU = k("wooded_plateau"), ConfigManager.WOODED_PLATEAU.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(WOODLANDS = k("woodlands"), ConfigManager.WOODLANDS.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
-    registerBiome(WOODED_ISLAND = k("wooded_island"), ConfigManager.WOODED_ISLAND.weight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
-    SlimeSpawnBiomes.addSlimeSpawnBiome(LUSH_SWAMP);
+    registerBiome(ARID_HIGHLANDS = k("arid_highlands"), ConfigManager.ARID_HIGHLANDS.getWeight(), BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(AUTUMNAL_WOODED_HILLS = k("autumnal_wooded_hills"), ConfigManager.AUTUMNAL_WOODED_HILLS.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(AUTUMNAL_WOODS = k("autumnal_woods"), ConfigManager.AUTUMNAL_WOODS.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(CLIFFS = k("cliffs"), ConfigManager.CLIFFS.getWeight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.MOUNTAIN);
+    registerBiome(CONIFEROUS_FOREST = k("coniferous_forest"), ConfigManager.CONIFEROUS_FOREST.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(CONIFEROUS_WOODED_HILLS = k("coniferous_wooded_hills"), ConfigManager.CONIFEROUS_WOODLAND_HILLS.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(DESERT_SHRUBLAND = k("desert_shrubland"), ConfigManager.DESERT_SHRUBLAND.getWeight(), BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(HIGH_CONIFEROUS_FOREST = k("high_coniferous_forest"), ConfigManager.HIGH_CONIFEROUS_FOREST.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.COLD, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(LUSH_SWAMP = k("lush_swamp"), ConfigManager.LUSH_SWAMP.getWeight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(MEADOW = k("meadow"), ConfigManager.MEADOW.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.WET, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(MINI_JUNGLE = k("mini_jungle"), ConfigManager.MINI_JUNGLE.getWeight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.DENSE, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WET, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(PLAINS_PLATEAU = k("plains_plateau"), ConfigManager.PLAINS_PLATEAU.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(ROCKY_EDGE = k("rocky_edge"), ConfigManager.ROCK_EDGE.getWeight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.HOT, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(ROLLING_HILLS = k("rolling_hills"), ConfigManager.ROLLING_HILLS.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(SNOWY_CONIFEROUS_FOREST = k("snowy_coniferous_forest"), ConfigManager.SNOWY_CONIFEROUS_FOREST.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(SNOWY_CONIFEROUS_WOODED_HILLS = k("snowy_coniferous_wooded_hills"), ConfigManager.SNOWY_CONIFEROUS_WOODED_HILLS.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(SNOWY_HIGH_CONIFEROUS_FOREST = k("snowy_high_coniferous_forest"), ConfigManager.SNOWY_HIGH_CONIFEROUS_FOREST.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.COLD, BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(WOODED_PLATEAU = k("wooded_plateau"), ConfigManager.WOODED_PLATEAU.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(WOODLANDS = k("woodlands"), ConfigManager.WOODLANDS.getWeight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+    registerBiome(WOODED_ISLAND = k("wooded_island"), ConfigManager.WOODED_ISLAND.getWeight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+    TerraformSlimeSpawnBiomes.addSlimeSpawnBiome(LUSH_SWAMP);
     BiomeVariants.addReplacement(Biomes.DEEP_COLD_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
     BiomeVariants.addReplacement(Biomes.DEEP_LUKEWARM_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
     BiomeVariants.addReplacement(Biomes.DEEP_OCEAN, WOODED_ISLAND, 0.05, BiomeVariants.VariantType.BIOME);
@@ -78,7 +79,7 @@ public class ModBiomes {
     BiomeVariants.addReplacement(PLAINS_PLATEAU, PLAINS_PLATEAU, 1, BiomeVariants.VariantType.RIVER);
     BiomeVariants.addReplacement(PLAINS_PLATEAU, ROCKY_EDGE, 1, BiomeVariants.VariantType.EDGE);
     BiomeVariants.addReplacement(CLIFFS, ROLLING_HILLS, 1, BiomeVariants.VariantType.CENTER);
-    BiomeVariants.addReplacement(WOODED_ISLAND, WOODED_ISLAND, 1, BiomeVariants.VariantType.SHORE);
+    BiomeVariants.addReplacement(WOODED_ISLAND,WOODED_ISLAND, 1, BiomeVariants.VariantType.SHORE);
   }
 
   private static RegistryKey<Biome> k(String name) {

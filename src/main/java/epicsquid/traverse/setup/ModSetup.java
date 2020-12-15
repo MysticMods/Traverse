@@ -1,22 +1,16 @@
 package epicsquid.traverse.setup;
 
-import epicsquid.traverse.Traverse;
 import epicsquid.traverse.init.ModBlocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.AxeItem;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.HashMap;
 
 @SuppressWarnings("deprecation")
-@Mod.EventBusSubscriber(modid = Traverse.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModSetup {
 
-  @SubscribeEvent
   public static void init(FMLCommonSetupEvent event) {
     event.enqueueWork(() -> {
       AxeItem.BLOCK_STRIPPING_MAP = new HashMap<>(AxeItem.BLOCK_STRIPPING_MAP);
