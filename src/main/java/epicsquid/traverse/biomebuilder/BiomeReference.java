@@ -9,7 +9,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 
-public class Reference {
+public class BiomeReference {
   public static DynamicRegistries dynamicRegistry = null;
 
   @Nullable

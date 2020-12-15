@@ -1,4 +1,4 @@
-package epicsquid.traverse.biome.variants;
+package epicsquid.traverse.biomebuilder;
 
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TerraformSlimeSpawnBiomes {
+public class SlimeSpawnBiomes {
   private static final Set<RegistryKey<Biome>> SLIME_SPAWN_BIOMES = new HashSet<>();
 
   public static Set<RegistryKey<Biome>> getSlimeSpawnBiomes() {
