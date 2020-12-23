@@ -1,5 +1,6 @@
 package epicsquid.traverse.biome;
 
+import epicsquid.traverse.biomebuilder.BiomeTemplate;
 import epicsquid.traverse.biomebuilder.TerraformBiomeBuilder;
 import epicsquid.traverse.init.ModFeatures;
 import epicsquid.traverse.init.ModSurfaceBuilders;
@@ -10,7 +11,7 @@ import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import static epicsquid.traverse.biomebuilder.DefaultFeature.*;
 
 public class CliffsBiomes {
-  static final Biome CLIFFS = TerraformBiomeBuilder.create()
+  static final BiomeTemplate CLIFFS_TEMPLATE = new BiomeTemplate(TerraformBiomeBuilder.create()
       .surfaceBuilder(ModSurfaceBuilders.CONFIGURED_DEFAULT_STONE)
       .addDefaultFeatures(LAND_CARVERS, DEFAULT_UNDERGROUND_STRUCTURES, DUNGEONS, LAKES, EMERALD_ORE, ORES, DISKS, DEFAULT_MUSHROOMS, DEFAULT_VEGETATION, SPRINGS, FROZEN_TOP_LAYER, DEFAULT_GRASS, DEFAULT_FLOWERS)
       .addStructureFeature(StructureFeatures.STRONGHOLD)
@@ -29,7 +30,9 @@ public class CliffsBiomes {
           .setWaterFogColor(0x50533))
       .depth(3.6F)
       .scale(0.2F)
-      .temperature(0.3F)
-      .downfall(0.4F)
-      .build();
+      .downfall(0.4F));
+
+  public static final Biome CLIFFS = CLIFFS_TEMPLATE.builder().temperature(0.3f).build();
+
+  public static final Biome SNOWY_CLIFFS = CLIFFS_TEMPLATE.builder().temperature(0.22f).build();
 }

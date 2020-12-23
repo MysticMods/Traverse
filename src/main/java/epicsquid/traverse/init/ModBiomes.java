@@ -4,6 +4,7 @@ import epicsquid.traverse.Traverse;
 import epicsquid.traverse.biome.variants.BiomeVariants;
 import epicsquid.traverse.biomebuilder.TerraformSlimeSpawnBiomes;
 import epicsquid.traverse.config.ConfigManager;
+import epicsquid.traverse.villager.TraverseVillagerTypes;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -21,6 +22,7 @@ public class ModBiomes {
   public static RegistryKey<Biome> AUTUMNAL_WOODED_HILLS;
   public static RegistryKey<Biome> AUTUMNAL_WOODS;
   public static RegistryKey<Biome> CLIFFS;
+  public static RegistryKey<Biome> SNOWY_CLIFFS;
   public static RegistryKey<Biome> CONIFEROUS_FOREST;
   public static RegistryKey<Biome> CONIFEROUS_WOODED_HILLS;
   public static RegistryKey<Biome> DESERT_SHRUBLAND;
@@ -47,6 +49,7 @@ public class ModBiomes {
     registerBiome(AUTUMNAL_WOODED_HILLS = k("autumnal_wooded_hills"), 0, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(AUTUMNAL_WOODS = k("autumnal_woods"), (int) ConfigManager.AUTUMNAL_WOODS.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     registerBiome(CLIFFS = k("cliffs"), (int) ConfigManager.CLIFFS.weight(), BiomeManager.BiomeType.WARM, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.MOUNTAIN);
+    registerBiome(SNOWY_CLIFFS = k("snowy_cliffs"), (int) ConfigManager.SNOWY_CLIFFS.weight(), BiomeManager.BiomeType.ICY, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.MOUNTAIN);
     registerBiome(CONIFEROUS_FOREST = k("coniferous_forest"), (int) ConfigManager.CONIFEROUS_FOREST.weight(), BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(CONIFEROUS_WOODED_HILLS = k("coniferous_wooded_hills"), 0, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
     registerBiome(DESERT_SHRUBLAND = k("desert_shrubland"), (int) ConfigManager.DESERT_SHRUBLAND.weight(), BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.OVERWORLD);
@@ -79,7 +82,10 @@ public class ModBiomes {
     BiomeVariants.addReplacement(PLAINS_PLATEAU, PLAINS_PLATEAU, 1, BiomeVariants.VariantType.RIVER);
     BiomeVariants.addReplacement(PLAINS_PLATEAU, ROCKY_EDGE, 1, BiomeVariants.VariantType.EDGE);
     BiomeVariants.addReplacement(CLIFFS, ROLLING_HILLS, 1, BiomeVariants.VariantType.CENTER);
-    BiomeVariants.addReplacement(WOODED_ISLAND,WOODED_ISLAND, 1, BiomeVariants.VariantType.SHORE);
+    BiomeVariants.addReplacement(SNOWY_CLIFFS, Biomes.SNOWY_TAIGA_HILLS, 1, BiomeVariants.VariantType.CENTER);
+    BiomeVariants.addReplacement(WOODED_ISLAND, WOODED_ISLAND, 1, BiomeVariants.VariantType.SHORE);
+
+    TraverseVillagerTypes.register();
   }
 
   private static RegistryKey<Biome> k(String name) {

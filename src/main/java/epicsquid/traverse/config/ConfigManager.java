@@ -19,6 +19,7 @@ public class ConfigManager {
   public static BiomeConfig ARID_HIGHLANDS = config.build("arid_highlands", 10);
   public static BiomeConfig AUTUMNAL_WOODS = config.build("autumnal_woods", 5);
   public static BiomeConfig CLIFFS = config.build("cliffs", 4);
+  public static BiomeConfig SNOWY_CLIFFS = config.build("snowy_cliffs", 3);
   public static BiomeConfig CONIFEROUS_FOREST = config.build("coniferous_forest", 4);
   public static BiomeConfig DESERT_SHRUBLAND = config.build("desert_shrubland", 4);
   public static BiomeConfig HIGH_CONIFEROUS_FOREST = config.build("high_coniferous_forest", 1);

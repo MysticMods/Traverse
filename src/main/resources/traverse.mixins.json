@@ -9,7 +9,8 @@
     "MixinEdgeBiomeLayer",
     "MixinHillsLayer",
     "MixinMixRiverLayer",
-    "MixinShoreLayer"
+    "MixinShoreLayer",
+    "AccessorVillagerType"
   ],
   "client": [
   ],
