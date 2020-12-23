@@ -29,8 +29,8 @@ public class ModFeatures {
 
   /* Shrubs */
   public static final ConfiguredFeature<?, ?> OAK_SHRUB = register("oak_shrub", Feature.TREE.withConfiguration(ModFeatureConfig.OAK_SHRUB_CONFIG));
-  public static final ConfiguredFeature<?, ?> ARID_SHRUBS = register("arid_shrubs", OAK_SHRUB.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.5F, 1))));
-  public static final ConfiguredFeature<?, ?> DESERT_SHRUBS = register("desert_shrubs", OAK_SHRUB.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
+  public static final ConfiguredFeature<?, ?> ARID_SHRUBS = register("arid_shrubs", OAK_SHRUB.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.5F, 1))));
+  public static final ConfiguredFeature<?, ?> DESERT_SHRUBS = register("desert_shrubs", OAK_SHRUB.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
 
   /* Autumnal Trees */
   public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> RED_AUTUMNAL_TREE = (ConfiguredFeature<BaseTreeFeatureConfig, ?>) register("red_autumnal_tree", Feature.TREE.withConfiguration(ModFeatureConfig.RED_AUTUMNAL_TREE_CONFIG));
