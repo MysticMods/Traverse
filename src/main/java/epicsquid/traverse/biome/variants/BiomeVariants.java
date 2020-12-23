@@ -34,9 +34,6 @@ public class BiomeVariants {
   public static void addReplacement(RegistryKey<Biome> replacing, RegistryKey<Biome> replacement, double chance, VariantType type) {
     if (type != VariantType.BIOME) {
       Map<RegistryKey<Biome>, Entry> current = map.get(type);
-      if (current.containsKey(replacing)) {
-        throw new IllegalStateException(replacing + " already exists for " + type);
-      }
       current.put(replacing, Entry.of(replacement));
     } else {
       biomeReplacements.computeIfAbsent(replacing, (k) -> new WeightedEntryList()).add(replacement, chance);
@@ -46,7 +43,7 @@ public class BiomeVariants {
   @Nullable
   public static RegistryKey<Biome> pickReplacement(INoiseRandom random, RegistryKey<Biome> replacing, VariantType type) {
     if (type != VariantType.BIOME) {
-      return map.get(type).get(replacing).getReplacement();
+      return map.get(type).computeIfAbsent(replacing, k -> Entry.EMPTY).getReplacement();
     } else {
       WeightedEntryList entries = biomeReplacements.get(replacing);
       if (entries == null) {
@@ -65,6 +62,8 @@ public class BiomeVariants {
   }
 
   private static class Entry implements IEntry {
+    public static final Entry EMPTY = new Entry(null);
+
     private final RegistryKey<Biome> replacement;
 
     public Entry(RegistryKey<Biome> replacement) {
