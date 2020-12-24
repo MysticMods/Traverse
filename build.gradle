@@ -55,7 +55,7 @@ minecraft {
             arg "-mixin.config=traverse.mixins.json"
 
             mods {
-                mysticalworld {
+                traverse {
                     source sourceSets.main
                 }
             }
@@ -70,7 +70,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             arg "-mixin.config=traverse.mixins.json"
             mods {
-                mysticalworld {
+                traverse {
                     source sourceSets.main
                 }
             }
@@ -84,10 +84,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
             arg "-mixin.config=traverse.mixins.json"
-            args '--mod', 'mysticalworld', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'traverse', '--all', '--output', file('src/generated/resources/'),  '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
-                mysticalworld {
+                traverse {
                     source sourceSets.main
                 }
             }
@@ -130,6 +130,10 @@ dependencies {
 
     compile 'org.spongepowered:mixin:0.8'
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
 }
 
 jar {

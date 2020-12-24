@@ -1,6 +1,6 @@
 package epicsquid.traverse.mixin;
 
-import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biome.BiomeVariants;
 import epicsquid.traverse.world.Reference;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
@@ -20,7 +20,12 @@ public class MixinEdgeBiomeLayer {
 
     RegistryKey<Biome> centerKey = BiomeVariants.pickReplacement(context, key, BiomeVariants.VariantType.CENTER);
     if (centerKey != null && surrounded(north, west, south, east, center)) {
-      info.setReturnValue(Reference.getBiomeID(centerKey));
+      int id = Reference.getBiomeID(centerKey);
+      if (id != -1) {
+        info.setReturnValue(id);
+      } else {
+        System.out.println("Biome replacement " + centerKey + " has an ID of -1!");
+      }
     }
   }
 

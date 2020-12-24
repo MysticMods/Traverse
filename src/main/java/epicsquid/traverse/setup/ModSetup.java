@@ -10,7 +10,6 @@ import java.util.HashMap;
 
 @SuppressWarnings("deprecation")
 public class ModSetup {
-
   public static void init(FMLCommonSetupEvent event) {
     event.enqueueWork(() -> {
       AxeItem.BLOCK_STRIPPING_MAP = new HashMap<>(AxeItem.BLOCK_STRIPPING_MAP);
@@ -29,7 +28,5 @@ public class ModSetup {
     });
   }
 
-  public static void biomeLoadEvent(BiomeLoadingEvent event) {
-    event.getName();
-  }
+
 }

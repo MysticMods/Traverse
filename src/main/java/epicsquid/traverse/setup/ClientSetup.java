@@ -2,11 +2,16 @@ package epicsquid.traverse.setup;
 
 import epicsquid.traverse.Traverse;
 import epicsquid.traverse.init.ModBlocks;
+import epicsquid.traverse.init.ModEntities;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.BoatRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -16,6 +21,8 @@ public class ClientSetup {
 
   @SubscribeEvent
   public static void init(FMLClientSetupEvent event) {
+    RenderingRegistry.registerEntityRenderingHandler(ModEntities.FIR_BOAT.get(), BoatRenderer::new);
+
     DeferredWorkQueue.runLater(() -> {
       RenderType rendertype = RenderType.getCutoutMipped();
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_LEAVES.get(), rendertype);

@@ -1,6 +1,6 @@
 package epicsquid.traverse.mixin;
 
-import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biome.BiomeVariants;
 import epicsquid.traverse.world.Reference;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
@@ -26,7 +26,12 @@ public class MixinMixRiverLayer {
     if (river == Biomes.RIVER) {
       RegistryKey<Biome> riverReplacement = BiomeVariants.pickReplacement(random, key, BiomeVariants.VariantType.RIVER);
       if (riverReplacement != null) {
-        info.setReturnValue(Reference.getBiomeID(riverReplacement));
+        int id = Reference.getBiomeID(riverReplacement);
+        if (id != -1) {
+          info.setReturnValue(id);
+        } else {
+          System.out.println("Biome replacement " + riverReplacement + " has an ID of -1!");
+        }
       }
     }
   }

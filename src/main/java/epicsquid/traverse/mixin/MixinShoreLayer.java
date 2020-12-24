@@ -1,6 +1,6 @@
 package epicsquid.traverse.mixin;
 
-import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biome.BiomeVariants;
 import epicsquid.traverse.world.Reference;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import net.minecraft.util.RegistryKey;
@@ -22,12 +22,20 @@ public class MixinShoreLayer {
     RegistryKey<Biome> key = BiomeRegistry.getKeyFromID(center);
     RegistryKey<Biome> shoreKey = BiomeVariants.pickReplacement(context, key, BiomeVariants.VariantType.SHORE);
     if (shoreKey != null && neighboursOcean(north, east, south, west)) {
-      info.setReturnValue(Reference.getBiomeID(shoreKey));
-      return;
-    }
-    RegistryKey<Biome> edgeKey = BiomeVariants.pickReplacement(context, key, BiomeVariants.VariantType.EDGE);
-    if (edgeKey != null && isEdge(north, east, south, west, center)) {
-      info.setReturnValue(Reference.getBiomeID(edgeKey));
+      int id = Reference.getBiomeID(shoreKey);
+      if (id != -1) {
+        info.setReturnValue(id);
+      }
+    } else {
+      RegistryKey<Biome> edgeKey = BiomeVariants.pickReplacement(context, key, BiomeVariants.VariantType.EDGE);
+      if (edgeKey != null && isEdge(north, east, south, west, center)) {
+        int id = Reference.getBiomeID(edgeKey);
+        if (id != -1) {
+          info.setReturnValue(id);
+        } else {
+          System.out.println("Biome replacement " + edgeKey + " has an ID of -1!");
+        }
+      }
     }
   }
 

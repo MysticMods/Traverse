@@ -1,6 +1,6 @@
 package epicsquid.traverse.mixin;
 
-import epicsquid.traverse.biome.variants.BiomeVariants;
+import epicsquid.traverse.biome.BiomeVariants;
 import epicsquid.traverse.world.Reference;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
@@ -28,7 +28,12 @@ public class MixinHillsLayer {
     RegistryKey<Biome> biomeKey = BiomeRegistry.getKeyFromID(i);
     RegistryKey<Biome> replacement = BiomeVariants.pickReplacement(rand, biomeKey, BiomeVariants.VariantType.HILLS);
     if (replacement != null) {
-      cir.setReturnValue(Reference.getBiomeID(replacement));
+      int id = Reference.getBiomeID(replacement);
+      if (id != -1) {
+        cir.setReturnValue(id);
+      } else {
+        System.out.println("Biome replacement " + replacement + " has an ID of -1!");
+      }
     }
   }
 }

@@ -9,6 +9,8 @@ import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import noobanidus.libs.noobutil.world.gen.surfacebuilder.BeachSurfaceBuilder;
 import noobanidus.libs.noobutil.world.gen.surfacebuilder.SandWithPatchesSurfaceBuilder;
@@ -16,6 +18,7 @@ import noobanidus.libs.noobutil.world.gen.surfacebuilder.SandWithPatchesSurfaceB
 import java.util.HashSet;
 import java.util.Set;
 
+@Mod.EventBusSubscriber(modid = Traverse.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModSurfaceBuilders {
   private static final Set<SurfaceBuilder<?>> BUILDERS = new HashSet<>();
 
@@ -40,6 +43,7 @@ public class ModSurfaceBuilders {
     return Registry.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(Traverse.MODID, id), feature);
   }
 
+  @SubscribeEvent
   public static void forgeRegister(RegistryEvent.Register<SurfaceBuilder<?>> event) {
     IForgeRegistry<SurfaceBuilder<?>> registry = event.getRegistry();
     for (SurfaceBuilder<?> entry : BUILDERS) {

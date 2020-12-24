@@ -1,10 +1,7 @@
 package epicsquid.traverse;
 
 import epicsquid.traverse.config.ConfigManager;
-import epicsquid.traverse.init.ModBiomes;
-import epicsquid.traverse.init.ModBlocks;
-import epicsquid.traverse.init.ModFeatures;
-import epicsquid.traverse.init.ModSurfaceBuilders;
+import epicsquid.traverse.init.*;
 import epicsquid.traverse.setup.ClientInit;
 import epicsquid.traverse.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
@@ -47,14 +44,10 @@ public class Traverse {
     bus.addListener(ModSetup::init);
 
     ModBlocks.load();
+    ModItems.load();
+    ModEntities.load();
     ModFeatures.load();
-    ModBiomes.load();
     ModSurfaceBuilders.load();
-
-    bus.addGenericListener(SurfaceBuilder.class, ModSurfaceBuilders::forgeRegister);
-    bus.addGenericListener(Biome.class, ModBiomes::registerBiomes);
-
-    MinecraftForge.EVENT_BUS.addListener(ModSetup::biomeLoadEvent);
 
     DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientInit::init);
   }

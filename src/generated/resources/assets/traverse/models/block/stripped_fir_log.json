@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "traverse:block/stripped_fir_log",
+    "end": "traverse:block/stripped_fir_log_top"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "traverse:block/fir_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "traverse:block/fir_log"
+    },
+    "axis=z": {
+      "model": "traverse:block/fir_log_horizontal",
+      "x": 90
+    }
+  }
+}

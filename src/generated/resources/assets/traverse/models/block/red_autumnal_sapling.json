@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "traverse:block/red_autumnal_sapling"
+  }
+}
