@@ -1,5 +1,6 @@
 package epicsquid.traverse.mixin;
 
+import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.entity.villager.VillagerType;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;

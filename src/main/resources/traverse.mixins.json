@@ -13,6 +13,8 @@
     "AccessorVillagerType"
   ],
   "client": [
+    "MixinSignTileEntityRenderer",
+    "MixinAtlases"
   ],
   "injectors": {
     "defaultRequire": 1

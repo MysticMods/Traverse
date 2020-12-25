@@ -1,15 +1,20 @@
 package epicsquid.traverse.init;
 
 import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
+import epicsquid.traverse.Traverse;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.item.SignItem;
+import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -17,8 +22,11 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.libs.noobutil.block.BaseBlocks;
+import noobanidus.libs.noobutil.block.ModdedStandingSignBlock;
+import noobanidus.libs.noobutil.block.ModdedWallSignBlock;
 import noobanidus.libs.noobutil.world.tree.TreeWrapper;
 
 import java.util.Objects;
@@ -26,10 +34,10 @@ import java.util.Objects;
 import static epicsquid.traverse.Traverse.REGISTRATE;
 
 public class ModBlocks {
-  private static final NonNullUnaryOperator<Block.Properties> LEAVES_PROPS = o -> o.hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid();
+  private static final NonNullUnaryOperator<Block.Properties> LEAVES_PROPS = o -> o.hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid().harvestTool(ToolType.HOE).setAllowsSpawn((s, w, p, t) -> t == EntityType.OCELOT || t == EntityType.PARROT).setSuffocates((s, w, p) -> false);
   private static final NonNullUnaryOperator<Block.Properties> SAPLING_PROPS = o -> o.doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0f).sound(SoundType.PLANT);
-  private static final NonNullUnaryOperator<Block.Properties> FIR_WOOD_PROPS = o -> o.hardnessAndResistance(2.0F).sound(SoundType.WOOD);
-  private static final NonNullUnaryOperator<Block.Properties> FIR_WOOD_PROPS_PASSABLE = o -> o.hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD).doesNotBlockMovement();
+  private static final NonNullUnaryOperator<Block.Properties> FIR_WOOD_PROPS = o -> o.hardnessAndResistance(2.0F).sound(SoundType.WOOD).harvestTool(ToolType.AXE);
+  private static final NonNullUnaryOperator<Block.Properties> FIR_WOOD_PROPS_PASSABLE = o -> o.hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD).doesNotBlockMovement().harvestTool(ToolType.AXE);
 
   private static <T extends IForgeRegistryEntry<?>> String name(T block) {
     return Objects.requireNonNull(block.getRegistryName()).getPath();
@@ -151,14 +159,14 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<Block> FIR_PLANKS = REGISTRATE.block("fir_planks", Block::new)
+  public static final RegistryEntry<Block> FIR_PLANKS = REGISTRATE.block("fir_planks", Material.WOOD, Block::new)
       .properties(FIR_WOOD_PROPS)
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_PLANKS))
       .build()
       .register();
 
-  public static final RegistryEntry<SlabBlock> FIR_SLAB = REGISTRATE.block("fir_slab", SlabBlock::new)
+  public static final RegistryEntry<SlabBlock> FIR_SLAB = REGISTRATE.block("fir_slab", Material.WOOD, SlabBlock::new)
       .properties(FIR_WOOD_PROPS)
       .blockstate(slab(FIR_PLANKS))
       .item()
@@ -166,7 +174,7 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<BaseBlocks.PressurePlateBlock> FIR_PRESSURE_PLATE = REGISTRATE.block("fir_pressure_plate", o -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, o))
+  public static final RegistryEntry<BaseBlocks.PressurePlateBlock> FIR_PRESSURE_PLATE = REGISTRATE.block("fir_pressure_plate", Material.WOOD, o -> new BaseBlocks.PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, o))
       .properties(FIR_WOOD_PROPS_PASSABLE)
       .blockstate(pressurePlate(ModBlocks.FIR_PLANKS))
       .item()
@@ -174,7 +182,7 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<FenceBlock> FIR_FENCE = REGISTRATE.block("fir_fence", FenceBlock::new)
+  public static final RegistryEntry<FenceBlock> FIR_FENCE = REGISTRATE.block("fir_fence", Material.WOOD, FenceBlock::new)
       .properties(FIR_WOOD_PROPS)
       .blockstate(fence(ModBlocks.FIR_PLANKS))
       .item()
@@ -182,7 +190,7 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<FenceGateBlock> FIR_FENCE_GATE = REGISTRATE.block("fir_fence_gate", FenceGateBlock::new)
+  public static final RegistryEntry<FenceGateBlock> FIR_FENCE_GATE = REGISTRATE.block("fir_fence_gate", Material.WOOD, FenceGateBlock::new)
       .properties(FIR_WOOD_PROPS)
       .blockstate(gate(ModBlocks.FIR_PLANKS))
       .item()
@@ -190,7 +198,7 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<BaseBlocks.TrapDoorBlock> FIR_TRAPDOOR = REGISTRATE.block("fir_trapdoor", BaseBlocks.TrapDoorBlock::new)
+  public static final RegistryEntry<BaseBlocks.TrapDoorBlock> FIR_TRAPDOOR = REGISTRATE.block("fir_trapdoor", Material.WOOD, BaseBlocks.TrapDoorBlock::new)
       .properties(o -> FIR_WOOD_PROPS.apply(o).notSolid())
       .blockstate(trapdoor(ModBlocks.FIR_TRAPDOOR))
       .item()
@@ -198,7 +206,7 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<StairsBlock> FIR_STAIRS = REGISTRATE.block("fir_stairs", o -> new StairsBlock(() -> FIR_PLANKS.get().getDefaultState(), o))
+  public static final RegistryEntry<StairsBlock> FIR_STAIRS = REGISTRATE.block("fir_stairs", Material.WOOD, o -> new StairsBlock(() -> FIR_PLANKS.get().getDefaultState(), o))
       .properties(FIR_WOOD_PROPS)
       .blockstate(stairs(ModBlocks.FIR_PLANKS))
       .item()
@@ -206,7 +214,7 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<BaseBlocks.WoodButtonBlock> FIR_BUTTON = REGISTRATE.block("fir_button", BaseBlocks.WoodButtonBlock::new)
+  public static final RegistryEntry<BaseBlocks.WoodButtonBlock> FIR_BUTTON = REGISTRATE.block("fir_button", Material.WOOD, BaseBlocks.WoodButtonBlock::new)
       .properties(FIR_WOOD_PROPS)
       .blockstate((ctx, p) -> p.getVariantBuilder(ctx.getEntry()).forAllStates((state) -> {
         ModelFile inventory = p.models().getBuilder("fir_button_inventory").parent(p.models().getExistingFile(new ResourceLocation("block/button_inventory"))).texture("texture", p.blockTexture(ModBlocks.FIR_PLANKS.get()));
@@ -234,7 +242,7 @@ public class ModBlocks {
             builder.rotationY(180);
           }
         } else { // CEILING
-            builder.rotationX(180);
+          builder.rotationX(180);
           if (facing == Direction.EAST) {
             builder.rotationY(270);
           } else if (facing == Direction.WEST) {
@@ -250,7 +258,7 @@ public class ModBlocks {
       .build()
       .register();
 
-  public static final RegistryEntry<BaseBlocks.DoorBlock> FIR_DOOR = REGISTRATE.block("fir_door", BaseBlocks.DoorBlock::new)
+  public static final RegistryEntry<BaseBlocks.DoorBlock> FIR_DOOR = REGISTRATE.block("fir_door", Material.WOOD, BaseBlocks.DoorBlock::new)
       .properties(o -> FIR_WOOD_PROPS.apply(o).notSolid())
       .blockstate(door())
       .item()
@@ -258,10 +266,30 @@ public class ModBlocks {
       .build()
       .register();
 
+  private static ResourceLocation FIR_SIGN_TEXTURE = new ResourceLocation(Traverse.MODID, "entity/sign/fir");
+
+  // TODO: RECIPES??? MODElE??? BLOCKSTAT
+  public static final RegistryEntry<ModdedStandingSignBlock> FIR_SIGN = REGISTRATE.block("fir_sign", Material.WOOD, (p) -> new ModdedStandingSignBlock(p, FIR_SIGN_TEXTURE))
+      .properties(o -> o.doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD).harvestTool(ToolType.AXE))
+      .blockstate(NonNullBiConsumer.noop())
+      .item((block, props) -> new SignItem(props, block, ModBlocks.FIR_WALL_SIGN.get()))
+      .model((ctx, p) -> p.generated(ctx::getEntry, p.modLoc("item/fir_sign")))
+      .build()
+      .register();
+
+  public static final RegistryEntry<ModdedWallSignBlock> FIR_WALL_SIGN = REGISTRATE.block("fir_wall_sign", Material.WOOD, (p) -> new ModdedWallSignBlock(p, FIR_SIGN_TEXTURE))
+      .properties(o -> o.doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD).harvestTool(ToolType.AXE))
+      .blockstate(NonNullBiConsumer.noop())
+/*      .item((block, props) -> new WallOrFloorItem(block, ModBlocks.FIR_WALL_SIGN.get(), props))
+      .model(NonNullBiConsumer.noop())
+      .build()*/
+      .setData(ProviderType.LANG, NonNullBiConsumer.noop())
+      .register();
+
   public static final RegistryEntry<RotatedPillarBlock> FIR_LOG = REGISTRATE.block("fir_log", Material.WOOD, RotatedPillarBlock::new)
       .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.OBSIDIAN).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .blockstate((ctx, p) ->
-        p.logBlock(ctx.getEntry())
+          p.logBlock(ctx.getEntry())
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_LOG))
@@ -271,7 +299,7 @@ public class ModBlocks {
   public static final RegistryEntry<RotatedPillarBlock> FIR_WOOD = REGISTRATE.block("fir_wood", Material.WOOD, RotatedPillarBlock::new)
       .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.OBSIDIAN).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .blockstate((ctx, p) ->
-        p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.FIR_LOG.get()))))
+          p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.FIR_LOG.get()))))
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_WOOD))
@@ -281,7 +309,7 @@ public class ModBlocks {
   public static final RegistryEntry<RotatedPillarBlock> STRIPPED_FIR_LOG = REGISTRATE.block("stripped_fir_log", Material.WOOD, RotatedPillarBlock::new)
       .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.WOOD).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .blockstate((ctx, p) ->
-        p.logBlock(ctx.getEntry())
+          p.logBlock(ctx.getEntry())
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.STRIPPED_FIR_LOG))
@@ -291,7 +319,7 @@ public class ModBlocks {
   public static final RegistryEntry<RotatedPillarBlock> STRIPPED_FIR_WOOD = REGISTRATE.block("stripped_fir_wood", Material.WOOD, RotatedPillarBlock::new)
       .properties(o -> AbstractBlock.Properties.create(Material.WOOD, (state) -> MaterialColor.WOOD).hardnessAndResistance(2.0f).sound(SoundType.WOOD))
       .blockstate((ctx, p) ->
-        p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.STRIPPED_FIR_LOG.get()))))
+          p.getVariantBuilder(ctx.getEntry()).partialState().setModels(new ConfiguredModel(p.models().cubeAll(ctx.getName(), p.blockTexture(ModBlocks.STRIPPED_FIR_LOG.get()))))
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.STRIPPED_FIR_WOOD))

@@ -6,10 +6,8 @@ import epicsquid.traverse.setup.ClientInit;
 import epicsquid.traverse.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -25,7 +23,9 @@ import org.apache.logging.log4j.Logger;
 public class Traverse {
   public static final String MODID = "traverse";
   public static CustomRegistrate REGISTRATE;
-  public static Logger LOG = LogManager.getLogger();
+  public static final Logger LOG = LogManager.getLogger();
+
+  public static final ResourceLocation FIR_SIGN_TEXTURE = new ResourceLocation(Traverse.MODID, "entity/sign/fir");
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("traverse") {
     @Override
@@ -48,6 +48,7 @@ public class Traverse {
     ModEntities.load();
     ModFeatures.load();
     ModSurfaceBuilders.load();
+    ModLang.load();
 
     DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientInit::init);
   }

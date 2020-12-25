@@ -7,5 +7,6 @@ public class ClientInit {
   public static void init() {
     IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
     bus.addListener(ClientSetup::init);
+    SpriteSetup.init();
   }
 }
