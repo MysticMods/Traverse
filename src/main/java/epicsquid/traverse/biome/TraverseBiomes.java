@@ -112,12 +112,20 @@ public class TraverseBiomes {
     registerBiome(WOODED_ISLAND, 0, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     TerraformSlimeSpawnBiomes.addSlimeSpawnBiome(LUSH_SWAMP);
 
-    BiomeVariants.addReplacement(Biomes.DEEP_COLD_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.DEEP_LUKEWARM_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.DEEP_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.SWAMP, LUSH_SWAMP, 0.2, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.JUNGLE, MINI_JUNGLE, 0.15, BiomeVariants.VariantType.BIOME);
-    BiomeVariants.addReplacement(Biomes.PLAINS, MEADOW, 0.2, BiomeVariants.VariantType.BIOME);
+    if (ConfigManager.WOODED_ISLAND.shouldSpawn()) {
+      BiomeVariants.addReplacement(Biomes.DEEP_COLD_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
+      BiomeVariants.addReplacement(Biomes.DEEP_LUKEWARM_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
+      BiomeVariants.addReplacement(Biomes.DEEP_OCEAN, WOODED_ISLAND, 0.1, BiomeVariants.VariantType.BIOME);
+    }
+    if (ConfigManager.LUSH_SWAMP.shouldSpawn()) {
+      BiomeVariants.addReplacement(Biomes.SWAMP, LUSH_SWAMP, 0.2, BiomeVariants.VariantType.BIOME);
+    }
+    if (ConfigManager.MINI_JUNGLE.shouldSpawn()) {
+      BiomeVariants.addReplacement(Biomes.JUNGLE, MINI_JUNGLE, 0.15, BiomeVariants.VariantType.BIOME);
+    }
+    if (ConfigManager.MEADOW.shouldSpawn()) {
+      BiomeVariants.addReplacement(Biomes.PLAINS, MEADOW, 0.2, BiomeVariants.VariantType.BIOME);
+    }
 
     BiomeVariants.addReplacement(AUTUMNAL_WOODS, AUTUMNAL_WOODED_HILLS, 1, BiomeVariants.VariantType.HILLS);
     BiomeVariants.addReplacement(CONIFEROUS_FOREST, CONIFEROUS_WOODED_HILLS, 1, BiomeVariants.VariantType.HILLS);

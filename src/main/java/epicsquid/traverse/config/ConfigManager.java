@@ -23,12 +23,14 @@ public class ConfigManager {
   public static BiomeConfig CONIFEROUS_FOREST = config.build("coniferous_forest", 4);
   public static BiomeConfig DESERT_SHRUBLAND = config.build("desert_shrubland", 4);
   public static BiomeConfig HIGH_CONIFEROUS_FOREST = config.build("high_coniferous_forest", 1);
+  public static BiomeConfig LUSH_SWAMP = config.build("lush_swamp", 1);
   public static BiomeConfig MEADOW = config.build("meadow", 5);
   public static BiomeConfig MINI_JUNGLE = config.build("mini_jungle", 1);
   public static BiomeConfig PLAINS_PLATEAU = config.build("plains_plateau", 3);
   public static BiomeConfig ROLLING_HILLS = config.build("rolling_hills", 4);
   public static BiomeConfig SNOWY_CONIFEROUS_FOREST = config.build("snowy_coniferous_forest", 3);
   public static BiomeConfig SNOWY_HIGH_CONIFEROUS_FOREST = config.build("snowy_high_coniferous_forest", 1);
+  public static BiomeConfig WOODED_ISLAND = config.build("wooded_islands", 1);
   public static BiomeConfig WOODLANDS = config.build("woodlands", 5);
 
   public static ForgeConfigSpec COMMON_CONFIG;
