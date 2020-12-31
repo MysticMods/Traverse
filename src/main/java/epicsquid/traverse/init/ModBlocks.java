@@ -4,6 +4,7 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
@@ -11,6 +12,7 @@ import epicsquid.traverse.Traverse;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.SignItem;
@@ -88,12 +90,14 @@ public class ModBlocks {
     return p.blockWithInventoryModel(ctx::getEntry);
   }
 
+  private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+
   public static final RegistryEntry<LeavesBlock> RED_AUTUMNAL_LEAVES = REGISTRATE.block("red_autumnal_leaves", Material.LEAVES, LeavesBlock::new)
       .properties(LEAVES_PROPS)
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.RED_AUTUMNAL_LEAVES))
       .build()
-      .defaultBlockstate()
+      .loot((p, e) -> p.registerLootTable(e, RegistrateBlockLootTables.droppingWithChancesAndSticks(e, ModBlocks.RED_AUTUMNAL_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES)))
       .register();
 
   public static final RegistryEntry<LeavesBlock> BROWN_AUTUMNAL_LEAVES = REGISTRATE.block("brown_autumnal_leaves", Material.LEAVES, LeavesBlock::new)
@@ -101,12 +105,15 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.BROWN_AUTUMNAL_LEAVES))
       .build()
+      .loot((p, e) -> p.registerLootTable(e, RegistrateBlockLootTables.droppingWithChancesAndSticks(e, ModBlocks.BROWN_AUTUMNAL_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES)))
       .register();
+
   public static final RegistryEntry<LeavesBlock> ORANGE_AUTUMNAL_LEAVES = REGISTRATE.block("orange_autumnal_leaves", Material.LEAVES, LeavesBlock::new)
       .properties(LEAVES_PROPS)
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.ORANGE_AUTUMNAL_LEAVES))
       .build()
+       .loot((p, e) -> p.registerLootTable(e, RegistrateBlockLootTables.droppingWithChancesAndSticks(e, ModBlocks.ORANGE_AUTUMNAL_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES)))
       .register();
 
   public static final RegistryEntry<LeavesBlock> YELLOW_AUTUMNAL_LEAVES = REGISTRATE.block("yellow_autumnal_leaves", Material.LEAVES, LeavesBlock::new)
@@ -114,6 +121,7 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.YELLOW_AUTUMNAL_LEAVES))
       .build()
+      .loot((p, e) -> p.registerLootTable(e, RegistrateBlockLootTables.droppingWithChancesAndSticks(e, ModBlocks.YELLOW_AUTUMNAL_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES)))
       .register();
 
   public static final RegistryEntry<LeavesBlock> FIR_LEAVES = REGISTRATE.block("fir_leaves", Material.LEAVES, LeavesBlock::new)
@@ -121,6 +129,7 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_LEAVES))
       .build()
+      .loot((p, e) -> p.registerLootTable(e, RegistrateBlockLootTables.droppingWithChancesAndSticks(e, ModBlocks.FIR_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES)))
       .register();
 
   public static final RegistryEntry<BaseBlocks.SaplingBlock> FIR_SAPLING = REGISTRATE.block("fir_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.FIR_TREE), o))
@@ -130,6 +139,7 @@ public class ModBlocks {
       .model((ctx, p) -> p.blockSprite(ModBlocks.FIR_SAPLING))
       .build()
       .register();
+
   public static final RegistryEntry<BaseBlocks.SaplingBlock> RED_AUTUMNAL_SAPLING = REGISTRATE.block("red_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.RED_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .blockstate(sapling(ModBlocks.RED_AUTUMNAL_SAPLING))
@@ -137,6 +147,7 @@ public class ModBlocks {
       .model((ctx, p) -> p.blockSprite(ModBlocks.RED_AUTUMNAL_SAPLING))
       .build()
       .register();
+
   public static final RegistryEntry<BaseBlocks.SaplingBlock> BROWN_AUTUMNAL_SAPLING = REGISTRATE.block("brown_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.BROWN_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .blockstate(sapling(ModBlocks.BROWN_AUTUMNAL_SAPLING))
@@ -144,6 +155,7 @@ public class ModBlocks {
       .model((ctx, p) -> p.blockSprite(ModBlocks.BROWN_AUTUMNAL_SAPLING))
       .build()
       .register();
+
   public static final RegistryEntry<BaseBlocks.SaplingBlock> ORANGE_AUTUMNAL_SAPLING = REGISTRATE.block("orange_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.ORANGE_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .blockstate(sapling(ModBlocks.ORANGE_AUTUMNAL_SAPLING))
@@ -151,6 +163,7 @@ public class ModBlocks {
       .model((ctx, p) -> p.blockSprite(ModBlocks.ORANGE_AUTUMNAL_SAPLING))
       .build()
       .register();
+
   public static final RegistryEntry<BaseBlocks.SaplingBlock> YELLOW_AUTUMNAL_SAPLING = REGISTRATE.block("yellow_autumnal_sapling", Material.PLANTS, o -> new BaseBlocks.SaplingBlock(new TreeWrapper(() -> ModFeatures.YELLOW_AUTUMNAL_TREE), o))
       .properties(SAPLING_PROPS)
       .blockstate(sapling(ModBlocks.YELLOW_AUTUMNAL_SAPLING))
@@ -268,7 +281,6 @@ public class ModBlocks {
 
   private static ResourceLocation FIR_SIGN_TEXTURE = new ResourceLocation(Traverse.MODID, "entity/sign/fir");
 
-  // TODO: RECIPES??? MODElE??? BLOCKSTAT
   public static final RegistryEntry<ModdedStandingSignBlock> FIR_SIGN = REGISTRATE.block("fir_sign", Material.WOOD, (p) -> new ModdedStandingSignBlock(p, FIR_SIGN_TEXTURE))
       .properties(o -> o.doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD).harvestTool(ToolType.AXE))
       .blockstate(NonNullBiConsumer.noop())
@@ -280,9 +292,6 @@ public class ModBlocks {
   public static final RegistryEntry<ModdedWallSignBlock> FIR_WALL_SIGN = REGISTRATE.block("fir_wall_sign", Material.WOOD, (p) -> new ModdedWallSignBlock(p, FIR_SIGN_TEXTURE))
       .properties(o -> o.doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD).harvestTool(ToolType.AXE))
       .blockstate(NonNullBiConsumer.noop())
-/*      .item((block, props) -> new WallOrFloorItem(block, ModBlocks.FIR_WALL_SIGN.get(), props))
-      .model(NonNullBiConsumer.noop())
-      .build()*/
       .setData(ProviderType.LANG, NonNullBiConsumer.noop())
       .register();
 
