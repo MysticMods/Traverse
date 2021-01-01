@@ -36,7 +36,11 @@ public class BiomeVariants {
       Map<RegistryKey<Biome>, Entry> current = map.get(type);
       current.put(replacing, Entry.of(replacement));
     } else {
-      biomeReplacements.computeIfAbsent(replacing, (k) -> new WeightedEntryList()).add(replacement, chance);
+      WeightedEntryList entries = biomeReplacements.computeIfAbsent(replacing, (k) -> new WeightedEntryList());
+      if (entries.entries.isEmpty()) {
+        entries.add(replacing, 1.0 - chance);
+      }
+      entries.add(replacement, chance);
     }
   }
 
