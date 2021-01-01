@@ -10,7 +10,8 @@
     "MixinHillsLayer",
     "MixinMixRiverLayer",
     "MixinShoreLayer",
-    "AccessorVillagerType"
+    "AccessorVillagerType",
+    "AccessorSetFireInfo"
   ],
   "client": [
     "MixinSignTileEntityRenderer",
