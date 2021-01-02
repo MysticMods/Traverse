@@ -1,13 +1,11 @@
 package epicsquid.traverse.setup;
 
 import epicsquid.traverse.init.ModBlocks;
-import epicsquid.traverse.mixin.AccessorSetFireInfo;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.FireBlock;
 import net.minecraft.item.AxeItem;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.HashMap;

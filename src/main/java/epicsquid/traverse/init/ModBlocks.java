@@ -12,12 +12,17 @@ import epicsquid.traverse.Traverse;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.item.SignItem;
 import net.minecraft.item.WallOrFloorItem;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.state.properties.AttachFace;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -302,7 +307,11 @@ public class ModBlocks {
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_LOG))
+      .tag(ItemTags.LOGS_THAT_BURN)
+      .tag(ItemTags.LOGS)
       .build()
+      .tag(BlockTags.LOGS_THAT_BURN)
+      .tag(BlockTags.LOGS)
       .register();
 
   public static final RegistryEntry<RotatedPillarBlock> FIR_WOOD = REGISTRATE.block("fir_wood", Material.WOOD, RotatedPillarBlock::new)
@@ -312,7 +321,11 @@ public class ModBlocks {
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.FIR_WOOD))
+      .tag(ItemTags.LOGS_THAT_BURN)
+      .tag(ItemTags.LOGS)
       .build()
+      .tag(BlockTags.LOGS_THAT_BURN)
+      .tag(BlockTags.LOGS)
       .register();
 
   public static final RegistryEntry<RotatedPillarBlock> STRIPPED_FIR_LOG = REGISTRATE.block("stripped_fir_log", Material.WOOD, RotatedPillarBlock::new)
@@ -322,7 +335,11 @@ public class ModBlocks {
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.STRIPPED_FIR_LOG))
+      .tag(ItemTags.LOGS_THAT_BURN)
+      .tag(ItemTags.LOGS)
       .build()
+      .tag(BlockTags.LOGS_THAT_BURN)
+      .tag(BlockTags.LOGS)
       .register();
 
   public static final RegistryEntry<RotatedPillarBlock> STRIPPED_FIR_WOOD = REGISTRATE.block("stripped_fir_wood", Material.WOOD, RotatedPillarBlock::new)
@@ -332,7 +349,11 @@ public class ModBlocks {
       )
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.STRIPPED_FIR_WOOD))
+      .tag(ItemTags.LOGS_THAT_BURN)
+      .tag(ItemTags.LOGS)
       .build()
+      .tag(BlockTags.LOGS_THAT_BURN)
+      .tag(BlockTags.LOGS)
       .register();
 
   public static void load() {
