@@ -1,6 +1,6 @@
 {
 	"biome.traverse.arid_highlands":"干旱高原",
-	"biome.traverse.autumnal_wooded_hills":"秋木山脉",
+	"biome.traverse.autumnal_wooded_hills":"秋木树林丘陵",
 	"biome.traverse.autumnal_woods":"秋木树林",
 	"biome.traverse.cliffs":"悬崖",
 	"biome.traverse.coniferous_forest":"冷杉森林",
@@ -12,7 +12,7 @@
 	"biome.traverse.mini_jungle":"迷你丛林",
 	"biome.traverse.plains_plateau":"高地平原",
 	"biome.traverse.rocky_edge":"岩壁",
-	"biome.traverse.rolling_hills":"绵延山丘",
+	"biome.traverse.rolling_hills":"绵延丘陵",
 	"biome.traverse.snowy_cliffs":"积雪的悬崖",
 	"biome.traverse.snowy_coniferous_forest":"积雪的冷杉森林",
 	"biome.traverse.snowy_coniferous_wooded_hills":"积雪的冷杉林山脉",
@@ -46,6 +46,6 @@
 	"block.traverse.yellow_autumnal_sapling":"金秋树苗",
 	"entity.traverse.fir_boat":"冷杉木船",
 	"item.traverse.fir_boat":"冷杉木船",
-	"itemGroup.traverse":"遍历：重铸"
+	"itemGroup.traverse":"遍历"
 
 }
