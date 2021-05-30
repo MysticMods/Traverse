@@ -14,7 +14,7 @@ public class ModLang {
       p.add("biome.traverse.cliffs", "Cliffs");
       p.add("biome.traverse.snowy_cliffs", "Snowy Cliffs");
       p.add("biome.traverse.coniferous_forest", "Coniferous Forest");
-      p.add("biome.traverse.coniferous_woodland_hills_biome", "Coniferous Wooded Hills");
+      p.add("biome.traverse.coniferous_woodland_hills", "Coniferous Wooded Hills");
       p.add("biome.traverse.desert_shrubland", "Desert Shrubland");
       p.add("biome.traverse.high_coniferous_forest", "High Coniferous Forest");
       p.add("biome.traverse.lush_swamp", "Lush Swamp");
