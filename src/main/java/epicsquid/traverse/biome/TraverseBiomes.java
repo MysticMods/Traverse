@@ -143,7 +143,7 @@ public class TraverseBiomes {
   private static void registerBiome(RegistryKey<Biome> key, int weight, BiomeManager.BiomeType type, BiomeDictionary.Type... types) {
     if (weight > 0) {
       BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(key, weight));
-      BiomeDictionary.addTypes(key, types);
     }
+    BiomeDictionary.addTypes(key, types);
   }
 }
