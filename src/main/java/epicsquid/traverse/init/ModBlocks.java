@@ -5,7 +5,6 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
-import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
@@ -13,14 +12,9 @@ import epicsquid.traverse.Traverse;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.data.CookingRecipeBuilder;
-import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.item.SignItem;
-import net.minecraft.item.WallOrFloorItem;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -119,7 +113,7 @@ public class ModBlocks {
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.ORANGE_AUTUMNAL_LEAVES))
       .build()
-       .loot((p, e) -> p.registerLootTable(e, RegistrateBlockLootTables.droppingWithChancesAndSticks(e, ModBlocks.ORANGE_AUTUMNAL_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES)))
+      .loot((p, e) -> p.registerLootTable(e, RegistrateBlockLootTables.droppingWithChancesAndSticks(e, ModBlocks.ORANGE_AUTUMNAL_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES)))
       .register();
 
   public static final RegistryEntry<LeavesBlock> YELLOW_AUTUMNAL_LEAVES = REGISTRATE.block("yellow_autumnal_leaves", Material.LEAVES, LeavesBlock::new)
@@ -356,6 +350,31 @@ public class ModBlocks {
       .build()
       .tag(BlockTags.LOGS_THAT_BURN)
       .tag(BlockTags.LOGS)
+      .register();
+
+  public static RegistryEntry<FlowerPotBlock> POTTED_FIR_SAPLING = REGISTRATE.block("potted_fir_sapling", Material.MISCELLANEOUS, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.FIR_SAPLING, AbstractBlock.Properties.from(Blocks.OAK_SAPLING)))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "traverse:block/fir_sapling")))
+      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.FIR_SAPLING.get())))
+      .register();
+
+  public static RegistryEntry<FlowerPotBlock> POTTED_RED_AUTUMNAL_SAPLING = REGISTRATE.block("potted_red_autumnal_sapling", Material.MISCELLANEOUS, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.RED_AUTUMNAL_SAPLING, AbstractBlock.Properties.from(Blocks.OAK_SAPLING)))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "traverse:block/red_autumnal_sapling")))
+      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.RED_AUTUMNAL_SAPLING.get())))
+      .register();
+
+  public static RegistryEntry<FlowerPotBlock> POTTED_BROWN_AUTUMNAL_SAPLING = REGISTRATE.block("potted_brown_autumnal_sapling", Material.MISCELLANEOUS, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.BROWN_AUTUMNAL_SAPLING, AbstractBlock.Properties.from(Blocks.OAK_SAPLING)))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "traverse:block/brown_autumnal_sapling")))
+      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.BROWN_AUTUMNAL_SAPLING.get())))
+      .register();
+
+  public static RegistryEntry<FlowerPotBlock> POTTED_ORANGE_AUTUMNAL_SAPLING = REGISTRATE.block("potted_orange_autumnal_sapling", Material.MISCELLANEOUS, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.ORANGE_AUTUMNAL_SAPLING, AbstractBlock.Properties.from(Blocks.OAK_SAPLING)))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "traverse:block/orange_autumnal_sapling")))
+      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.ORANGE_AUTUMNAL_SAPLING.get())))
+      .register();
+
+  public static RegistryEntry<FlowerPotBlock> POTTED_YELLOW_AUTUMNAL_SAPLING = REGISTRATE.block("potted_yellow_autumnal_sapling", Material.MISCELLANEOUS, (p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ModBlocks.YELLOW_AUTUMNAL_SAPLING, AbstractBlock.Properties.from(Blocks.OAK_SAPLING)))
+      .blockstate((ctx, p) -> p.simpleBlock(ctx.getEntry(), p.models().withExistingParent(ctx.getName(), "minecraft:block/flower_pot_cross").texture("plant", "traverse:block/yellow_autumnal_sapling")))
+      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.droppingAndFlowerPot(ModBlocks.YELLOW_AUTUMNAL_SAPLING.get())))
       .register();
 
   public static void load() {

@@ -6,6 +6,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "traverse:fir_door",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
           "name": "traverse:fir_door"
         }
       ],
