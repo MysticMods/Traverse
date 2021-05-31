@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "epicsquid.traverse.mixin",
+  "package": "mysticalmods.traverse.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "traverse.refmap.json",
   "mixins": [
