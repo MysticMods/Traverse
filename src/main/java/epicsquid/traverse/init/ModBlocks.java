@@ -5,6 +5,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
+import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
@@ -279,6 +280,7 @@ public class ModBlocks {
   public static final RegistryEntry<BaseBlocks.DoorBlock> FIR_DOOR = REGISTRATE.block("fir_door", Material.WOOD, BaseBlocks.DoorBlock::new)
       .properties(o -> FIR_WOOD_PROPS.apply(o).notSolid())
       .blockstate(door())
+      .loot((ctx, p) -> ctx.registerLootTable(p, RegistrateBlockLootTables.registerDoor(p)))
       .item()
       .model((ctx, p) -> p.generated(ctx::getEntry))
       .build()
