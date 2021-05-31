@@ -1,7 +1,6 @@
 package mysticalmods.traverse;
 
 import mysticalmods.traverse.config.ConfigManager;
-import epicsquid.traverse.init.*;
 import mysticalmods.traverse.setup.ClientInit;
 import mysticalmods.traverse.setup.ModSetup;
 import mysticalmods.traverse.init.*;
