@@ -4,6 +4,7 @@ import mysticalmods.traverse.init.ModBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.FireBlock;
+import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.item.AxeItem;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -47,6 +48,13 @@ public class ModSetup {
       fire.setFireInfo(ModBlocks.RED_AUTUMNAL_LEAVES.get(), 30, 60);
       fire.setFireInfo(ModBlocks.ORANGE_AUTUMNAL_LEAVES.get(), 30, 60);
       fire.setFireInfo(ModBlocks.BROWN_AUTUMNAL_LEAVES.get(), 30, 60);
+
+      FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+      pot.addPlant(ModBlocks.BROWN_AUTUMNAL_SAPLING.getId(), () -> ModBlocks.POTTED_BROWN_AUTUMNAL_SAPLING.get());
+      pot.addPlant(ModBlocks.FIR_SAPLING.getId(), () -> ModBlocks.POTTED_FIR_SAPLING.get());
+      pot.addPlant(ModBlocks.ORANGE_AUTUMNAL_SAPLING.getId(), () -> ModBlocks.POTTED_ORANGE_AUTUMNAL_SAPLING.get());
+      pot.addPlant(ModBlocks.RED_AUTUMNAL_SAPLING.getId(), () -> ModBlocks.POTTED_RED_AUTUMNAL_SAPLING.get());
+      pot.addPlant(ModBlocks.YELLOW_AUTUMNAL_SAPLING.getId(), () -> ModBlocks.POTTED_YELLOW_AUTUMNAL_SAPLING.get());
     });
   }
 

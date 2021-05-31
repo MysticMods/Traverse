@@ -21,14 +21,13 @@ public class ClientSetup {
   public static void init(FMLClientSetupEvent event) {
     RenderingRegistry.registerEntityRenderingHandler(ModEntities.FIR_BOAT.get(), BoatRenderer::new);
 
-    DeferredWorkQueue.runLater(() -> {
+    event.enqueueWork(() -> {
       RenderType rendertype = RenderType.getCutoutMipped();
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_LEAVES.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.BROWN_AUTUMNAL_LEAVES.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.YELLOW_AUTUMNAL_LEAVES.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_AUTUMNAL_LEAVES.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.RED_AUTUMNAL_LEAVES.get(), rendertype);
-      rendertype = RenderType.getCutout();
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_SAPLING.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.BROWN_AUTUMNAL_SAPLING.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.YELLOW_AUTUMNAL_SAPLING.get(), rendertype);
@@ -36,6 +35,13 @@ public class ClientSetup {
       RenderTypeLookup.setRenderLayer(ModBlocks.RED_AUTUMNAL_SAPLING.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_TRAPDOOR.get(), rendertype);
       RenderTypeLookup.setRenderLayer(ModBlocks.FIR_DOOR.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_BROWN_AUTUMNAL_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_FIR_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_ORANGE_AUTUMNAL_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_BROWN_AUTUMNAL_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_FIR_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_RED_AUTUMNAL_SAPLING.get(), rendertype);
+      RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_YELLOW_AUTUMNAL_SAPLING.get(), rendertype);
     });
   }
 }
