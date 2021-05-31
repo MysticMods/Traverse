@@ -163,7 +163,7 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
 
 shadowJar {
     configurations = [project.configurations.shade]
-    relocate 'com.tterrag.registrate', 'epicsquid.traverse.repack.registrate'
+    relocate 'com.tterrag.registrate', 'mysticalmods.repack_traverse.registrate'
     relocate 'noobanidus.libs.noobutil', 'noobanidus.libs.repack_traverse.noobutil'
     classifier ''
 }
